@@ -11,6 +11,9 @@ import java.util.List;
 
 /**
  * Binds data from the application to the RecyclerView layout
+ *
+ * See: https://guides.codepath.com/android/using-the-recyclerview
+ * for information about RecyclerViews
  */
 public class ScheduleAdapter
         extends RecyclerView.Adapter<ScheduleAdapter.ScheduleItemViewHolder> {
