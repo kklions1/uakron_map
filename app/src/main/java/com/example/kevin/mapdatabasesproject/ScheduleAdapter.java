@@ -12,26 +12,27 @@ import java.util.List;
 /**
  * Binds data from the application to the RecyclerView layout
  */
-public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ListItemViewHolder> {
+public class ScheduleAdapter
+        extends RecyclerView.Adapter<ScheduleAdapter.ScheduleItemViewHolder> {
 
     private List<Course> courseList;
 
-    public RecyclerViewAdapter(List<Course> data) {
+    public ScheduleAdapter(List<Course> data) {
         this.courseList = data;
     }
 
     // Called to create the layout inside each element of the recyclerview
     @Override
     @NonNull
-    public ListItemViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int viewType) {
+    public ScheduleItemViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int viewType) {
         View itemView = LayoutInflater
                 .from(viewGroup.getContext())
                 .inflate(R.layout.schedule_item, viewGroup, false);
-        return new ListItemViewHolder(itemView);
+        return new ScheduleItemViewHolder(itemView);
     }
 
     @Override
-    public void onBindViewHolder(ListItemViewHolder viewHolder, int position) {
+    public void onBindViewHolder(ScheduleItemViewHolder viewHolder, int position) {
         Course course = courseList.get(position);
         viewHolder.courseName.setText(course.getCourseName());
         viewHolder.courseTime.setText(course.getCourseTime());
@@ -46,12 +47,12 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     /**
      * Stores references to layout elements in the RecyclerView
      */
-    public final static class ListItemViewHolder extends RecyclerView.ViewHolder {
+    public final static class ScheduleItemViewHolder extends RecyclerView.ViewHolder {
         TextView courseName;
         TextView courseTime;
         TextView courseNumber;
 
-        public ListItemViewHolder(View itemView) {
+        public ScheduleItemViewHolder(View itemView) {
             super(itemView);
             courseName = itemView.findViewById(R.id.class_name);
             courseTime = itemView.findViewById(R.id.class_time);
