@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">Meander</string>
-    <string name="title_activity_main">MainActivity</string>
+    <string name="title_activity_main">Meander</string>
+    <string name="title_schedule_activity">Schedule</string>
 </resources>
