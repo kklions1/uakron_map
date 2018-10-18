@@ -21,9 +21,11 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     // FIXME be wary of this, may cause some problems. Its late though I'm really lazy
+
     implementation 'com.android.support:appcompat-v7:27.1.1'
     implementation 'com.google.android.gms:play-services-maps:16.0.0'
 
+    implementation 'com.android.support:design:27.1.1'
     implementation 'com.android.support:recyclerview-v7:27.1.1'
 
     testImplementation 'junit:junit:4.12'

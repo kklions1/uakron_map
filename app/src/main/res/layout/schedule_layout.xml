@@ -7,6 +7,15 @@
     <android.support.v7.widget.RecyclerView
         android:id="@+id/schedule_recycler_view"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent" />
 
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/add_course_fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:src="@drawable/plus"
+        android:layout_marginBottom="16dp"
+        android:layout_marginEnd="16dp" />
 </RelativeLayout>
