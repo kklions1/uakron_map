@@ -1,9 +1,13 @@
-package com.example.kevin.mapdatabasesproject;
+package com.example.kevin.mapdatabasesproject.activity;
 
 import android.app.Activity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+
+import com.example.kevin.mapdatabasesproject.model.Course;
+import com.example.kevin.mapdatabasesproject.R;
+import com.example.kevin.mapdatabasesproject.adapter.ScheduleAdapter;
 
 import java.util.ArrayList;
 import java.util.List;

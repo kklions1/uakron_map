@@ -1,4 +1,4 @@
-package com.example.kevin.mapdatabasesproject;
+package com.example.kevin.mapdatabasesproject.model;
 
 /**
  * Class that represents a course
