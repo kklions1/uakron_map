@@ -28,13 +28,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mapFragment.getMapAsync(this);
 
         FloatingActionButton scheduleFab = findViewById(R.id.view_schedule_fab);
-        scheduleFab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // TODO add Java 8 support because it makes my life easier
-                navigateToScheduleScreen();
-            }
-        });
+        scheduleFab.setOnClickListener((view) -> navigateToScheduleScreen());
     }
 
     @Override
