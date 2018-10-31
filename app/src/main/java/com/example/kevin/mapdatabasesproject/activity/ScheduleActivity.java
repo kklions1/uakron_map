@@ -1,9 +1,13 @@
-package com.example.kevin.mapdatabasesproject;
+package com.example.kevin.mapdatabasesproject.activity;
 
 import android.app.Activity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+
+import com.example.kevin.mapdatabasesproject.model.Course;
+import com.example.kevin.mapdatabasesproject.R;
+import com.example.kevin.mapdatabasesproject.adapter.ScheduleAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,9 +20,9 @@ public class ScheduleActivity extends Activity {
         setContentView(R.layout.schedule_layout);
 
         List<Course> mockCourseData = new ArrayList<>();
-        mockCourseData.add(new Course("Database Management", "4:15", "12"));
-        mockCourseData.add(new Course("Parallel Processing", "11:45", "401400"));
-        mockCourseData.add(new Course("Intro to Ethics", "11:15", "101"));
+        for (int i = 0; i < 50; i++) {
+            mockCourseData.add(new Course("Mock Course Data", "Mock Course Time", Integer.toString(i)));
+        }
 
         RecyclerView scheduleRecyclerView = findViewById(R.id.schedule_recycler_view);
         ScheduleAdapter scheduleAdapter = new ScheduleAdapter(mockCourseData);

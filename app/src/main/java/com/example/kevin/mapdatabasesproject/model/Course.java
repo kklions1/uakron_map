@@ -1,4 +1,4 @@
-package com.example.kevin.mapdatabasesproject;
+package com.example.kevin.mapdatabasesproject.model;
 
 /**
  * Class that represents a course
@@ -21,7 +21,7 @@ public class Course {
     }
 
     // TODO make this a builder pattern? If this class gets to the point where we can allow nulls,
-    // this should be a builder pattern.
+    // this should be a builder pattern or use Optionals.
 
     public Course(String name, String time, String number) {
         this.courseName = name;

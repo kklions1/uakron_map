@@ -1,9 +1,12 @@
-package com.example.kevin.mapdatabasesproject;
+package com.example.kevin.mapdatabasesproject.activity;
 
 import android.content.Intent;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
+import android.view.View;
 
+import com.example.kevin.mapdatabasesproject.R;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -11,7 +14,7 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
-public class MainActivity extends FragmentActivity implements OnMapReadyCallback, GoogleMap.OnMapLongClickListener {
+public class MapsActivity extends FragmentActivity implements OnMapReadyCallback, GoogleMap.OnMapLongClickListener {
 
     private GoogleMap mMap;
 
@@ -23,6 +26,9 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
+
+        FloatingActionButton scheduleFab = findViewById(R.id.view_schedule_fab);
+        scheduleFab.setOnClickListener((view) -> navigateToScheduleScreen());
     }
 
     @Override
@@ -40,11 +46,11 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
     public void onMapLongClick(LatLng point) {
         // TODO eventually this method will be used to place markers on the map, but I'm lazy, so:
         // Long presses on the map will navigate to the schedule screen.
-        navigateToScheduleScreen();
+//        navigateToScheduleScreen();
     }
 
     private void navigateToScheduleScreen() {
-        Intent intent = new Intent(MainActivity.this, ScheduleActivity.class);
+        Intent intent = new Intent(MapsActivity.this, ScheduleActivity.class);
         startActivity(intent);
     }
 }
