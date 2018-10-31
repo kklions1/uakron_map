@@ -12,9 +12,11 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
-public class MapsActivity extends FragmentActivity implements OnMapReadyCallback, GoogleMap.OnMapLongClickListener {
+public class MapsActivity extends FragmentActivity implements OnMapReadyCallback,
+        GoogleMap.OnMapLongClickListener, GoogleMap.OnMarkerClickListener {
 
     private GoogleMap mMap;
 
@@ -40,13 +42,18 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
         mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
         mMap.setOnMapLongClickListener(this);
+        mMap.setOnMarkerClickListener(this);
     }
 
     @Override
     public void onMapLongClick(LatLng point) {
         // TODO eventually this method will be used to place markers on the map, but I'm lazy, so:
         // Long presses on the map will navigate to the schedule screen.
-//        navigateToScheduleScreen();
+    }
+
+    @Override
+    public boolean onMarkerClick(Marker marker) {
+
     }
 
     private void navigateToScheduleScreen() {
