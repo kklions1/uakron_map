@@ -23,6 +23,7 @@ public class CourseDAO implements DataAccessObject<Course> {
     public List<Course> getAll() {
         List<Course> result = new ArrayList<>();
         SQLiteDatabase db = dbHelper.getReadableDatabase();
+        // selection arguments are to help prevent SQL injection attacks
         Cursor cursor = db.rawQuery("SELECT * FROM Courses", null);
 
         cursor.moveToFirst();
