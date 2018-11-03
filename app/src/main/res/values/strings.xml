@@ -1,6 +1,10 @@
 <resources>
+    <!-- activities region -->
     <string name="app_name">Meander</string>
     <string name="title_activity_main">Meander</string>
     <string name="title_schedule_activity">Schedule</string>
     <string name="title_course_details_activity">Course Details</string>
+
+    <!-- course details -->
+    <string name="course_details_title">Course Details</string>
 </resources>

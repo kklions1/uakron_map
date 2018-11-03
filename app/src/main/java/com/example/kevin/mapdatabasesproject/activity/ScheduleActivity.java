@@ -1,6 +1,7 @@
 package com.example.kevin.mapdatabasesproject.activity;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.widget.LinearLayoutManager;
@@ -32,8 +33,11 @@ public class ScheduleActivity extends Activity {
         scheduleRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         FloatingActionButton addCourseFab = findViewById(R.id.add_course_fab);
-        addCourseFab.setOnClickListener((view) -> {
-            // TODO navigate to CourseDetailsActivity
-        });
+        addCourseFab.setOnClickListener((view) -> navigateToCourseDetails());
+    }
+
+    private void navigateToCourseDetails() {
+        Intent intent = new Intent(ScheduleActivity.this, CourseDetailsActivity.class);
+        startActivity(intent);
     }
 }
