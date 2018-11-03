@@ -2,6 +2,7 @@ package com.example.kevin.mapdatabasesproject.activity;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
@@ -29,5 +30,10 @@ public class ScheduleActivity extends Activity {
 
         scheduleRecyclerView.setAdapter(scheduleAdapter);
         scheduleRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        FloatingActionButton addCourseFab = findViewById(R.id.add_course_fab);
+        addCourseFab.setOnClickListener((view) -> {
+            // TODO navigate to CourseDetailsActivity
+        });
     }
 }

@@ -39,7 +39,9 @@
         <activity
             android:name=".activity.ScheduleActivity"
             android:label="@string/title_schedule_activity"/>
-        
+        <activity
+            android:name=".activity.CourseDetailsActivity"
+            android:label="@string/title_course_details_activity"/>
     </application>
 
 </manifest>
