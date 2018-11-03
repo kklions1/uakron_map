@@ -64,8 +64,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     @Override
     public boolean onMarkerClick(Marker marker) {
-        marker.showInfoWindow();
-        return true;
+        return false;
     }
 
     private void navigateToScheduleScreen() {
