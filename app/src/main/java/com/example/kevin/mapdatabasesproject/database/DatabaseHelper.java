@@ -26,12 +26,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase database) {
-
+        // TODO  create table names
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase database, int currentVersion, int newVersion) {
-
+        // Not sure what this is supposed to do TBH
     }
 
 
