@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
+import android.util.Log;
 
 import com.example.kevin.mapdatabasesproject.R;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -41,15 +42,15 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     // GoogleMap onCreate
     @Override
-    public void onMapReady(GoogleMap googleMap) {
-        this.googleMap = googleMap;
+    public void onMapReady(GoogleMap map) {
+        googleMap = map;
 
         // Add a marker in Sydney and move the camera
         LatLng sydney = new LatLng(-34, 151);
-        this.googleMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
-        this.googleMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
-        this.googleMap.setOnMapLongClickListener(this);
-        this.googleMap.setOnMarkerClickListener(this);
+        markerIdMap.put(googleMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney")), markerIdMap.size() + 1);
+        googleMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+        googleMap.setOnMapLongClickListener(this);
+        googleMap.setOnMarkerClickListener(this);
     }
 
     @Override
@@ -64,6 +65,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     @Override
     public boolean onMarkerClick(Marker marker) {
+        Log.d("Location " + markerIdMap.get(marker).toString(), "Lat: " + marker.getPosition().latitude + " \n Lng: " + marker.getPosition().longitude);
         return false;
     }
 
