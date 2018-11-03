@@ -15,10 +15,13 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+import java.util.Map;
+
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback,
         GoogleMap.OnMapLongClickListener, GoogleMap.OnMarkerClickListener {
 
     private GoogleMap mMap;
+    private Map<Marker, Integer> markerIdMap;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,4 +63,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         Intent intent = new Intent(MapsActivity.this, ScheduleActivity.class);
         startActivity(intent);
     }
+
+    public Map<Marker, Integer> getMarkerIdMap() { return markerIdMap; }
 }
