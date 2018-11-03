@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
-import android.view.View;
 
 import com.example.kevin.mapdatabasesproject.R;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -15,14 +14,16 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+import java.util.HashMap;
 import java.util.Map;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback,
         GoogleMap.OnMapLongClickListener, GoogleMap.OnMarkerClickListener {
 
-    private GoogleMap mMap;
+    private GoogleMap googleMap;
     private Map<Marker, Integer> markerIdMap;
 
+    // Activity-level onCreate
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,29 +35,36 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         FloatingActionButton scheduleFab = findViewById(R.id.view_schedule_fab);
         scheduleFab.setOnClickListener((view) -> navigateToScheduleScreen());
+
+        markerIdMap = new HashMap<>();
     }
 
+    // GoogleMap onCreate
     @Override
     public void onMapReady(GoogleMap googleMap) {
-        mMap = googleMap;
+        this.googleMap = googleMap;
 
         // Add a marker in Sydney and move the camera
         LatLng sydney = new LatLng(-34, 151);
-        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
-        mMap.setOnMapLongClickListener(this);
-        mMap.setOnMarkerClickListener(this);
+        this.googleMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
+        this.googleMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+        this.googleMap.setOnMapLongClickListener(this);
+        this.googleMap.setOnMarkerClickListener(this);
     }
 
     @Override
     public void onMapLongClick(LatLng point) {
-        // TODO eventually this method will be used to place markers on the map, but I'm lazy, so:
-        // Long presses on the map will navigate to the schedule screen.
+        // We want all the markers on the GoogleMap to have an ID associated with them.  Since googlemap.addmarker returns a reference
+        // to that marker, we can use it to place it inside a map with an ID associated with it
+        markerIdMap.put(googleMap.addMarker(new MarkerOptions()
+            .position(point)
+            .title("Test Marker")), markerIdMap.size() + 1);
+
     }
 
     @Override
     public boolean onMarkerClick(Marker marker) {
-
+        return true;
     }
 
     private void navigateToScheduleScreen() {
