@@ -11,7 +11,9 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
@@ -23,6 +25,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     private GoogleMap googleMap;
     private Map<Marker, Integer> markerIdMap;
+
+    private LatLngBounds akronMapBounds = new LatLngBounds(
+            new LatLng(41.06922418725167, -81.50769844651222),
+            new LatLng(41.080223319156836, -81.52035746723413));
+    private LatLng studentUnion = new LatLng(41.07564347775708, -81.51244461536409);
 
     // Activity-level onCreate
     @Override
@@ -46,11 +53,26 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         googleMap = map;
 
         // Add a marker in Sydney and move the camera
-        LatLng sydney = new LatLng(-34, 151);
-        markerIdMap.put(googleMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney")), markerIdMap.size() + 1);
-        googleMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
         googleMap.setOnMapLongClickListener(this);
         googleMap.setOnMarkerClickListener(this);
+
+        markerIdMap.put(googleMap.addMarker(new MarkerOptions()
+            .position(studentUnion)
+            .title("Student Union")), markerIdMap.size() + 1);
+
+        googleMap.setLatLngBoundsForCameraTarget(akronMapBounds);
+
+        CameraPosition defaultCameraPosition = new CameraPosition.Builder()
+                .target(studentUnion)
+                .zoom(10f)
+                .bearing(0)
+                .tilt(0)
+                .build();
+
+//        googleMap.moveCamera(CameraUpdateFactory.newCameraPosition(defaultCameraPosition));
+        googleMap.moveCamera(CameraUpdateFactory.newLatLng(studentUnion));
+        googleMap.setMinZoomPreference(15f);
+
     }
 
     @Override
