@@ -32,10 +32,6 @@ public class ScheduleActivity extends Activity {
             // TODO make this do something eventually
             Toast.makeText(this, "Click on item: " + position, Toast.LENGTH_SHORT).show();
         });
-//        scheduleAdapter.setOnItemClickListener((view, position) -> {
-//            // TODO make this do something eventually
-//            Toast.makeText(this, "Click on item: " + position, Toast.LENGTH_SHORT).show();
-//        });
 
         scheduleRecyclerView.setAdapter(scheduleAdapter);
         scheduleRecyclerView.setLayoutManager(new LinearLayoutManager(this));
