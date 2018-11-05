@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.kevin.mapdatabasesproject.R;
 import com.example.kevin.mapdatabasesproject.model.Course;
@@ -22,9 +23,11 @@ public class ScheduleAdapter
         extends RecyclerView.Adapter<ScheduleAdapter.ScheduleItemViewHolder> {
 
     private List<Course> courseList;
+    private OnItemClickListener onItemClickListener;
 
-    public ScheduleAdapter(List<Course> data) {
+    public ScheduleAdapter(List<Course> data, OnItemClickListener listener) {
         this.courseList = data;
+        this.onItemClickListener = listener;
     }
 
     // Called to create the layout inside each element of the recyclerview
@@ -34,7 +37,7 @@ public class ScheduleAdapter
         View itemView = LayoutInflater
                 .from(viewGroup.getContext())
                 .inflate(R.layout.schedule_item, viewGroup, false);
-        return new ScheduleItemViewHolder(itemView);
+        return new ScheduleItemViewHolder(itemView, onItemClickListener);
     }
 
     @Override
@@ -50,19 +53,35 @@ public class ScheduleAdapter
         return courseList.size();
     }
 
+    public void setOnItemClickListener(OnItemClickListener listener) {
+        this.onItemClickListener = listener;
+    }
+
     /**
      * Stores references to layout elements in the RecyclerView
      */
-    public final static class ScheduleItemViewHolder extends RecyclerView.ViewHolder {
+    public final static class ScheduleItemViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         TextView courseName;
         TextView courseTime;
         TextView courseNumber;
+        private ScheduleAdapter.OnItemClickListener listener;
 
-        public ScheduleItemViewHolder(View itemView) {
+        public ScheduleItemViewHolder(View itemView, OnItemClickListener listener) {
             super(itemView);
             courseName = itemView.findViewById(R.id.class_name);
             courseTime = itemView.findViewById(R.id.class_time);
             courseNumber = itemView.findViewById(R.id.class_number);
+            this.listener = listener;
+            itemView.setOnClickListener(this);
         }
+
+        @Override
+        public void onClick(View v) {
+            this.listener.onItemClick(v, getAdapterPosition());
+        }
+    }
+
+    public interface OnItemClickListener {
+        void onItemClick(View v, int position);
     }
 }
