@@ -37,9 +37,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         database.execSQL("CREATE TABLE IF NOT EXISTS Courses ( " +
                 CourseContract.COURSE_ID + " INTEGER PRIMARY KEY, " +
                 CourseContract.COURSE_NAME + " CHAR(30) NOT NULL," +
-                CourseContract.START_TIME + " REAL NOT NULL," +
-                CourseContract.END_TIME + " REAL NOT NULL," +
-                CourseContract.LOCATION_ID + " INTEGER NOT NULL);");
+                CourseContract.START_TIME_HOUR + " INTEGER," +
+                CourseContract.START_TIME_MINUTE + " INTEGER," +
+                CourseContract.END_TIME_HOUR + " INTEGER," +
+                CourseContract.END_TIME_MINUTE + " INTEGER," +
+                CourseContract.LOCATION_ID + " INTEGER);");
 
     }
 

@@ -11,7 +11,7 @@ public class Course {
     private int courseId;
     private String name;
     private int locationId
-            
+
     private Course() {
 
     }
