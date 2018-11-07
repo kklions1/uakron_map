@@ -33,7 +33,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase database) {
-        // TODO verify against datamodel
+        // TODO verify against data model
         database.execSQL("CREATE TABLE IF NOT EXISTS Courses ( " +
                 CourseContract.COURSE_ID + " INTEGER PRIMARY KEY, " +
                 CourseContract.COURSE_NAME + " CHAR(30) NOT NULL," +

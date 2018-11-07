@@ -10,7 +10,7 @@ public class Course {
     private int endTimeMinute;
     private int courseId;
     private String name;
-    private int locationId
+    private int locationId;
 
     private Course() {
 
