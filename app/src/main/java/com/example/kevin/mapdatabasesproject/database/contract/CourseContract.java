@@ -5,8 +5,9 @@ package com.example.kevin.mapdatabasesproject.database.contract;
  */
 public interface CourseContract {
     String TABLE_NAME = "Courses";
+    String COURSE_ID = "id";
     String COURSE_NAME = "name";
-    String START_TIME = "";
-    String END_TIME = "";
-    String LOCATION_ID = "";
+    String START_TIME = "starttime";
+    String END_TIME = "endtime";
+    String LOCATION_ID = "locationId";
 }

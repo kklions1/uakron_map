@@ -4,6 +4,8 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import com.example.kevin.mapdatabasesproject.database.contract.CourseContract;
+
 
 /**
  * Implemented with singleton pattern because there should really only ever be one database
@@ -33,11 +35,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase database) {
         // TODO verify against datamodel
         database.execSQL("CREATE TABLE IF NOT EXISTS Courses ( " +
-                "id INTEGER PRIMARY KEY, " +
-                "name CHAR(30) NOT NULL," +
-                "starttime REAL NOT NULL," +
-                "endtime REAL NOT NULL," +
-                "locationId INTEGER NOT NULL);");
+                CourseContract.COURSE_ID + " INTEGER PRIMARY KEY, " +
+                CourseContract.COURSE_NAME + " CHAR(30) NOT NULL," +
+                CourseContract.START_TIME + " REAL NOT NULL," +
+                CourseContract.END_TIME + " REAL NOT NULL," +
+                CourseContract.LOCATION_ID + " INTEGER NOT NULL);");
 
     }
 
