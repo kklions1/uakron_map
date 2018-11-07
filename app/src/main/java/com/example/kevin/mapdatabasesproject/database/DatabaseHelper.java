@@ -4,6 +4,11 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+
+/**
+ * Implemented with singleton pattern because there should really only ever be one database
+ * manager during runtime. Singleton is an anti-pattern, but it is useful here
+ */
 public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "akron_map.db";
     private static final int DATABASE_VERSION = 1;
@@ -26,7 +31,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase database) {
-        // TODO  create table names
+        // TODO verify against datamodel
+        database.execSQL("CREATE TABLE IF NOT EXISTS Courses ( " +
+                "id INTEGER PRIMARY KEY, " +
+                "name CHAR(30) NOT NULL," +
+                "starttime REAL NOT NULL," +
+                "endtime REAL NOT NULL," +
+                "locationId INTEGER NOT NULL);");
+
     }
 
     @Override

@@ -53,6 +53,9 @@ public class ScheduleAdapter
         return courseList.size();
     }
 
+    // TODO using this method to add the click listener to the recyclerview would be better
+    // because there is a looser coupling between the construction of the view and the initialization of
+    // the listeners. for now, the current solution will have to work.
     public void setOnItemClickListener(OnItemClickListener listener) {
         this.onItemClickListener = listener;
     }

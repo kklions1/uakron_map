@@ -11,7 +11,7 @@ import java.util.Optional;
 public interface DataAccessObject<T> {
 //    Optional<T> getItem(long id);
 //
-//    List<T> getAll();
+    List<T> getAll();
 //
 //    void save(T t);
 //

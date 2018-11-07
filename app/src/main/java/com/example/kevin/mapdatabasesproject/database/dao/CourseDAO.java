@@ -5,6 +5,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 import com.example.kevin.mapdatabasesproject.database.DatabaseHelper;
+import com.example.kevin.mapdatabasesproject.database.contract.CourseContract;
 import com.example.kevin.mapdatabasesproject.model.Course;
 
 import java.util.ArrayList;
@@ -29,7 +30,7 @@ public class CourseDAO implements DataAccessObject<Course> {
         cursor.moveToFirst();
 
         while (!cursor.isAfterLast()) {
-            String courseName = cursor.getString(cursor.getColumnIndex("courseName"));
+            String courseName = cursor.getString(cursor.getColumnIndex(CourseContract.TABLE_NAME));
 
             // push resulting Course into result
             cursor.moveToNext();
