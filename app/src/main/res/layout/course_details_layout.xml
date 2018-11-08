@@ -10,5 +10,18 @@
         android:text="@string/title_course_details_activity"
         android:textSize="36sp"/>
 
+    <EditText
+        android:id="@+id/course_name_edit_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:hint="hello world"
+        />
+
+    <Button
+        android:id="@+id/continue_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Continue"/>
 
 </LinearLayout>

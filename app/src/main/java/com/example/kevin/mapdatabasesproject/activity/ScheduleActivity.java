@@ -8,6 +8,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.widget.Toast;
 
+import com.example.kevin.mapdatabasesproject.database.dao.CourseDAO;
 import com.example.kevin.mapdatabasesproject.model.Course;
 import com.example.kevin.mapdatabasesproject.R;
 import com.example.kevin.mapdatabasesproject.adapter.ScheduleAdapter;
@@ -17,15 +18,16 @@ import java.util.List;
 
 public class ScheduleActivity extends Activity {
 
+    private CourseDAO courseDAO;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.schedule_layout);
 
-        List<Course> mockCourseData = new ArrayList<>();
-        for (int i = 0; i < 50; i++) {
-            mockCourseData.add(new Course("Mock Course Data", "Mock Course Time", Integer.toString(i)));
-        }
+        courseDAO = new CourseDAO();
+
+        List<Course> mockCourseData = new ArrayList<>(courseDAO.getAll());
 
         RecyclerView scheduleRecyclerView = findViewById(R.id.schedule_recycler_view);
         ScheduleAdapter scheduleAdapter = new ScheduleAdapter(mockCourseData,(view, position) -> {

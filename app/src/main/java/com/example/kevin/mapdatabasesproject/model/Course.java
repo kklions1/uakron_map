@@ -40,32 +40,39 @@ public class Course {
         private int locationId;
 
 
-        public void setStartTimeHour(int hour) {
+        public Builder setStartTimeHour(int hour) {
             this.startTimeHour = hour;
+            return this;
         }
 
-        public void setStartTimeMinute(int min) {
+        public Builder setStartTimeMinute(int min) {
             this.startTimeMinute = min;
+            return this;
         }
 
-        public void setEndTimeHour(int hour) {
+        public Builder setEndTimeHour(int hour) {
             this.endTimeHour = hour;
+            return this;
         }
 
-        public void setEndTimeMinute(int min) {
+        public Builder setEndTimeMinute(int min) {
             this.endTimeMinute = min;
+            return this;
         }
 
-        public void setCourseId(int courseId) {
+        public Builder setCourseId(int courseId) {
             this.courseId = courseId;
+            return this;
         }
 
-        public void setName(String name) {
+        public Builder setName(String name) {
             this.name = name;
+            return this;
         }
 
-        public void setLocationId(int id) {
+        public Builder setLocationId(int id) {
             this.locationId = id;
+            return this;
         }
 
         public Course build() {

@@ -6,7 +6,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.kevin.mapdatabasesproject.R;
 import com.example.kevin.mapdatabasesproject.model.Course;
@@ -43,9 +42,10 @@ public class ScheduleAdapter
     @Override
     public void onBindViewHolder(ScheduleItemViewHolder viewHolder, int position) {
         Course course = courseList.get(position);
-        viewHolder.courseName.setText(course.getCourseName());
-        viewHolder.courseTime.setText(course.getCourseTime());
-        viewHolder.courseNumber.setText(course.getCourseNumber());
+        viewHolder.courseName.setText(course.getName());
+        viewHolder.courseStartTime.setText(course.getStartTimeHour() + ":" + course.getStartTimeMinute());
+        viewHolder.courseEndTime.setText(course.getEndTimeHour() + ":" + course.getEndTimeMinute());
+        viewHolder.courseLocation.setText(course.getLocationId());
     }
 
     @Override
@@ -65,15 +65,17 @@ public class ScheduleAdapter
      */
     public final static class ScheduleItemViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         TextView courseName;
-        TextView courseTime;
-        TextView courseNumber;
+        TextView courseStartTime;
+        TextView courseLocation;
+        TextView courseEndTime;
         private ScheduleAdapter.OnItemClickListener listener;
 
         public ScheduleItemViewHolder(View itemView, OnItemClickListener listener) {
             super(itemView);
             courseName = itemView.findViewById(R.id.class_name);
-            courseTime = itemView.findViewById(R.id.class_time);
-            courseNumber = itemView.findViewById(R.id.class_number);
+            courseStartTime = itemView.findViewById(R.id.course_start_time);
+            courseEndTime = itemView.findViewById(R.id.course_end_time);
+            courseLocation = itemView.findViewById(R.id.course_location);
             this.listener = listener;
             itemView.setOnClickListener(this);
         }

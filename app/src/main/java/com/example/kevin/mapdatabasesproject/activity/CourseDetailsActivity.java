@@ -3,6 +3,7 @@ package com.example.kevin.mapdatabasesproject.activity;
 import android.app.Activity;
 import android.os.Bundle;
 
+
 import com.example.kevin.mapdatabasesproject.R;
 
 /**
@@ -14,5 +15,5 @@ public class CourseDetailsActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.course_details_layout);
     }
-
 }
+

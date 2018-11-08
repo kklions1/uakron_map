@@ -30,12 +30,21 @@ public class CourseDAO implements DataAccessObject<Course> {
         cursor.moveToFirst();
 
         while (!cursor.isAfterLast()) {
-            String courseName = cursor.getString(cursor.getColumnIndex(CourseContract.TABLE_NAME));
+            Course course = new Course.Builder()
+                    .setName(cursor.getString(cursor.getColumnIndex(CourseContract.COURSE_NAME)))
+                    .setCourseId(cursor.getInt(cursor.getColumnIndex(CourseContract.COURSE_ID)))
+                    .setStartTimeHour(cursor.getInt(cursor.getColumnIndex(CourseContract.START_TIME_HOUR)))
+                    .setStartTimeMinute(cursor.getInt(cursor.getColumnIndex(CourseContract.START_TIME_MINUTE)))
+                    .setEndTimeHour(cursor.getInt(cursor.getColumnIndex(CourseContract.END_TIME_HOUR)))
+                    .setEndTimeMinute(cursor.getInt(cursor.getColumnIndex(CourseContract.END_TIME_MINUTE)))
+                    .setLocationId(12)
+                    .build();
+
+            result.add(course);
 
             // push resulting Course into result
             cursor.moveToNext();
         }
-
 
         cursor.close();
         return result;
