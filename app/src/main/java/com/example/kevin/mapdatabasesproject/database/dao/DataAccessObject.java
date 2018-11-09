@@ -13,7 +13,7 @@ public interface DataAccessObject<T> {
 //
     List<T> getAll();
 //
-//    void save(T t);
+    void save(T t);
 //
 //    void delete(T t, String[] params);
 //

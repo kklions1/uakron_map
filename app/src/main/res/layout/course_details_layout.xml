@@ -12,11 +12,16 @@
 
     <EditText
         android:id="@+id/course_name_edit_text"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:hint="hello world"
-        />
+        android:hint="Course Name"/>
+
+    <EditText
+        android:id="@+id/course_location_edit_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Course Location"/>
 
     <Button
         android:id="@+id/continue_btn"

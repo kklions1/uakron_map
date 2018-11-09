@@ -50,4 +50,22 @@ public class CourseDAO implements DataAccessObject<Course> {
         return result;
     }
 
+    @Override
+    public void save(Course course) {
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+        db.execSQL("INSERT INTO " + CourseContract.TABLE_NAME + " (" +
+                CourseContract.COURSE_NAME + "," +
+                CourseContract.START_TIME_HOUR + "," +
+                CourseContract.START_TIME_MINUTE + "," +
+                CourseContract.END_TIME_HOUR + "," +
+                CourseContract.END_TIME_MINUTE +
+                CourseContract.LOCATION_ID + ") VALUES (" +
+                course.getName() + ", " +
+                course.getStartTimeHour() + ", " +
+                course.getStartTimeMinute() + ", " +
+                course.getEndTimeHour() + ", " +
+                course.getEndTimeMinute() + ", " +
+                course.getLocationId() + ");");
+    }
+
 }
