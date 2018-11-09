@@ -1,6 +1,8 @@
 package com.example.kevin.mapdatabasesproject.activity;
 
 import android.app.Activity;
+import android.app.DialogFragment;
+import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
@@ -10,6 +12,7 @@ import android.widget.Spinner;
 
 import com.example.kevin.mapdatabasesproject.R;
 import com.example.kevin.mapdatabasesproject.database.dao.CourseDAO;
+import com.example.kevin.mapdatabasesproject.fragment.TimePickerFragment;
 import com.example.kevin.mapdatabasesproject.model.Course;
 
 /**
@@ -63,7 +66,8 @@ public class CourseDetailsActivity extends Activity {
 
     // isStartTime is a flag that will determine where the values for the timepicker are to be stored
     private void createTimePickerDialog(boolean isStartTime) {
-
+        DialogFragment dialog = new TimePickerFragment();
+        dialog.show(getFragmentManager(), "TimePicker");
     }
 }
 
