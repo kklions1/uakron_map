@@ -1,6 +1,7 @@
 package com.example.kevin.mapdatabasesproject.activity;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
@@ -36,10 +37,16 @@ public class CourseDetailsActivity extends Activity {
                     .setEndTimeMinute(20)
                     .build());
 
-
+            // Once the item is saved, navigate to schedule screen
+            navigateToScheduleScreen();
 
         });
 
+    }
+
+    private void navigateToScheduleScreen() {
+        Intent intent = new Intent(CourseDetailsActivity.this, ScheduleActivity.class);
+        startActivity(intent);
     }
 }
 
