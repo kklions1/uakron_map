@@ -45,7 +45,8 @@ public class ScheduleAdapter
         viewHolder.courseName.setText(course.getName());
         viewHolder.courseStartTime.setText(course.getStartTimeHour() + ":" + course.getStartTimeMinute());
         viewHolder.courseEndTime.setText(course.getEndTimeHour() + ":" + course.getEndTimeMinute());
-        viewHolder.courseLocation.setText(Integer.toString(course.getLocationId()));
+//        viewHolder.courseLocation.setText(Integer.toString(course.getLocationId()));
+        viewHolder.courseLocation.setText(course.getLocationName());
     }
 
     @Override

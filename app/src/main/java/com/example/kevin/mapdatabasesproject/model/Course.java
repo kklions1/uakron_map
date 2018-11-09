@@ -11,6 +11,7 @@ public class Course {
     private int courseId;
     private String name;
     private int locationId;
+    private String locationName;
 
     private Course() {
 
@@ -30,6 +31,8 @@ public class Course {
 
     public int getLocationId() { return this.locationId; }
 
+    public String getLocationName() { return this.locationName; }
+
     public static class Builder {
         private int startTimeHour;
         private int startTimeMinute;
@@ -38,7 +41,7 @@ public class Course {
         private int courseId;
         private String name;
         private int locationId;
-
+        private String locationName;
 
         public Builder setStartTimeHour(int hour) {
             this.startTimeHour = hour;
@@ -75,6 +78,11 @@ public class Course {
             return this;
         }
 
+        public Builder setLocationName(String name) {
+            this.locationName = name;
+            return this;
+        }
+
         public Course build() {
             Course newCourse = new Course();
             newCourse.courseId = this.courseId;
@@ -84,6 +92,7 @@ public class Course {
             newCourse.endTimeHour = this.endTimeHour;
             newCourse.endTimeMinute = this.endTimeMinute;
             newCourse.locationId = this.locationId;
+            newCourse.locationName = this.locationName;
 
             return newCourse;
         }

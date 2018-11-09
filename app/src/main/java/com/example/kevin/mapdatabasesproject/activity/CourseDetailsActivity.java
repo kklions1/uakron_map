@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 
 
 import com.example.kevin.mapdatabasesproject.R;
@@ -24,13 +25,14 @@ public class CourseDetailsActivity extends Activity {
         saveBtn.setOnClickListener((view) -> {
 
             EditText courseName = findViewById(R.id.course_name_edit_text);
-            EditText courseLocation = findViewById(R.id.course_location_edit_text);
+            Spinner courseLocation = findViewById(R.id.course_location_spinner);
 
             CourseDAO dao = new CourseDAO();
 
             dao.save(new Course.Builder()
                     .setName(courseName.getText().toString())
                     .setLocationId(12)
+                    .setLocationName(String.valueOf(courseLocation.getSelectedItem()))
                     .setStartTimeHour(2)
                     .setStartTimeMinute(30)
                     .setEndTimeHour(4)
@@ -41,7 +43,6 @@ public class CourseDetailsActivity extends Activity {
             navigateToScheduleScreen();
 
         });
-
     }
 
     private void navigateToScheduleScreen() {

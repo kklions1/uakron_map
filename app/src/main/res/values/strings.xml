@@ -7,4 +7,17 @@
 
     <!-- course details -->
     <string name="course_details_title">Course Details</string>
+    <string name="location_spinner_prompt">Select Location</string>
+    <!-- TODO add more locations, currently a sample list -->
+    <string-array name="course_locations">
+        <item>Student Union</item>
+        <item>Polsky Hall</item>
+        <item>Crouse Hall</item>
+        <item>Student Rec Center</item>
+        <item>College of Arts and Sciences</item>
+        <item>College of Business Administration</item>
+        <item>Kolbe Hall</item>
+        <item>Leigh Hall</item>
+    </string-array>
+
 </resources>

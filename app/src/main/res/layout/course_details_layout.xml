@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    android:id="@+id/course_detail_relative_layout"
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <TextView
+        android:id="@+id/course_details_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
@@ -15,18 +18,52 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:hint="Course Name"/>
+        android:hint="Course Name"
+        android:layout_below="@+id/course_details_title"/>
 
-    <EditText
-        android:id="@+id/course_location_edit_text"
+    <Spinner
+        android:id="@+id/course_location_spinner"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Course Location"/>
+        android:hint="Course Location"
+        android:layout_below="@+id/course_name_edit_text"
+        android:entries="@array/course_locations"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:prompt="@string/location_spinner_prompt"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/course_location_spinner">
+
+        <Button
+            android:id="@+id/start_time_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Start Time"
+            android:gravity="center"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:layout_weight="1"/>
+
+        <Button
+            android:id="@+id/end_time_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="End Time"
+            android:gravity="center"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:layout_weight="1"/>
+
+    </LinearLayout>
 
     <Button
         android:id="@+id/continue_btn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Continue"/>
+        android:text="Continue"
+        android:layout_alignParentBottom="true"/>
 
-</LinearLayout>
+</RelativeLayout>
