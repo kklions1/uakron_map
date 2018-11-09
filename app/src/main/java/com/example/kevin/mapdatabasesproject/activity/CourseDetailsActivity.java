@@ -16,10 +16,21 @@ import com.example.kevin.mapdatabasesproject.model.Course;
  * This screen will handle updating, deleting, and additions of a new course
  */
 public class CourseDetailsActivity extends Activity {
+    private int startTimeHour;
+    private int startTimeMinute;
+    private int endTimeHour;
+    private int endTImeMinute;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.course_details_layout);
+
+        Button startTimeButton = findViewById(R.id.start_time_btn);
+        Button endTimeButton = findViewById(R.id.end_time_btn);
+
+        startTimeButton.setOnClickListener((view) -> createTimePickerDialog(true));
+        endTimeButton.setOnClickListener((view) -> createTimePickerDialog(false));
 
         Button saveBtn = findViewById(R.id.continue_btn);
         saveBtn.setOnClickListener((view) -> {
@@ -48,6 +59,11 @@ public class CourseDetailsActivity extends Activity {
     private void navigateToScheduleScreen() {
         Intent intent = new Intent(CourseDetailsActivity.this, ScheduleActivity.class);
         startActivity(intent);
+    }
+
+    // isStartTime is a flag that will determine where the values for the timepicker are to be stored
+    private void createTimePickerDialog(boolean isStartTime) {
+
     }
 }
 
