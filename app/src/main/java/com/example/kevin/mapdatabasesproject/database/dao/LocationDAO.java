@@ -16,4 +16,8 @@ public class LocationDAO implements DataAccessObject<Location> {
     public List<Location> getAll() {
         return new ArrayList<>();
     }
+
+    public void save(Location location) {
+
+    }
 }

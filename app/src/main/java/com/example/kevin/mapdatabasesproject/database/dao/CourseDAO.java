@@ -58,9 +58,9 @@ public class CourseDAO implements DataAccessObject<Course> {
                 CourseContract.START_TIME_HOUR + "," +
                 CourseContract.START_TIME_MINUTE + "," +
                 CourseContract.END_TIME_HOUR + "," +
-                CourseContract.END_TIME_MINUTE +
-                CourseContract.LOCATION_ID + ") VALUES (" +
-                course.getName() + ", " +
+                CourseContract.END_TIME_MINUTE + "," +
+                CourseContract.LOCATION_ID + ") VALUES (" + "'" + // Values we expect to be strings need quotes for the SQL command
+                course.getName() + "'" + ", " +
                 course.getStartTimeHour() + ", " +
                 course.getStartTimeMinute() + ", " +
                 course.getEndTimeHour() + ", " +

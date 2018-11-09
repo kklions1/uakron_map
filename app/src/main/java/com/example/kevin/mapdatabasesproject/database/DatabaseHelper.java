@@ -10,6 +10,11 @@ import com.example.kevin.mapdatabasesproject.database.contract.CourseContract;
 /**
  * Implemented with singleton pattern because there should really only ever be one database
  * manager during runtime. Singleton is an anti-pattern, but it is useful here
+ *
+ * Note: Access to an instance of the database helper allows access to the database itself.
+ * Using the DAO pattern is intended to provide an API into the database, but there is a security
+ * flaw in the current implementation where you can just getInstance() and have direct access anyway.
+ *
  */
 public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "akron_map.db";
