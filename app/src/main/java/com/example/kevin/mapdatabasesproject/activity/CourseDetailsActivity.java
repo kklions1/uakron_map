@@ -8,6 +8,8 @@ import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
+import android.widget.TimePicker;
 
 
 import com.example.kevin.mapdatabasesproject.R;
@@ -18,11 +20,12 @@ import com.example.kevin.mapdatabasesproject.model.Course;
 /**
  * This screen will handle updating, deleting, and additions of a new course
  */
-public class CourseDetailsActivity extends Activity {
+public class CourseDetailsActivity extends Activity implements TimePickerDialog.OnTimeSetListener {
     private int startTimeHour;
     private int startTimeMinute;
     private int endTimeHour;
-    private int endTImeMinute;
+    private int endTimeMinute;
+    private boolean isStartTime;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,15 +50,14 @@ public class CourseDetailsActivity extends Activity {
                     .setName(courseName.getText().toString())
                     .setLocationId(12)
                     .setLocationName(String.valueOf(courseLocation.getSelectedItem()))
-                    .setStartTimeHour(2)
-                    .setStartTimeMinute(30)
-                    .setEndTimeHour(4)
-                    .setEndTimeMinute(20)
+                    .setStartTimeHour(this.startTimeHour)
+                    .setStartTimeMinute(this.startTimeMinute)
+                    .setEndTimeHour(this.endTimeHour)
+                    .setEndTimeMinute(this.endTimeMinute)
                     .build());
 
             // Once the item is saved, navigate to schedule screen
             navigateToScheduleScreen();
-
         });
     }
 
@@ -66,8 +68,20 @@ public class CourseDetailsActivity extends Activity {
 
     // isStartTime is a flag that will determine where the values for the timepicker are to be stored
     private void createTimePickerDialog(boolean isStartTime) {
+        this.isStartTime = isStartTime;
         DialogFragment dialog = new TimePickerFragment();
         dialog.show(getFragmentManager(), "TimePicker");
+    }
+
+    @Override
+    public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+        if (isStartTime) {
+            this.startTimeHour = view.getHour();
+            this.startTimeMinute = view.getMinute();
+        } else {
+            this.endTimeHour = view.getHour();
+            this.endTimeMinute = view.getMinute();
+        }
     }
 }
 
