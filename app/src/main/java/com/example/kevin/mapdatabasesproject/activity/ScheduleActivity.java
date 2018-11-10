@@ -28,16 +28,16 @@ public class ScheduleActivity extends Activity {
         // TODO this should be onResume(), but because the schedule adapter and instantiating a listener is tightly coupled, it can't
         courseDAO = new CourseDAO();
 
-        List<Course> mockCourseData = new ArrayList<>(courseDAO.getAll());
+        List<Course> courseData = new ArrayList<>(courseDAO.getAll());
 
         RecyclerView scheduleRecyclerView = findViewById(R.id.schedule_recycler_view);
-        ScheduleAdapter scheduleAdapter = new ScheduleAdapter(mockCourseData,(view, position) -> {
+        ScheduleAdapter scheduleAdapter = new ScheduleAdapter(courseData,(view, position) -> {
             AlertDialog dialog = new AlertDialog.Builder(this)
                     .setTitle("Test")
                     .setPositiveButton("Update", (dialogInterface, id) -> {
 //                        Toast.makeText(this,"Database Updated", Toast.LENGTH_SHORT).show();
                         dialogInterface.cancel();
-                        String result = mockCourseData.get(position).getName();
+                        String result = courseData.get(position).getName();
                         Toast.makeText(this, result, Toast.LENGTH_SHORT).show();
                     })
                     .show();
