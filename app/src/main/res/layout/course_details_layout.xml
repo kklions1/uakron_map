@@ -83,6 +83,14 @@
 
     </LinearLayout>
 
+    <!--
+    <GridLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        TODO add day of the week
+    </GridLayout>
+    -->
+
     <Button
         android:id="@+id/continue_btn"
         android:layout_width="match_parent"

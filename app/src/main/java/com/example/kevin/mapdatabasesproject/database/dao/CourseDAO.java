@@ -55,12 +55,14 @@ public class CourseDAO implements DataAccessObject<Course> {
         SQLiteDatabase db = dbHelper.getWritableDatabase();
         db.execSQL("INSERT INTO " + CourseContract.TABLE_NAME + " (" +
                 CourseContract.COURSE_NAME + "," +
+                CourseContract.COURSE_ID + ", " +
                 CourseContract.START_TIME_HOUR + "," +
                 CourseContract.START_TIME_MINUTE + "," +
                 CourseContract.END_TIME_HOUR + "," +
                 CourseContract.END_TIME_MINUTE + "," +
                 CourseContract.LOCATION_ID + ") VALUES (" + "'" + // Values we expect to be strings need quotes for the SQL command
                 course.getName() + "'" + ", " +
+                course.getCourseId() + ", " +
                 course.getStartTimeHour() + ", " +
                 course.getStartTimeMinute() + ", " +
                 course.getEndTimeHour() + ", " +
@@ -68,4 +70,38 @@ public class CourseDAO implements DataAccessObject<Course> {
                 course.getLocationId() + ");");
     }
 
+    // Returns the number of entries in the DB
+    public int getCount() {
+        SQLiteDatabase db = dbHelper.getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT * FROM " + CourseContract.TABLE_NAME + ";", null);
+        int result = cursor.getCount();
+        cursor.close();
+        return result;
+    }
+
+    public Course getCourseById(int id) {
+        SQLiteDatabase db = dbHelper.getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT * FROM " + CourseContract.TABLE_NAME + " WHERE " +
+                CourseContract.COURSE_ID + " = ?;", new String[] {String.valueOf(id)});
+
+        cursor.moveToFirst();
+
+        if (cursor.getCount() > 0) {
+            // TODO move this to a separate method
+            Course course = new Course.Builder()
+                    .setName(cursor.getString(cursor.getColumnIndex(CourseContract.COURSE_NAME)))
+                    .setCourseId(cursor.getInt(cursor.getColumnIndex(CourseContract.COURSE_ID)))
+                    .setStartTimeHour(cursor.getInt(cursor.getColumnIndex(CourseContract.START_TIME_HOUR)))
+                    .setStartTimeMinute(cursor.getInt(cursor.getColumnIndex(CourseContract.START_TIME_MINUTE)))
+                    .setEndTimeHour(cursor.getInt(cursor.getColumnIndex(CourseContract.END_TIME_HOUR)))
+                    .setEndTimeMinute(cursor.getInt(cursor.getColumnIndex(CourseContract.END_TIME_MINUTE)))
+                    .setLocationId(12)
+                    .build();
+
+            cursor.close();
+            return course;
+        }
+
+        return null;
+    }
 }

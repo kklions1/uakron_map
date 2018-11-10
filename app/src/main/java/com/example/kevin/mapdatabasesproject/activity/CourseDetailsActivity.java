@@ -47,6 +47,7 @@ public class CourseDetailsActivity extends Activity implements TimePickerDialog.
 
             dao.save(new Course.Builder()
                     .setName(courseName.getText().toString())
+                    .setCourseId(dao.getCount() + 1)
                     .setLocationId(12)
                     .setLocationName(String.valueOf(courseLocation.getSelectedItem()))
                     .setStartTimeHour(this.startTimeHour)

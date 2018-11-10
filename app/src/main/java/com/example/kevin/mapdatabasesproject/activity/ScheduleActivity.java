@@ -32,12 +32,11 @@ public class ScheduleActivity extends Activity {
 
         RecyclerView scheduleRecyclerView = findViewById(R.id.schedule_recycler_view);
         ScheduleAdapter scheduleAdapter = new ScheduleAdapter(courseData,(view, position) -> {
-            AlertDialog dialog = new AlertDialog.Builder(this)
+            new AlertDialog.Builder(this)
                     .setTitle("Test")
                     .setPositiveButton("Update", (dialogInterface, id) -> {
-//                        Toast.makeText(this,"Database Updated", Toast.LENGTH_SHORT).show();
                         dialogInterface.cancel();
-                        String result = courseData.get(position).getName();
+                        String result = courseDAO.getCourseById(position + 1).getName();
                         Toast.makeText(this, result, Toast.LENGTH_SHORT).show();
                     })
                     .show();
