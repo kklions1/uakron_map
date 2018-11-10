@@ -66,8 +66,20 @@
         android:layout_below="@+id/time_button_bar">
 
         <TextView
+            android:id="@+id/start_time_display"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:text="Time Currently not set"
+            android:layout_weight="1"
+            android:gravity="center"/>
+
+        <TextView
+            android:id="@+id/end_time_display"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Time Currently not set"
+            android:layout_weight="1"
+            android:gravity="center"/>
 
     </LinearLayout>
 

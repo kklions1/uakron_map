@@ -76,11 +76,17 @@ public class CourseDetailsActivity extends Activity implements TimePickerDialog.
     @Override
     public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
         if (isStartTime) {
-            this.startTimeHour = view.getHour();
-            this.startTimeMinute = view.getMinute();
+            this.startTimeHour = hourOfDay;
+            this.startTimeMinute = minute;
+
+            TextView startTimeDisplay = findViewById(R.id.start_time_display);
+            startTimeDisplay.setText(Integer.toString(hourOfDay) + ":" + Integer.toString(minute));
         } else {
-            this.endTimeHour = view.getHour();
-            this.endTimeMinute = view.getMinute();
+            this.endTimeHour = hourOfDay;
+            this.endTimeMinute = minute;
+
+            TextView endTimeDisplay = findViewById(R.id.end_time_display);
+            endTimeDisplay.setText(Integer.toString(hourOfDay) + ":" + Integer.toString(minute));
         }
     }
 }
