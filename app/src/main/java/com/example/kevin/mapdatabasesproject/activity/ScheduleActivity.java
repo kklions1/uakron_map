@@ -25,6 +25,7 @@ public class ScheduleActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.schedule_layout);
 
+        // TODO this should be onResume(), but because the schedule adapter and instantiating a listener is tightly coupled, it can't
         courseDAO = new CourseDAO();
 
         List<Course> mockCourseData = new ArrayList<>(courseDAO.getAll());
