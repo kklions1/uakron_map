@@ -9,14 +9,9 @@ import java.util.Optional;
  * @param <T> generic type
  */
 public interface DataAccessObject<T> {
-//    Optional<T> getItem(long id);
-//
     List<T> getAll();
-//
-    void save(T t);
-//
-//    void delete(T t, String[] params);
-//
-//    void update(T t);
 
+    void save(T t);
+
+    void update(T old, T current);
 }

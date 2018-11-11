@@ -17,7 +17,13 @@ public class LocationDAO implements DataAccessObject<Location> {
         return new ArrayList<>();
     }
 
+    @Override
     public void save(Location location) {
+
+    }
+
+    @Override
+    public void update(Location old, Location current) {
 
     }
 }

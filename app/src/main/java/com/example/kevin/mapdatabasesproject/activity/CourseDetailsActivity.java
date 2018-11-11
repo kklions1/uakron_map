@@ -5,13 +5,11 @@ import android.app.DialogFragment;
 import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
-import android.widget.Toast;
 
 import com.example.kevin.mapdatabasesproject.R;
 import com.example.kevin.mapdatabasesproject.database.dao.CourseDAO;
@@ -33,41 +31,18 @@ public class CourseDetailsActivity extends Activity implements TimePickerDialog.
         super.onCreate(savedInstanceState);
         setContentView(R.layout.course_details_layout);
 
-        Course updateCourse = (Course) getIntent().getSerializableExtra("Course Data");
+        final Course updateCourse = (Course) getIntent().getSerializableExtra("Course Data");
         if (updateCourse != null) {
-            Log.d("Course loaded: ", updateCourse.getName());
+            initializeWithDefaultValues(updateCourse);
+        } else {
+            initializeWithNoDefaultValues();
         }
-
-        // if we get a class to start with, initialize
 
         Button startTimeButton = findViewById(R.id.start_time_btn);
         Button endTimeButton = findViewById(R.id.end_time_btn);
 
         startTimeButton.setOnClickListener((view) -> createTimePickerDialog(true));
         endTimeButton.setOnClickListener((view) -> createTimePickerDialog(false));
-
-        Button saveBtn = findViewById(R.id.continue_btn);
-        saveBtn.setOnClickListener((view) -> {
-
-            EditText courseName = findViewById(R.id.course_name_edit_text);
-            Spinner courseLocation = findViewById(R.id.course_location_spinner);
-
-            CourseDAO dao = new CourseDAO();
-
-            dao.save(new Course.Builder()
-                    .setName(courseName.getText().toString())
-                    .setCourseId(dao.getCount() + 1)
-                    .setLocationId(12)
-                    .setLocationName(String.valueOf(courseLocation.getSelectedItem()))
-                    .setStartTimeHour(this.startTimeHour)
-                    .setStartTimeMinute(this.startTimeMinute)
-                    .setEndTimeHour(this.endTimeHour)
-                    .setEndTimeMinute(this.endTimeMinute)
-                    .build());
-
-            // Once the item is saved, navigate to schedule screen
-            navigateToScheduleScreen();
-        });
     }
 
     private void navigateToScheduleScreen() {
@@ -99,8 +74,55 @@ public class CourseDetailsActivity extends Activity implements TimePickerDialog.
         }
     }
 
-    private void initializeWithDefaultValues() {
+    // Used primary to change the behavior of the Save/Update button
+    private void initializeWithNoDefaultValues() {
+        Button saveBtn = findViewById(R.id.continue_btn);
+        saveBtn.setOnClickListener((view) -> {
 
+            EditText courseName = findViewById(R.id.course_name_edit_text);
+            Spinner courseLocation = findViewById(R.id.course_location_spinner);
+
+            CourseDAO dao = new CourseDAO();
+
+            dao.save(new Course.Builder()
+                    .setName(courseName.getText().toString())
+                    .setCourseId(dao.getCount() + 1)
+                    .setLocationId(12)
+                    .setLocationName(String.valueOf(courseLocation.getSelectedItem()))
+                    .setStartTimeHour(this.startTimeHour)
+                    .setStartTimeMinute(this.startTimeMinute)
+                    .setEndTimeHour(this.endTimeHour)
+                    .setEndTimeMinute(this.endTimeMinute)
+                    .build());
+
+            // Once the item is saved, navigate to schedule screen
+            navigateToScheduleScreen();
+        });
+    }
+
+    private void initializeWithDefaultValues(Course course) {
+        EditText courseName = findViewById(R.id.course_name_edit_text);
+        courseName.setText(course.getName());
+
+        startTimeHour = course.getStartTimeHour();
+        startTimeMinute = course.getStartTimeMinute();
+        endTimeHour = course.getEndTimeHour();
+        endTimeMinute = course.getEndTimeMinute();
+
+        TextView startTimeDisplay = findViewById(R.id.start_time_display);
+        startTimeDisplay.setText(Integer.toString(startTimeHour) + ":" + Integer.toString(startTimeMinute));
+
+        TextView endTimeDisplay = findViewById(R.id.end_time_display);
+        endTimeDisplay.setText(Integer.toString(endTimeHour) + ":" + Integer.toString(endTimeMinute));
+
+        Button updateButton = findViewById(R.id.continue_btn);
+        updateButton.setOnClickListener((view) -> {
+            CourseDAO dao = new CourseDAO();
+            // TODO actually update
+//            dao.update(course);
+            navigateToScheduleScreen();
+        });
+        updateButton.setText("Update Entry");
     }
 }
 

@@ -104,4 +104,9 @@ public class CourseDAO implements DataAccessObject<Course> {
 
         return null;
     }
+
+    @Override
+    public void update(Course currentData, Course newData) {
+
+    }
 }
