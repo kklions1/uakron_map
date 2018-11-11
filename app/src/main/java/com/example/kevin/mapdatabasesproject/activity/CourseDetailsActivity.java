@@ -5,11 +5,13 @@ import android.app.DialogFragment;
 import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
+import android.widget.Toast;
 
 import com.example.kevin.mapdatabasesproject.R;
 import com.example.kevin.mapdatabasesproject.database.dao.CourseDAO;
@@ -30,6 +32,13 @@ public class CourseDetailsActivity extends Activity implements TimePickerDialog.
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.course_details_layout);
+
+        Course updateCourse = (Course) getIntent().getSerializableExtra("Course Data");
+        if (updateCourse != null) {
+            Log.d("Course loaded: ", updateCourse.getName());
+        }
+
+        // if we get a class to start with, initialize
 
         Button startTimeButton = findViewById(R.id.start_time_btn);
         Button endTimeButton = findViewById(R.id.end_time_btn);
@@ -88,6 +97,10 @@ public class CourseDetailsActivity extends Activity implements TimePickerDialog.
             TextView endTimeDisplay = findViewById(R.id.end_time_display);
             endTimeDisplay.setText(Integer.toString(hourOfDay) + ":" + Integer.toString(minute));
         }
+    }
+
+    private void initializeWithDefaultValues() {
+
     }
 }
 

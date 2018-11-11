@@ -1,9 +1,11 @@
 package com.example.kevin.mapdatabasesproject.model;
 
+import java.io.Serializable;
+
 /**
  * Class that represents a course
  */
-public class Course {
+public class Course implements Serializable {
     private int startTimeHour;
     private int startTimeMinute;
     private int endTimeHour;

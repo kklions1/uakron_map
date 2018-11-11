@@ -14,6 +14,7 @@ import com.example.kevin.mapdatabasesproject.model.Course;
 import com.example.kevin.mapdatabasesproject.R;
 import com.example.kevin.mapdatabasesproject.adapter.ScheduleAdapter;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -35,9 +36,9 @@ public class ScheduleActivity extends Activity {
             new AlertDialog.Builder(this)
                     .setTitle("Test")
                     .setPositiveButton("Update", (dialogInterface, id) -> {
+                        Course selected = courseDAO.getCourseById(position + 1);
+                        navigateToCourseDetails(selected);
                         dialogInterface.cancel();
-                        String result = courseDAO.getCourseById(position + 1).getName();
-                        Toast.makeText(this, result, Toast.LENGTH_SHORT).show();
                     })
                     .show();
         });
@@ -46,11 +47,12 @@ public class ScheduleActivity extends Activity {
         scheduleRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         FloatingActionButton addCourseFab = findViewById(R.id.add_course_fab);
-        addCourseFab.setOnClickListener((view) -> navigateToCourseDetails());
+        addCourseFab.setOnClickListener((view) -> navigateToCourseDetails(null));
     }
 
-    private void navigateToCourseDetails() {
+    private void navigateToCourseDetails(Course courseData) {
         Intent intent = new Intent(ScheduleActivity.this, CourseDetailsActivity.class);
+        intent.putExtra("Course Data", courseData);
         startActivity(intent);
     }
 }
