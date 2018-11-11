@@ -13,5 +13,5 @@ public interface DataAccessObject<T> {
 
     void save(T t);
 
-    void update(T old, T current);
+    void update(T t);
 }
