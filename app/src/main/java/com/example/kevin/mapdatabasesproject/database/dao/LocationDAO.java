@@ -23,7 +23,12 @@ public class LocationDAO implements DataAccessObject<Location> {
     }
 
     @Override
-    public void update(Location old, Location current) {
+    public void update(Location location) {
+
+    }
+
+    @Override
+    public void delete(int id) {
 
     }
 }

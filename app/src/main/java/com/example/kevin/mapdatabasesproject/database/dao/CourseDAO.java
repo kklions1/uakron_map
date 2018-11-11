@@ -118,4 +118,12 @@ public class CourseDAO implements DataAccessObject<Course> {
                 CourseContract.LOCATION_ID + " = " + course.getLocationId() +
                 " WHERE " + CourseContract.COURSE_ID + " = ?;", new String[] {Integer.toString(course.getCourseId())});
     }
+
+    @Override
+    public void delete(int id) {
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+
+        db.execSQL("DELETE FROM " + CourseContract.TABLE_NAME + " WHERE " +
+                CourseContract.COURSE_ID + " = ?", new String[] {String.valueOf(id)});
+    }
 }
