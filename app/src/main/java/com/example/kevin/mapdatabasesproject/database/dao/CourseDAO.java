@@ -108,14 +108,16 @@ public class CourseDAO implements DataAccessObject<Course> {
     @Override
     public void update(Course course) {
         SQLiteDatabase db = dbHelper.getWritableDatabase();
-        db.execSQL("UPDATE " + CourseContract.TABLE_NAME + " SET " +
+        String query = "UPDATE " + CourseContract.TABLE_NAME + " SET " +
                 CourseContract.COURSE_NAME + " = '" + course.getName() + "', " +
                 CourseContract.START_TIME_HOUR + " = " + course.getStartTimeHour() + ", " +
                 CourseContract.START_TIME_MINUTE + " = " + course.getStartTimeMinute() + ", " +
                 CourseContract.END_TIME_HOUR + " = " + course.getEndTimeHour() + ", " +
                 CourseContract.END_TIME_MINUTE + " = " + course.getEndTimeMinute() + ", " +
                 CourseContract.LOCATION_ID + " = " + course.getLocationId() +
-                " WHERE " + CourseContract.COURSE_ID + " = ?;", new String[] {Integer.toString(course.getCourseId())});
+                " WHERE " + CourseContract.COURSE_ID + " = ?;";
+
+        db.execSQL(query, new String[] {String.valueOf(course.getCourseId())});
     }
 
     @Override

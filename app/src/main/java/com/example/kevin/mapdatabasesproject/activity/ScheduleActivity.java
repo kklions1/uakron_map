@@ -37,13 +37,11 @@ public class ScheduleActivity extends Activity {
             new AlertDialog.Builder(this)
                     .setTitle(data.get(position).getName())
                     .setPositiveButton("Update", (dialogInterface, id) -> {
-//                        Course selected = courseDAO.getCourseById(position + 1);
                         Course selected = data.get(position);
                         navigateToCourseDetails(selected);
                         dialogInterface.cancel();
                     })
                     .setNegativeButton("Delete", (dialogInterface, id) -> {
-//                        courseDAO.delete(position + 1);
                         courseDAO.delete(data.get(position).getCourseId());
                         dialogInterface.cancel();
                     })

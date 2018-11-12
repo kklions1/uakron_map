@@ -115,10 +115,21 @@ public class CourseDetailsActivity extends Activity implements TimePickerDialog.
         TextView endTimeDisplay = findViewById(R.id.end_time_display);
         endTimeDisplay.setText(Integer.toString(endTimeHour) + ":" + Integer.toString(endTimeMinute));
 
+        Spinner courseLocation = findViewById(R.id.course_location_spinner);
+
         Button updateButton = findViewById(R.id.continue_btn);
         updateButton.setOnClickListener((view) -> {
             CourseDAO dao = new CourseDAO();
-            dao.update(course);
+            dao.update(new Course.Builder()
+                    .setName(courseName.getText().toString())
+                    .setCourseId(course.getCourseId()) // preserve the course id
+                    .setLocationId(course.getLocationId()) // TODO make this actually do something
+                    .setStartTimeHour(startTimeHour)
+                    .setStartTimeMinute(startTimeMinute)
+                    .setEndTimeHour(endTimeHour)
+                    .setEndTimeMinute(endTimeMinute)
+                    .setLocationName(String.valueOf(courseLocation.getSelectedItem()))
+                    .build());
             navigateToScheduleScreen();
         });
         updateButton.setText("Update Entry");
