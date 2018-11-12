@@ -86,7 +86,6 @@ public class CourseDetailsActivity extends Activity implements TimePickerDialog.
 
             dao.save(new Course.Builder()
                     .setName(courseName.getText().toString())
-                    .setCourseId(dao.getCount() + 1)
                     .setLocationId(12)
                     .setLocationName(String.valueOf(courseLocation.getSelectedItem()))
                     .setStartTimeHour(this.startTimeHour)
@@ -122,7 +121,7 @@ public class CourseDetailsActivity extends Activity implements TimePickerDialog.
             CourseDAO dao = new CourseDAO();
             dao.update(new Course.Builder()
                     .setName(courseName.getText().toString())
-                    .setCourseId(course.getCourseId()) // preserve the course id
+                    .setCourseId(course.getCourseId()) // preserve the course id, this is being passed in so the update method can update properly
                     .setLocationId(course.getLocationId()) // TODO make this actually do something
                     .setStartTimeHour(startTimeHour)
                     .setStartTimeMinute(startTimeMinute)

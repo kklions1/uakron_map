@@ -43,6 +43,7 @@ public class ScheduleActivity extends Activity {
                     })
                     .setNegativeButton("Delete", (dialogInterface, id) -> {
                         courseDAO.delete(data.get(position).getCourseId());
+                        this.recreate(); // this definitely feels hacky, but it works
                         dialogInterface.cancel();
                     })
                     .setNeutralButton("Cancel", (dialogInterface, id) -> dialogInterface.cancel())
