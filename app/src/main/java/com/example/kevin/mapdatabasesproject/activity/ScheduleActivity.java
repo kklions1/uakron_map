@@ -26,18 +26,28 @@ public class ScheduleActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.schedule_layout);
 
-        // TODO this should be onResume(), but because the schedule adapter and instantiating a listener is tightly coupled, it can't
         courseDAO = new CourseDAO();
 
         List<Course> courseData = new ArrayList<>(courseDAO.getAll());
 
         RecyclerView scheduleRecyclerView = findViewById(R.id.schedule_recycler_view);
         ScheduleAdapter scheduleAdapter = new ScheduleAdapter(courseData,(view, position) -> {
+            // this list is used to fix a crash when trying to click a class after deleting another one
+            List<Course> data = courseDAO.getAll();
             new AlertDialog.Builder(this)
-                    .setTitle("Test")
+                    .setTitle(data.get(position).getName())
                     .setPositiveButton("Update", (dialogInterface, id) -> {
-                        Course selected = courseDAO.getCourseById(position + 1);
+//                        Course selected = courseDAO.getCourseById(position + 1);
+                        Course selected = data.get(position);
                         navigateToCourseDetails(selected);
+                        dialogInterface.cancel();
+                    })
+                    .setNegativeButton("Delete", (dialogInterface, id) -> {
+//                        courseDAO.delete(position + 1);
+                        courseDAO.delete(data.get(position).getCourseId());
+                        dialogInterface.cancel();
+                    })
+                    .setNeutralButton("Cancel", (dialogInterface, id) -> {
                         dialogInterface.cancel();
                     })
                     .show();

@@ -118,8 +118,7 @@ public class CourseDetailsActivity extends Activity implements TimePickerDialog.
         Button updateButton = findViewById(R.id.continue_btn);
         updateButton.setOnClickListener((view) -> {
             CourseDAO dao = new CourseDAO();
-            // TODO actually update
-//            dao.update(course);
+            dao.update(course);
             navigateToScheduleScreen();
         });
         updateButton.setText("Update Entry");
