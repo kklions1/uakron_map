@@ -44,4 +44,11 @@
         android:layout_height="wrap_content"
         android:text=""/>
 
+    <!-- TODO this view is a hacky way of doing this, replace with item decoration -->
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#333"/>
+    
 </LinearLayout>
