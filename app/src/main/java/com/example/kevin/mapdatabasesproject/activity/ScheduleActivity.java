@@ -45,9 +45,7 @@ public class ScheduleActivity extends Activity {
                         courseDAO.delete(data.get(position).getCourseId());
                         dialogInterface.cancel();
                     })
-                    .setNeutralButton("Cancel", (dialogInterface, id) -> {
-                        dialogInterface.cancel();
-                    })
+                    .setNeutralButton("Cancel", (dialogInterface, id) -> dialogInterface.cancel())
                     .show();
         });
 
