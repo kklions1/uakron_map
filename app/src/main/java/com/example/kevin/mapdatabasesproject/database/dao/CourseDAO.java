@@ -59,13 +59,9 @@ public class CourseDAO implements DataAccessObject<Course> {
                 CourseContract.START_TIME_MINUTE + "," +
                 CourseContract.END_TIME_HOUR + "," +
                 CourseContract.END_TIME_MINUTE + "," +
-                CourseContract.LOCATION_ID + ") VALUES (" + "'" + // Values we expect to be strings need quotes for the SQL command
-                course.getName() + "'" + ", " +
-                course.getStartTimeHour() + ", " +
-                course.getStartTimeMinute() + ", " +
-                course.getEndTimeHour() + ", " +
-                course.getEndTimeMinute() + ", " +
-                course.getLocationId() + ");", new String[] { });
+                CourseContract.LOCATION_ID + ") VALUES (?, ?, ?, ?, ?, ?);",
+                new String[] {course.getName(), String.valueOf(course.getStartTimeHour()), String.valueOf(course.getStartTimeMinute()),
+                    String.valueOf(course.getEndTimeHour()), String.valueOf(course.getEndTimeMinute()), String.valueOf(course.getLocationId())});
     }
 
     // Returns the number of entries in the DB
