@@ -108,13 +108,15 @@ public class CourseDAO implements DataAccessObject<Course> {
         SQLiteDatabase db = dbHelper.getWritableDatabase();
 
         db.execSQL("UPDATE " + CourseContract.TABLE_NAME + " SET " +
-                CourseContract.COURSE_NAME + " = '" + course.getName() + "', " +
-                CourseContract.START_TIME_HOUR + " = " + course.getStartTimeHour() + ", " +
-                CourseContract.START_TIME_MINUTE + " = " + course.getStartTimeMinute() + ", " +
-                CourseContract.END_TIME_HOUR + " = " + course.getEndTimeHour() + ", " +
-                CourseContract.END_TIME_MINUTE + " = " + course.getEndTimeMinute() + ", " +
-                CourseContract.LOCATION_ID + " = " + course.getLocationId() +
-                " WHERE " + CourseContract.COURSE_ID + " = ?;", new String[] {String.valueOf(course.getCourseId())});
+                CourseContract.COURSE_NAME + " = ?, " +
+                CourseContract.START_TIME_HOUR + " = ?, " +
+                CourseContract.START_TIME_MINUTE + " = ?, " +
+                CourseContract.END_TIME_HOUR + " = ?, " +
+                CourseContract.END_TIME_MINUTE + " = ?, " +
+                CourseContract.LOCATION_ID + " = ? " +
+                " WHERE " + CourseContract.COURSE_ID + " = ?;", new String[] {course.getName(), String.valueOf(course.getStartTimeHour()),
+                    String.valueOf(course.getStartTimeMinute()), String.valueOf(course.getEndTimeHour()), String.valueOf(course.getEndTimeMinute()),
+                    String.valueOf(course.getLocationId()), String.valueOf(course.getCourseId())});
     }
 
     @Override
