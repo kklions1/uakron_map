@@ -40,7 +40,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase database) {
         // TODO verify against data model
         database.execSQL("CREATE TABLE IF NOT EXISTS Courses ( " +
-                CourseContract.COURSE_ID + " INTEGER PRIMARY KEY, " +
+                CourseContract.COURSE_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 CourseContract.COURSE_NAME + " CHAR(30) NOT NULL," +
                 CourseContract.START_TIME_HOUR + " INTEGER," +
                 CourseContract.START_TIME_MINUTE + " INTEGER," +

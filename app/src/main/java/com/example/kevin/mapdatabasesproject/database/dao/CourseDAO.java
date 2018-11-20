@@ -55,19 +55,13 @@ public class CourseDAO implements DataAccessObject<Course> {
         SQLiteDatabase db = dbHelper.getWritableDatabase();
         db.execSQL("INSERT INTO " + CourseContract.TABLE_NAME + " (" +
                 CourseContract.COURSE_NAME + "," +
-                CourseContract.COURSE_ID + ", " +
                 CourseContract.START_TIME_HOUR + "," +
                 CourseContract.START_TIME_MINUTE + "," +
                 CourseContract.END_TIME_HOUR + "," +
                 CourseContract.END_TIME_MINUTE + "," +
-                CourseContract.LOCATION_ID + ") VALUES (" + "'" + // Values we expect to be strings need quotes for the SQL command
-                course.getName() + "'" + ", " +
-                course.getCourseId() + ", " +
-                course.getStartTimeHour() + ", " +
-                course.getStartTimeMinute() + ", " +
-                course.getEndTimeHour() + ", " +
-                course.getEndTimeMinute() + ", " +
-                course.getLocationId() + ");");
+                CourseContract.LOCATION_ID + ") VALUES (?, ?, ?, ?, ?, ?);",
+                new String[] {course.getName(), String.valueOf(course.getStartTimeHour()), String.valueOf(course.getStartTimeMinute()),
+                    String.valueOf(course.getEndTimeHour()), String.valueOf(course.getEndTimeMinute()), String.valueOf(course.getLocationId())});
     }
 
     // Returns the number of entries in the DB
@@ -108,16 +102,17 @@ public class CourseDAO implements DataAccessObject<Course> {
     @Override
     public void update(Course course) {
         SQLiteDatabase db = dbHelper.getWritableDatabase();
-        String query = "UPDATE " + CourseContract.TABLE_NAME + " SET " +
-                CourseContract.COURSE_NAME + " = '" + course.getName() + "', " +
-                CourseContract.START_TIME_HOUR + " = " + course.getStartTimeHour() + ", " +
-                CourseContract.START_TIME_MINUTE + " = " + course.getStartTimeMinute() + ", " +
-                CourseContract.END_TIME_HOUR + " = " + course.getEndTimeHour() + ", " +
-                CourseContract.END_TIME_MINUTE + " = " + course.getEndTimeMinute() + ", " +
-                CourseContract.LOCATION_ID + " = " + course.getLocationId() +
-                " WHERE " + CourseContract.COURSE_ID + " = ?;";
 
-        db.execSQL(query, new String[] {String.valueOf(course.getCourseId())});
+        db.execSQL("UPDATE " + CourseContract.TABLE_NAME + " SET " +
+                CourseContract.COURSE_NAME + " = ?, " +
+                CourseContract.START_TIME_HOUR + " = ?, " +
+                CourseContract.START_TIME_MINUTE + " = ?, " +
+                CourseContract.END_TIME_HOUR + " = ?, " +
+                CourseContract.END_TIME_MINUTE + " = ?, " +
+                CourseContract.LOCATION_ID + " = ? " +
+                " WHERE " + CourseContract.COURSE_ID + " = ?;", new String[] {course.getName(), String.valueOf(course.getStartTimeHour()),
+                    String.valueOf(course.getStartTimeMinute()), String.valueOf(course.getEndTimeHour()), String.valueOf(course.getEndTimeMinute()),
+                    String.valueOf(course.getLocationId()), String.valueOf(course.getCourseId())});
     }
 
     @Override
