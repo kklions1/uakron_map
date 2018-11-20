@@ -5,6 +5,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 import com.example.kevin.mapdatabasesproject.database.contract.CourseContract;
+import com.example.kevin.mapdatabasesproject.database.contract.LocationContract;
 
 
 /**
@@ -38,8 +39,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase database) {
-        // TODO verify against data model
-        database.execSQL("CREATE TABLE IF NOT EXISTS Courses ( " +
+        database.execSQL("CREATE TABLE IF NOT EXISTS " + CourseContract.TABLE_NAME + " ( " +
                 CourseContract.COURSE_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 CourseContract.COURSE_NAME + " CHAR(30) NOT NULL," +
                 CourseContract.START_TIME_HOUR + " INTEGER," +
@@ -48,6 +48,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 CourseContract.END_TIME_MINUTE + " INTEGER," +
                 CourseContract.LOCATION_ID + " INTEGER);");
 
+
+        database.execSQL("CREATE TABLE IF NOT EXISTS " + LocationContract.TABLE_NAME + " ( " +
+                LocationContract.LOC_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                LocationContract.LAT + " REAL NOT NULL, " +
+                LocationContract.LNG + " REAL NOT NULL, " +
+                LocationContract.TITLE + " TEXT);");
     }
 
     @Override

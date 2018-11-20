@@ -61,6 +61,7 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/time_set_display"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/time_button_bar">
@@ -83,13 +84,43 @@
 
     </LinearLayout>
 
-    <!--
+
     <GridLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        TODO add day of the week
+        android:layout_height="wrap_content"
+        android:rowCount="3"
+        android:columnCount="2"
+        android:layout_below="@+id/time_set_display">
+
+        <CheckBox
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:text="Monday"/>
+
+        <CheckBox
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:text="Tuesday"/>
+
+        <CheckBox
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:text="Wednesday"/>
+
+        <CheckBox
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:text="Thursday"/>
+
+        <CheckBox
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:text="Friday"/>
+
+
+
     </GridLayout>
-    -->
+
 
     <Button
         android:id="@+id/continue_btn"
