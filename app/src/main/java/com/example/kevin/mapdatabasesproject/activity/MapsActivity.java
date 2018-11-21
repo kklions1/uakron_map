@@ -83,6 +83,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             .position(point)
             .title("Test Marker")), markerIdMap.size() + 1);
 
+        markerIdMap.
     }
 
     @Override
