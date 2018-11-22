@@ -61,6 +61,28 @@ public class LocationDAO implements DataAccessObject<Location> {
                                 String.valueOf(location.getMarker().getPosition().longitude), location.getTitle()};
     }
 
+
+    // This is not perfect, because it is technically possible to have the same lat, lng, AND title, but i don't have
+    // time to sort out a solution that sucks less.
+    public int getId(Location location) {
+        SQLiteDatabase db = dbHelper.getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT " + LocationContract.LOC_ID + " FROM " + LocationContract.TABLE_NAME +
+            " WHERE " + LocationContract.LAT + " = ? AND " + LocationContract.LNG + " = ? AND " +
+                LocationContract.TITLE + " = ?;", new String[] {String.valueOf(location.getMarker().getPosition().latitude),
+                    String.valueOf(location.getMarker().getPosition().longitude), location.getTitle()});
+
+        cursor.moveToFirst();
+
+        if (cursor.getCount() > 0) {
+            int result = cursor.getInt(cursor.getColumnIndex(LocationContract.LOC_ID));
+            cursor.close();
+            return result;
+        }
+
+        cursor.close();
+        return -1;
+    }
+
     @Override
     public void update(Location location) {
         SQLiteDatabase db = dbHelper.getWritableDatabase();

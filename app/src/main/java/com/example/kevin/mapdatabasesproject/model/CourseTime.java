@@ -37,7 +37,7 @@ public class CourseTime {
         calendar.set(Calendar.MINUTE, this.minute);
 
         Date date = calendar.getTime();
-        
+
         return format.format(date);
 
     }
