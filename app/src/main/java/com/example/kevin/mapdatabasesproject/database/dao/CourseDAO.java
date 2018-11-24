@@ -36,7 +36,7 @@ public class CourseDAO implements DataAccessObject<Course> {
                     .setStartTimeMinute(cursor.getInt(cursor.getColumnIndex(CourseContract.START_TIME_MINUTE)))
                     .setEndTimeHour(cursor.getInt(cursor.getColumnIndex(CourseContract.END_TIME_HOUR)))
                     .setEndTimeMinute(cursor.getInt(cursor.getColumnIndex(CourseContract.END_TIME_MINUTE)))
-                    .setLocationId(12)
+                    .setLocationName(cursor.getString(cursor.getColumnIndex(CourseContract.LOCATION_NAME)))
                     .setDays(cursor.getString(cursor.getColumnIndex(CourseContract.COURSE_DAYS)))
                     .build();
 
@@ -62,7 +62,7 @@ public class CourseDAO implements DataAccessObject<Course> {
                 CourseContract.LOCATION_NAME + "," +
                 CourseContract.COURSE_DAYS + ") VALUES (?, ?, ?, ?, ?, ?, ?);",
                 new String[] {course.getName(), String.valueOf(course.getStartTimeHour()), String.valueOf(course.getStartTimeMinute()),
-                    String.valueOf(course.getEndTimeHour()), String.valueOf(course.getEndTimeMinute()), String.valueOf(course.getLocationId()),
+                    String.valueOf(course.getEndTimeHour()), String.valueOf(course.getEndTimeMinute()), course.getLocationName(),
                         course.getDays()});
     }
 
@@ -92,7 +92,7 @@ public class CourseDAO implements DataAccessObject<Course> {
                     .setEndTimeHour(cursor.getInt(cursor.getColumnIndex(CourseContract.END_TIME_HOUR)))
                     .setEndTimeMinute(cursor.getInt(cursor.getColumnIndex(CourseContract.END_TIME_MINUTE)))
                     .setDays(cursor.getString(cursor.getColumnIndex(CourseContract.COURSE_DAYS)))
-                    .setLocationId(12)
+                    .setLocationName(cursor.getString(cursor.getColumnIndex(CourseContract.LOCATION_NAME)))
                     .build();
 
             cursor.close();
@@ -116,7 +116,7 @@ public class CourseDAO implements DataAccessObject<Course> {
                 CourseContract.COURSE_DAYS + " = ? " +
                 " WHERE " + CourseContract.COURSE_ID + " = ?;", new String[] {course.getName(), String.valueOf(course.getStartTimeHour()),
                     String.valueOf(course.getStartTimeMinute()), String.valueOf(course.getEndTimeHour()), String.valueOf(course.getEndTimeMinute()),
-                    String.valueOf(course.getLocationId()), course.getDays(),
+                    course.getLocationName(), course.getDays(),
                     String.valueOf(course.getCourseId())});
     }
 
