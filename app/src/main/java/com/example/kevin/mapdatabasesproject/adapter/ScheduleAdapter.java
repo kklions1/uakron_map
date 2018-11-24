@@ -1,5 +1,7 @@
 package com.example.kevin.mapdatabasesproject.adapter;
 
+import android.graphics.Color;
+import android.graphics.Typeface;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -47,6 +49,33 @@ public class ScheduleAdapter
         viewHolder.courseEndTime.setText(course.getEndTimeHour() + ":" + course.getEndTimeMinute());
 //        viewHolder.courseLocation.setText(Integer.toString(course.getLocationId()));
         viewHolder.courseLocation.setText(course.getLocationName());
+
+        for (char c : course.getDays().toCharArray()) {
+            switch (c) {
+                case 'm':
+                    viewHolder.mondayDisplay.setTypeface(null, Typeface.BOLD);
+                    viewHolder.mondayDisplay.setTextColor(Color.BLACK);
+                    break;
+                case 't':
+                    viewHolder.tuesdayDisplay.setTypeface(null, Typeface.BOLD);
+                    viewHolder.tuesdayDisplay.setTextColor(Color.BLACK);
+                    break;
+                case 'w':
+                    viewHolder.wednesdayMyDudes.setTypeface(null, Typeface.BOLD);
+                    viewHolder.wednesdayMyDudes.setTextColor(Color.BLACK);
+                    break;
+                case 'r':
+                    viewHolder.thursdayDisplay.setTypeface(null, Typeface.BOLD);
+                    viewHolder.thursdayDisplay.setTextColor(Color.BLACK);
+                    break;
+                case 'f':
+                    viewHolder.fridayDisplay.setTypeface(null, Typeface.BOLD);
+                    viewHolder.fridayDisplay.setTextColor(Color.BLACK);
+                    break;
+            }
+        }
+
+//        parseDays(course, viewHolder);
     }
 
     @Override
@@ -61,6 +90,28 @@ public class ScheduleAdapter
         this.onItemClickListener = listener;
     }
 
+    private void parseDays(Course course, ScheduleItemViewHolder viewHolder) {
+        for (char c : course.getDays().toCharArray()) {
+            switch (c) {
+                case 'm':
+                    viewHolder.mondayDisplay.setTypeface(null, Typeface.BOLD);
+                    break;
+                case 't':
+                    viewHolder.tuesdayDisplay.setTypeface(null, Typeface.BOLD);
+                    break;
+                case 'w':
+                    viewHolder.wednesdayMyDudes.setTypeface(null, Typeface.BOLD);
+                    break;
+                case 'r':
+                    viewHolder.thursdayDisplay.setTypeface(null, Typeface.BOLD);
+                    break;
+                case 'f':
+                    viewHolder.fridayDisplay.setTypeface(null, Typeface.BOLD);
+                    break;
+            }
+        }
+    }
+
     /**
      * Stores references to layout elements in the RecyclerView
      */
@@ -69,6 +120,12 @@ public class ScheduleAdapter
         TextView courseStartTime;
         TextView courseLocation;
         TextView courseEndTime;
+        TextView mondayDisplay;
+        TextView tuesdayDisplay;
+        TextView wednesdayMyDudes;
+        TextView thursdayDisplay;
+        TextView fridayDisplay;
+
         private ScheduleAdapter.OnItemClickListener listener;
 
         public ScheduleItemViewHolder(View itemView, OnItemClickListener listener) {
@@ -77,6 +134,12 @@ public class ScheduleAdapter
             courseStartTime = itemView.findViewById(R.id.course_start_time);
             courseEndTime = itemView.findViewById(R.id.course_end_time);
             courseLocation = itemView.findViewById(R.id.course_location);
+            mondayDisplay = itemView.findViewById(R.id.monday_display);
+            tuesdayDisplay = itemView.findViewById(R.id.tuesday_display);
+            wednesdayMyDudes = itemView.findViewById(R.id.its_wednesday_my_dudes_display);
+            thursdayDisplay = itemView.findViewById(R.id.thursday_display);
+            fridayDisplay = itemView.findViewById(R.id.friday_display);
+
             this.listener = listener;
             itemView.setOnClickListener(this);
         }

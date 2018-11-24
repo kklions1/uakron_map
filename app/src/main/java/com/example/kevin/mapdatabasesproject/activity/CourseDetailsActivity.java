@@ -126,6 +126,7 @@ public class CourseDetailsActivity extends Activity implements TimePickerDialog.
     }
 
     private void initializeWithDefaultValues(Course course) {
+        // Initialize the display
         EditText courseName = findViewById(R.id.course_name_edit_text);
         courseName.setText(course.getName());
 
@@ -133,6 +134,32 @@ public class CourseDetailsActivity extends Activity implements TimePickerDialog.
         startTimeMinute = course.getStartTimeMinute();
         endTimeHour = course.getEndTimeHour();
         endTimeMinute = course.getEndTimeMinute();
+
+        CheckBox mondayBox = findViewById(R.id.monday_checkbox);
+        CheckBox tuesdayBox = findViewById(R.id.tuesday_checkbox);
+        CheckBox wednesdayBox = findViewById(R.id.its_wednesday_my_dudes);
+        CheckBox thursdayBox = findViewById(R.id.thursday_checkbox);
+        CheckBox fridayBox = findViewById(R.id.friday_checkbox);
+
+        for (char c : course.getDays().toCharArray()) {
+            switch (c) {
+                case 'm':
+                    mondayBox.setChecked(true);
+                    break;
+                case 't':
+                    tuesdayBox.setChecked(true);
+                    break;
+                case 'w':
+                    wednesdayBox.setChecked(true);
+                    break;
+                case 'r':
+                    thursdayBox.setChecked(true);
+                    break;
+                case 'f':
+                    fridayBox.setChecked(true);
+                    break;
+            }
+        }
 
         TextView startTimeDisplay = findViewById(R.id.start_time_display);
         startTimeDisplay.setText(Integer.toString(startTimeHour) + ":" + Integer.toString(startTimeMinute));
@@ -143,7 +170,26 @@ public class CourseDetailsActivity extends Activity implements TimePickerDialog.
         Spinner courseLocation = findViewById(R.id.course_location_spinner);
 
         Button updateButton = findViewById(R.id.continue_btn);
+
+        // on update button pressed
         updateButton.setOnClickListener((view) -> {
+            String days = "";
+            if (mondayBox.isChecked()) {
+                days += 'm';
+            }
+            if (tuesdayBox.isChecked()) {
+                days += 't';
+            }
+            if (wednesdayBox.isChecked()) {
+                days += 'w';
+            }
+            if (thursdayBox.isChecked()) {
+                days += 'r';
+            }
+            if (fridayBox.isChecked()) {
+                days += 'f';
+            }
+
             CourseDAO dao = new CourseDAO();
             dao.update(new Course.Builder()
                     .setName(courseName.getText().toString())
@@ -153,6 +199,7 @@ public class CourseDetailsActivity extends Activity implements TimePickerDialog.
                     .setStartTimeMinute(startTimeMinute)
                     .setEndTimeHour(endTimeHour)
                     .setEndTimeMinute(endTimeMinute)
+                    .setDays(days)
                     .setLocationName(String.valueOf(courseLocation.getSelectedItem()))
                     .build());
             navigateToScheduleScreen();

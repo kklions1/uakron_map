@@ -64,8 +64,8 @@ public class CourseDAO implements DataAccessObject<Course> {
                 CourseContract.LOCATION_ID + "," +
                 CourseContract.COURSE_DAYS + ") VALUES (?, ?, ?, ?, ?, ?, ?);",
                 new String[] {course.getName(), String.valueOf(course.getStartTimeHour()), String.valueOf(course.getStartTimeMinute()),
-                    String.valueOf(course.getEndTimeHour()), String.valueOf(course.getEndTimeMinute()),course.getDays(),
-                        String.valueOf(course.getLocationId())});
+                    String.valueOf(course.getEndTimeHour()), String.valueOf(course.getEndTimeMinute()), String.valueOf(course.getLocationId()),
+                        course.getDays()});
     }
 
     // Returns the number of entries in the DB
