@@ -18,6 +18,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:layout_marginTop="10dp"
         android:hint="Course Name"
         android:layout_below="@+id/course_details_title"/>
 
@@ -36,6 +37,7 @@
         android:id="@+id/time_button_bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
         android:layout_below="@+id/course_location_spinner">
 
         <Button
@@ -64,6 +66,7 @@
         android:id="@+id/time_set_display"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
         android:layout_below="@+id/time_button_bar">
 
         <TextView
@@ -84,43 +87,47 @@
 
     </LinearLayout>
 
-
-    <GridLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:rowCount="3"
-        android:columnCount="2"
-        android:layout_below="@+id/time_set_display">
+        android:layout_marginTop="12dp"
+        android:layout_below="@id/time_set_display">
 
         <CheckBox
+            android:id="@+id/monday_checkbox"
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
             android:text="Monday"/>
 
         <CheckBox
+            android:id="@+id/tuesday_checkbox"
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
+            android:layout_below="@id/monday_checkbox"
             android:text="Tuesday"/>
 
         <CheckBox
+            android:id="@+id/its_wednesday_my_dudes"
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
+            android:layout_below="@id/tuesday_checkbox"
             android:text="Wednesday"/>
 
         <CheckBox
+            android:id="@+id/thursday_checkbox"
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
+            android:layout_below="@id/its_wednesday_my_dudes"
             android:text="Thursday"/>
 
         <CheckBox
+            android:id="@+id/friday_checkbox"
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
+            android:layout_below="@id/thursday_checkbox"
             android:text="Friday"/>
 
-
-
-    </GridLayout>
-
+    </RelativeLayout>
 
     <Button
         android:id="@+id/continue_btn"
