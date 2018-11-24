@@ -39,6 +39,7 @@ public class CourseDAO implements DataAccessObject<Course> {
                     .setEndTimeHour(cursor.getInt(cursor.getColumnIndex(CourseContract.END_TIME_HOUR)))
                     .setEndTimeMinute(cursor.getInt(cursor.getColumnIndex(CourseContract.END_TIME_MINUTE)))
                     .setLocationId(12)
+                    .setDays(cursor.getInt(cursor.getColumnIndex(CourseContract.COURSE_DAYS)))
                     .build();
 
             result.add(course);
@@ -60,9 +61,11 @@ public class CourseDAO implements DataAccessObject<Course> {
                 CourseContract.START_TIME_MINUTE + "," +
                 CourseContract.END_TIME_HOUR + "," +
                 CourseContract.END_TIME_MINUTE + "," +
-                CourseContract.LOCATION_ID + ") VALUES (?, ?, ?, ?, ?, ?);",
+                CourseContract.LOCATION_ID + "," +
+                CourseContract.COURSE_DAYS + ") VALUES (?, ?, ?, ?, ?, ?, ?);",
                 new String[] {course.getName(), String.valueOf(course.getStartTimeHour()), String.valueOf(course.getStartTimeMinute()),
-                    String.valueOf(course.getEndTimeHour()), String.valueOf(course.getEndTimeMinute()), String.valueOf(course.getLocationId())});
+                    String.valueOf(course.getEndTimeHour()), String.valueOf(course.getEndTimeMinute()), String.valueOf(course.getDays())
+                        String.valueOf(course.getLocationId())});
     }
 
     // Returns the number of entries in the DB
@@ -90,6 +93,7 @@ public class CourseDAO implements DataAccessObject<Course> {
                     .setStartTimeMinute(cursor.getInt(cursor.getColumnIndex(CourseContract.START_TIME_MINUTE)))
                     .setEndTimeHour(cursor.getInt(cursor.getColumnIndex(CourseContract.END_TIME_HOUR)))
                     .setEndTimeMinute(cursor.getInt(cursor.getColumnIndex(CourseContract.END_TIME_MINUTE)))
+                    .setDays(cursor.getInt(cursor.getColumnIndex(CourseContract.COURSE_DAYS)))
                     .setLocationId(12)
                     .build();
 
@@ -110,10 +114,12 @@ public class CourseDAO implements DataAccessObject<Course> {
                 CourseContract.START_TIME_MINUTE + " = ?, " +
                 CourseContract.END_TIME_HOUR + " = ?, " +
                 CourseContract.END_TIME_MINUTE + " = ?, " +
-                CourseContract.LOCATION_ID + " = ? " +
+                CourseContract.LOCATION_ID + " = ?, " +
+                CourseContract.COURSE_DAYS + " = ? " +
                 " WHERE " + CourseContract.COURSE_ID + " = ?;", new String[] {course.getName(), String.valueOf(course.getStartTimeHour()),
                     String.valueOf(course.getStartTimeMinute()), String.valueOf(course.getEndTimeHour()), String.valueOf(course.getEndTimeMinute()),
-                    String.valueOf(course.getLocationId()), String.valueOf(course.getCourseId())});
+                    String.valueOf(course.getLocationId()), String.valueOf(course.getDays()),
+                    String.valueOf(course.getCourseId())});
     }
 
     @Override
