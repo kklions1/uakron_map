@@ -49,7 +49,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 CourseContract.END_TIME_HOUR + " INTEGER," +
                 CourseContract.END_TIME_MINUTE + " INTEGER," +
                 CourseContract.COURSE_DAYS + " TEXT," +
-                CourseContract.LOCATION_ID + " INTEGER);");
+                CourseContract.LOCATION_NAME + " TEXT);");
 
         // Create Locations table
         database.execSQL("CREATE TABLE IF NOT EXISTS " + LocationContract.TABLE_NAME + " ( " +

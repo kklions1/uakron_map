@@ -2,11 +2,9 @@ package com.example.kevin.mapdatabasesproject.database.dao;
 
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteOpenHelper;
 
 import com.example.kevin.mapdatabasesproject.database.DatabaseHelper;
 import com.example.kevin.mapdatabasesproject.database.contract.CourseContract;
-import com.example.kevin.mapdatabasesproject.database.contract.Days;
 import com.example.kevin.mapdatabasesproject.model.Course;
 
 import java.util.ArrayList;
@@ -61,7 +59,7 @@ public class CourseDAO implements DataAccessObject<Course> {
                 CourseContract.START_TIME_MINUTE + "," +
                 CourseContract.END_TIME_HOUR + "," +
                 CourseContract.END_TIME_MINUTE + "," +
-                CourseContract.LOCATION_ID + "," +
+                CourseContract.LOCATION_NAME + "," +
                 CourseContract.COURSE_DAYS + ") VALUES (?, ?, ?, ?, ?, ?, ?);",
                 new String[] {course.getName(), String.valueOf(course.getStartTimeHour()), String.valueOf(course.getStartTimeMinute()),
                     String.valueOf(course.getEndTimeHour()), String.valueOf(course.getEndTimeMinute()), String.valueOf(course.getLocationId()),
@@ -114,7 +112,7 @@ public class CourseDAO implements DataAccessObject<Course> {
                 CourseContract.START_TIME_MINUTE + " = ?, " +
                 CourseContract.END_TIME_HOUR + " = ?, " +
                 CourseContract.END_TIME_MINUTE + " = ?, " +
-                CourseContract.LOCATION_ID + " = ?, " +
+                CourseContract.LOCATION_NAME + " = ?, " +
                 CourseContract.COURSE_DAYS + " = ? " +
                 " WHERE " + CourseContract.COURSE_ID + " = ?;", new String[] {course.getName(), String.valueOf(course.getStartTimeHour()),
                     String.valueOf(course.getStartTimeMinute()), String.valueOf(course.getEndTimeHour()), String.valueOf(course.getEndTimeMinute()),

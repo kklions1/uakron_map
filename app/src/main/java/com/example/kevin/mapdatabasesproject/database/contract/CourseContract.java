@@ -12,5 +12,5 @@ public interface CourseContract {
     String END_TIME_HOUR = "endTimeHour";
     String END_TIME_MINUTE = "endTimeMinute";
     String COURSE_DAYS = "courseDays";
-    String LOCATION_ID = "locationId";
+    String LOCATION_NAME = "locationName";
 }

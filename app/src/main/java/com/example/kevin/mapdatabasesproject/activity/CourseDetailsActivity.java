@@ -84,6 +84,8 @@ public class CourseDetailsActivity extends Activity implements TimePickerDialog.
             EditText courseName = findViewById(R.id.course_name_edit_text);
             Spinner courseLocation = findViewById(R.id.course_location_spinner);
 
+            String selectedLocation = courseLocation.getSelectedItem().toString();
+
             CheckBox mondayBox = findViewById(R.id.monday_checkbox);
             CheckBox tuesdayBox = findViewById(R.id.tuesday_checkbox);
             CheckBox wednesdayBox = findViewById(R.id.its_wednesday_my_dudes);
@@ -112,7 +114,7 @@ public class CourseDetailsActivity extends Activity implements TimePickerDialog.
             dao.save(new Course.Builder()
                     .setName(courseName.getText().toString())
                     .setLocationId(12)
-                    .setLocationName(String.valueOf(courseLocation.getSelectedItem()))
+                    .setLocationName(selectedLocation)
                     .setStartTimeHour(this.startTimeHour)
                     .setStartTimeMinute(this.startTimeMinute)
                     .setEndTimeHour(this.endTimeHour)

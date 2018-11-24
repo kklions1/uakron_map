@@ -32,6 +32,7 @@ public class Course implements Serializable {
 
     public String getName() { return this.name; }
 
+    @Deprecated
     public int getLocationId() { return this.locationId; }
 
     public String getLocationName() { return this.locationName; }
@@ -79,6 +80,7 @@ public class Course implements Serializable {
             return this;
         }
 
+        @Deprecated
         public Builder setLocationId(int id) {
             this.locationId = id;
             return this;
