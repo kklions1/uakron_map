@@ -73,7 +73,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 LocationContract.TITLE + ") VALUES (?, ?, ?);", new String[] {"41.07564347775708",
                             "-81.51244461536409", "Student Union"});
 
-        database.execSQL("INSERT OR IGNORE INTO " +)
+//        database.execSQL("INSERT OR IGNORE INTO; ");
 
     }
 
