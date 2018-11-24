@@ -6,12 +6,14 @@ import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
 
 import com.example.kevin.mapdatabasesproject.R;
+import com.example.kevin.mapdatabasesproject.database.contract.Days;
 import com.example.kevin.mapdatabasesproject.database.dao.CourseDAO;
 import com.example.kevin.mapdatabasesproject.fragment.TimePickerFragment;
 import com.example.kevin.mapdatabasesproject.model.Course;
@@ -77,10 +79,23 @@ public class CourseDetailsActivity extends Activity implements TimePickerDialog.
     // Used primary to change the behavior of the Save/Update button
     private void initializeWithNoDefaultValues() {
         Button saveBtn = findViewById(R.id.continue_btn);
+
         saveBtn.setOnClickListener((view) -> {
 
             EditText courseName = findViewById(R.id.course_name_edit_text);
             Spinner courseLocation = findViewById(R.id.course_location_spinner);
+
+            CheckBox mondayBox = findViewById(R.id.monday_checkbox);
+            CheckBox tuesdayBox = findViewById(R.id.tuesday_checkbox);
+            CheckBox wednesdayBox = findViewById(R.id.its_wednesday_my_dudes);
+            CheckBox thursdayBox = findViewById(R.id.thursday_checkbox);
+            CheckBox fridayBox = findViewById(R.id.friday_checkbox);
+
+            int days = 0b0;
+            if (mondayBox.isChecked()) {
+                days += Days.MONDAY.getValue();
+            }
+
 
             CourseDAO dao = new CourseDAO();
 
