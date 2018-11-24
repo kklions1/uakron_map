@@ -6,6 +6,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import com.example.kevin.mapdatabasesproject.database.DatabaseHelper;
 import com.example.kevin.mapdatabasesproject.database.contract.CourseContract;
+import com.example.kevin.mapdatabasesproject.database.contract.Days;
 import com.example.kevin.mapdatabasesproject.model.Course;
 
 import java.util.ArrayList;
