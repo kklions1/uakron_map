@@ -13,7 +13,6 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 
 import com.example.kevin.mapdatabasesproject.R;
-import com.example.kevin.mapdatabasesproject.database.contract.Days;
 import com.example.kevin.mapdatabasesproject.database.dao.CourseDAO;
 import com.example.kevin.mapdatabasesproject.fragment.TimePickerFragment;
 import com.example.kevin.mapdatabasesproject.model.Course;
@@ -91,11 +90,22 @@ public class CourseDetailsActivity extends Activity implements TimePickerDialog.
             CheckBox thursdayBox = findViewById(R.id.thursday_checkbox);
             CheckBox fridayBox = findViewById(R.id.friday_checkbox);
 
-            int days = 0b0;
+            String days = "";
             if (mondayBox.isChecked()) {
-                days += Days.MONDAY.getValue();
+                days += 'm';
             }
-
+            if (tuesdayBox.isChecked()) {
+                days += 't';
+            }
+            if (wednesdayBox.isChecked()) {
+                days += 'w';
+            }
+            if (thursdayBox.isChecked()) {
+                days += 'r';
+            }
+            if (fridayBox.isChecked()) {
+                days += 'f';
+            }
 
             CourseDAO dao = new CourseDAO();
 
@@ -107,6 +117,7 @@ public class CourseDetailsActivity extends Activity implements TimePickerDialog.
                     .setStartTimeMinute(this.startTimeMinute)
                     .setEndTimeHour(this.endTimeHour)
                     .setEndTimeMinute(this.endTimeMinute)
+                    .setDays(days)
                     .build());
 
             // Once the item is saved, navigate to schedule screen
