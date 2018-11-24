@@ -14,6 +14,7 @@ public class Course implements Serializable {
     private String name;
     private int locationId;
     private String locationName;
+    private int days;
 
     private Course() {
 
@@ -35,6 +36,8 @@ public class Course implements Serializable {
 
     public String getLocationName() { return this.locationName; }
 
+    public int getDays() { return this.days; }
+
     public static class Builder {
         private int startTimeHour;
         private int startTimeMinute;
@@ -44,6 +47,7 @@ public class Course implements Serializable {
         private String name;
         private int locationId;
         private String locationName;
+        private int days;
 
         public Builder setStartTimeHour(int hour) {
             this.startTimeHour = hour;
@@ -85,6 +89,11 @@ public class Course implements Serializable {
             return this;
         }
 
+        public Builder setDays(int days) {
+            this.days = days;
+            return this;
+        }
+
         public Course build() {
             Course newCourse = new Course();
             newCourse.courseId = this.courseId;
@@ -95,6 +104,7 @@ public class Course implements Serializable {
             newCourse.endTimeMinute = this.endTimeMinute;
             newCourse.locationId = this.locationId;
             newCourse.locationName = this.locationName;
+            newCourse.days = this.days;
 
             return newCourse;
         }

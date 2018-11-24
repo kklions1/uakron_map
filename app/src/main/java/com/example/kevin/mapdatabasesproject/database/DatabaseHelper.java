@@ -48,6 +48,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 CourseContract.START_TIME_MINUTE + " INTEGER," +
                 CourseContract.END_TIME_HOUR + " INTEGER," +
                 CourseContract.END_TIME_MINUTE + " INTEGER," +
+                CourseContract.COURSE_DAYS + " INTEGER," +  // used as a bit field.
                 CourseContract.LOCATION_ID + " INTEGER);");
 
         // Create Locations table
