@@ -43,12 +43,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         // Create Courses table
         database.execSQL("CREATE TABLE IF NOT EXISTS " + CourseContract.TABLE_NAME + " ( " +
                 CourseContract.COURSE_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                CourseContract.COURSE_NAME + " CHAR(30) NOT NULL," +
+                CourseContract.COURSE_NAME + " TEXT NOT NULL," +
                 CourseContract.START_TIME_HOUR + " INTEGER," +
                 CourseContract.START_TIME_MINUTE + " INTEGER," +
                 CourseContract.END_TIME_HOUR + " INTEGER," +
                 CourseContract.END_TIME_MINUTE + " INTEGER," +
-                CourseContract.COURSE_DAYS + " INTEGER," +  // used as a bit field.
+                CourseContract.COURSE_DAYS + " TEXT," +
                 CourseContract.LOCATION_ID + " INTEGER);");
 
         // Create Locations table
