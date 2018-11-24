@@ -7,7 +7,6 @@ import com.example.kevin.mapdatabasesproject.database.DatabaseHelper;
 import com.example.kevin.mapdatabasesproject.database.contract.LocationContract;
 import com.example.kevin.mapdatabasesproject.model.Location;
 import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.util.ArrayList;
@@ -38,11 +37,13 @@ public class LocationDAO implements DataAccessObject<Location> {
                     .position(new LatLng(latitude, longitude))
                     .title(title);
 
-            Location location = locationBuilder.setId(id)
+            Location location = locationBuilder
+                    .setId(id)
                     .setMarker(marker)
                     .build();
 
             result.add(location);
+            cursor.moveToNext();
         }
 
         cursor.close();
@@ -57,8 +58,8 @@ public class LocationDAO implements DataAccessObject<Location> {
         db.execSQL("INSERT INTO " + LocationContract.TABLE_NAME + " (" +
                 LocationContract.LAT + ", " +
                 LocationContract.LNG + ", " +
-                LocationContract.TITLE + ") VALUES (?, ?, ?)", new String[] {String.valueOf(location.getMarker().getPosition().latitude),
-                                String.valueOf(location.getMarker().getPosition().longitude), location.getTitle()};
+                LocationContract.TITLE + ") VALUES (?, ?, ?);", new String[] {String.valueOf(location.getMarker().getPosition().latitude),
+                                String.valueOf(location.getMarker().getPosition().longitude), location.getTitle()});
     }
 
 

@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.util.Log;
 
 import com.example.kevin.mapdatabasesproject.R;
+import com.example.kevin.mapdatabasesproject.database.dao.LocationDAO;
+import com.example.kevin.mapdatabasesproject.model.Location;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -18,13 +20,14 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback,
         GoogleMap.OnMapLongClickListener, GoogleMap.OnMarkerClickListener {
 
     private GoogleMap googleMap;
-    private Map<Marker, Integer> markerIdMap;
+    private Map<MarkerOptions, Integer> markerIdMap;
 
     private LatLngBounds akronMapBounds = new LatLngBounds(
             new LatLng(41.06922418725167, -81.50769844651222),
@@ -56,9 +59,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         googleMap.setOnMapLongClickListener(this);
         googleMap.setOnMarkerClickListener(this);
 
-        markerIdMap.put(googleMap.addMarker(new MarkerOptions()
-            .position(studentUnion)
-            .title("Student Union")), markerIdMap.size() + 1);
+        loadAllMarkersToMap();
+
+//        markerIdMap.put(googleMap.addMarker(new MarkerOptions()
+//            .position(studentUnion)
+//            .title("Student Union")), markerIdMap.size() + 1);
 
         googleMap.setLatLngBoundsForCameraTarget(akronMapBounds);
 
@@ -79,11 +84,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     public void onMapLongClick(LatLng point) {
         // We want all the markers on the GoogleMap to have an ID associated with them.  Since googlemap.addmarker returns a reference
         // to that marker, we can use it to place it inside a map with an ID associated with it
-        markerIdMap.put(googleMap.addMarker(new MarkerOptions()
-            .position(point)
-            .title("Test Marker")), markerIdMap.size() + 1);
-
-        markerIdMap.
+        // TODO am i even going to add custom locations at this point without a partner?
+//        markerIdMap.put(googleMap.addMarker(new MarkerOptions()
+//            .position(point)
+//            .title("Test Marker")), markerIdMap.size() + 1);
     }
 
     @Override
@@ -97,5 +101,18 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         startActivity(intent);
     }
 
-    public Map<Marker, Integer> getMarkerIdMap() { return markerIdMap; }
+    // TODO this is likely not ever going to be used
+    public Map<MarkerOptions, Integer> getMarkerIdMap() { return markerIdMap; }
+
+    private void loadAllMarkersToMap() {
+        LocationDAO dao = new LocationDAO();
+        List<Location> locations = dao.getAll();
+
+        for (Location location : locations) {
+            googleMap.addMarker(location.getMarker());
+
+            markerIdMap.put(location.getMarker(), location.getId());
+        }
+
+    }
 }

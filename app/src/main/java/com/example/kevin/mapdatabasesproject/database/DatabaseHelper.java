@@ -39,6 +39,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase database) {
+
+        // Create Courses table
         database.execSQL("CREATE TABLE IF NOT EXISTS " + CourseContract.TABLE_NAME + " ( " +
                 CourseContract.COURSE_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 CourseContract.COURSE_NAME + " CHAR(30) NOT NULL," +
@@ -48,17 +50,31 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 CourseContract.END_TIME_MINUTE + " INTEGER," +
                 CourseContract.LOCATION_ID + " INTEGER);");
 
-
+        // Create Locations table
         database.execSQL("CREATE TABLE IF NOT EXISTS " + LocationContract.TABLE_NAME + " ( " +
                 LocationContract.LOC_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 LocationContract.LAT + " REAL NOT NULL, " +
                 LocationContract.LNG + " REAL NOT NULL, " +
                 LocationContract.TITLE + " TEXT);");
+
+        initializeLocations(database);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase database, int currentVersion, int newVersion) {
         // Not sure what this is supposed to do TBH
+    }
+
+    // Initialize pre-set locations in the table
+    private void initializeLocations(SQLiteDatabase database) {
+        database.execSQL("INSERT OR IGNORE INTO " + LocationContract.TABLE_NAME + " (" +
+                LocationContract.LAT + ", " +
+                LocationContract.LNG + ", " +
+                LocationContract.TITLE + ") VALUES (?, ?, ?);", new String[] {"41.07564347775708",
+                            "-81.51244461536409", "Student Union"});
+
+        database.execSQL("INSERT OR IGNORE INTO " +)
+
     }
 
 

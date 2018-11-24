@@ -43,6 +43,7 @@ public class ScheduleActivity extends Activity {
                     })
                     .setNegativeButton("Delete", (dialogInterface, id) -> {
                         courseDAO.delete(data.get(position).getCourseId());
+                        // recreate basically restarts the activity its called on.
                         this.recreate(); // this definitely feels hacky, but it works
                         dialogInterface.cancel();
                     })
