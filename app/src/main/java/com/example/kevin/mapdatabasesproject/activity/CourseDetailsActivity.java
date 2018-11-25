@@ -168,8 +168,6 @@ public class CourseDetailsActivity extends Activity implements TimePickerDialog.
         TextView endTimeDisplay = findViewById(R.id.end_time_display);
         endTimeDisplay.setText(Integer.toString(endTimeHour) + ":" + Integer.toString(endTimeMinute));
 
-        Spinner courseLocation = findViewById(R.id.course_location_spinner);
-
         Button updateButton = findViewById(R.id.continue_btn);
 
         // on update button pressed
@@ -191,17 +189,19 @@ public class CourseDetailsActivity extends Activity implements TimePickerDialog.
                 days += 'f';
             }
 
+            Spinner courseLocation = findViewById(R.id.course_location_spinner);
+            String selectedLocation = courseLocation.getSelectedItem().toString();
+
             CourseDAO dao = new CourseDAO();
             dao.update(new Course.Builder()
                     .setName(courseName.getText().toString())
                     .setCourseId(course.getCourseId()) // preserve the course id, this is being passed in so the update method can update properly
-                    .setLocationId(course.getLocationId()) // TODO make this actually do something
                     .setStartTimeHour(startTimeHour)
                     .setStartTimeMinute(startTimeMinute)
                     .setEndTimeHour(endTimeHour)
                     .setEndTimeMinute(endTimeMinute)
                     .setDays(days)
-                    .setLocationName(String.valueOf(courseLocation.getSelectedItem()))
+                    .setLocationName(selectedLocation)
                     .build());
             navigateToScheduleScreen();
         });
