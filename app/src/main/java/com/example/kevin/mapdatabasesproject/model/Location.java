@@ -1,13 +1,13 @@
 package com.example.kevin.mapdatabasesproject.model;
 
-import android.os.Parcelable;
-
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.io.Serializable;
 
 /**
  * Wrapper class for location information
+ *
+ * TODO is this even a class I care about?
  */
 public class Location implements Serializable {
     private MarkerOptions marker;

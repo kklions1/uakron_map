@@ -4,6 +4,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 import com.example.kevin.mapdatabasesproject.database.DatabaseHelper;
+import com.example.kevin.mapdatabasesproject.database.contract.CourseContract;
 import com.example.kevin.mapdatabasesproject.database.contract.LocationContract;
 import com.example.kevin.mapdatabasesproject.model.Location;
 import com.google.android.gms.maps.model.LatLng;
@@ -86,13 +87,40 @@ public class LocationDAO implements DataAccessObject<Location> {
 
     @Override
     public void update(Location location) {
-        SQLiteDatabase db = dbHelper.getWritableDatabase();
-
-//        db.execSQL("UPDATE ");
+        // Cannot update this table because it is preset constant values
     }
 
     @Override
     public void delete(int id) {
+        // Can't delete from this particular table yet, since its only preset values are allowed to be in it
+    }
 
+    // Fetches all locations that are associated with a course using a join with the courses table
+    public List<MarkerOptions> fetchCourseLocations() {
+        List<MarkerOptions> result = new ArrayList<>();
+        SQLiteDatabase db = dbHelper.getReadableDatabase();
+
+        // separate string for debugging purposes
+        String query = "SELECT " + LocationContract.LAT + ", " + LocationContract.LNG + ", " +
+                LocationContract.TITLE  + " FROM " + LocationContract.TABLE_NAME + " INNER JOIN " + CourseContract.TABLE_NAME +
+                " ON " + LocationContract.TABLE_NAME + "." + LocationContract.TITLE + " = " +
+                CourseContract.TABLE_NAME + "." + CourseContract.LOCATION_NAME + ";";
+
+        Cursor cursor = db.rawQuery(query, null);
+        cursor.getCount();
+        cursor.moveToFirst();
+
+        while (!cursor.isAfterLast()) {
+            MarkerOptions markerOptions = new MarkerOptions()
+                    .position(new LatLng(cursor.getLong(cursor.getColumnIndex(LocationContract.LAT)),
+                            cursor.getLong(cursor.getColumnIndex(LocationContract.LNG))))
+                    .title(cursor.getString(cursor.getColumnIndex(LocationContract.TITLE)));
+
+            result.add(markerOptions);
+
+            cursor.moveToNext();
+        }
+        cursor.close();
+        return result;
     }
 }
