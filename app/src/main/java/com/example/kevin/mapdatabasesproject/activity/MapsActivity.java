@@ -24,7 +24,7 @@ import java.util.List;
 import java.util.Map;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback,
-        GoogleMap.OnMapLongClickListener {
+        GoogleMap.OnMapLongClickListener, GoogleMap.OnMarkerClickListener {
 
     private GoogleMap googleMap;
 //    private Map<MarkerOptions, Integer> markerIdMap;
@@ -57,7 +57,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         // Add a marker in Sydney and move the camera
         googleMap.setOnMapLongClickListener(this);
-//        googleMap.setOnMarkerClickListener(this);
+        googleMap.setOnMarkerClickListener(this);
 
         loadUsedMarkers();
 
@@ -89,19 +89,17 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     @Override
     public void onMapLongClick(LatLng point) {
-        // We want all the markers on the GoogleMap to have an ID associated with them.  Since googlemap.addmarker returns a reference
-        // to that marker, we can use it to place it inside a map with an ID associated with it
-        // TODO am i even going to add custom locations at this point without a partner?
-//        markerIdMap.put(googleMap.addMarker(new MarkerOptions()
-//            .position(point)
-//            .title("Test Marker")), markerIdMap.size() + 1);
+        // TODO am i even going to add custom location support at this point without a partner?
+        googleMap.addMarker(new MarkerOptions()
+            .position(point)
+            .title("Test Marker")); // used to figure out what the lat and lng of the buildings i want are. this will be removed later
     }
 
-//    @Override
-//    public boolean onMarkerClick(Marker marker) {
-//        Log.d("Location " + markerIdMap.get(marker).toString(), "Lat: " + marker.getPosition().latitude + " \n Lng: " + marker.getPosition().longitude);
-//        return false;
-//    }
+    @Override
+    public boolean onMarkerClick(Marker marker) {
+        Log.d("Location", "Lat: " + marker.getPosition().latitude + "\tLng: " + marker.getPosition().longitude);
+        return false;
+    }
 
     private void navigateToScheduleScreen() {
         Intent intent = new Intent(MapsActivity.this, ScheduleActivity.class);
