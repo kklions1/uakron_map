@@ -8,7 +8,6 @@ import android.util.Log;
 
 import com.example.kevin.mapdatabasesproject.R;
 import com.example.kevin.mapdatabasesproject.database.dao.LocationDAO;
-import com.example.kevin.mapdatabasesproject.model.Location;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -59,7 +58,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         googleMap.setOnMapLongClickListener(this);
         googleMap.setOnMarkerClickListener(this);
 
-        loadAllMarkersToMap();
+        loadUsedMarkers();
 
 //        markerIdMap.put(googleMap.addMarker(new MarkerOptions()
 //            .position(studentUnion)
@@ -104,14 +103,13 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     // TODO this is likely not ever going to be used
     public Map<MarkerOptions, Integer> getMarkerIdMap() { return markerIdMap; }
 
-    private void loadAllMarkersToMap() {
+    private void loadUsedMarkers() {
         LocationDAO dao = new LocationDAO();
-        List<Location> locations = dao.getAll();
 
-        for (Location location : locations) {
-            googleMap.addMarker(location.getMarker());
+        List<MarkerOptions> courseMarkers = dao.fetchCourseLocations();
 
-            markerIdMap.put(location.getMarker(), location.getId());
+        for (MarkerOptions marker : courseMarkers) {
+            googleMap.addMarker(marker);
         }
 
     }
