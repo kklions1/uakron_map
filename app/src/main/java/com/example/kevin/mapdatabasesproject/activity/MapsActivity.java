@@ -8,6 +8,7 @@ import android.util.Log;
 
 import com.example.kevin.mapdatabasesproject.R;
 import com.example.kevin.mapdatabasesproject.database.dao.LocationDAO;
+import com.example.kevin.mapdatabasesproject.model.Location;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -23,10 +24,10 @@ import java.util.List;
 import java.util.Map;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback,
-        GoogleMap.OnMapLongClickListener, GoogleMap.OnMarkerClickListener {
+        GoogleMap.OnMapLongClickListener {
 
     private GoogleMap googleMap;
-    private Map<MarkerOptions, Integer> markerIdMap;
+//    private Map<MarkerOptions, Integer> markerIdMap;
 
     private LatLngBounds akronMapBounds = new LatLngBounds(
             new LatLng(41.06922418725167, -81.50769844651222),
@@ -46,7 +47,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         FloatingActionButton scheduleFab = findViewById(R.id.view_schedule_fab);
         scheduleFab.setOnClickListener((view) -> navigateToScheduleScreen());
 
-        markerIdMap = new HashMap<>();
+//        markerIdMap = new HashMap<>();
     }
 
     // GoogleMap onCreate
@@ -56,26 +57,33 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         // Add a marker in Sydney and move the camera
         googleMap.setOnMapLongClickListener(this);
-        googleMap.setOnMarkerClickListener(this);
+//        googleMap.setOnMarkerClickListener(this);
 
         loadUsedMarkers();
+
+        LocationDAO dao = new LocationDAO();
+        List<Location> loc = dao.getAll();
+
+        for (Location l : loc) {
+            googleMap.addMarker(l.getMarker());
+        }
 
 //        markerIdMap.put(googleMap.addMarker(new MarkerOptions()
 //            .position(studentUnion)
 //            .title("Student Union")), markerIdMap.size() + 1);
 
-        googleMap.setLatLngBoundsForCameraTarget(akronMapBounds);
-
-        CameraPosition defaultCameraPosition = new CameraPosition.Builder()
-                .target(studentUnion)
-                .zoom(10f)
-                .bearing(0)
-                .tilt(0)
-                .build();
-
-//        googleMap.moveCamera(CameraUpdateFactory.newCameraPosition(defaultCameraPosition));
-        googleMap.moveCamera(CameraUpdateFactory.newLatLng(studentUnion));
-        googleMap.setMinZoomPreference(15f);
+//        googleMap.setLatLngBoundsForCameraTarget(akronMapBounds);
+//
+//        CameraPosition defaultCameraPosition = new CameraPosition.Builder()
+//                .target(studentUnion)
+//                .zoom(10f)
+//                .bearing(0)
+//                .tilt(0)
+//                .build();
+//
+////        googleMap.moveCamera(CameraUpdateFactory.newCameraPosition(defaultCameraPosition));
+//        googleMap.moveCamera(CameraUpdateFactory.newLatLng(studentUnion));
+//        googleMap.setMinZoomPreference(15f);
 
     }
 
@@ -89,11 +97,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 //            .title("Test Marker")), markerIdMap.size() + 1);
     }
 
-    @Override
-    public boolean onMarkerClick(Marker marker) {
-        Log.d("Location " + markerIdMap.get(marker).toString(), "Lat: " + marker.getPosition().latitude + " \n Lng: " + marker.getPosition().longitude);
-        return false;
-    }
+//    @Override
+//    public boolean onMarkerClick(Marker marker) {
+//        Log.d("Location " + markerIdMap.get(marker).toString(), "Lat: " + marker.getPosition().latitude + " \n Lng: " + marker.getPosition().longitude);
+//        return false;
+//    }
 
     private void navigateToScheduleScreen() {
         Intent intent = new Intent(MapsActivity.this, ScheduleActivity.class);
@@ -101,7 +109,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     }
 
     // TODO this is likely not ever going to be used
-    public Map<MarkerOptions, Integer> getMarkerIdMap() { return markerIdMap; }
+//    public Map<MarkerOptions, Integer> getMarkerIdMap() { return markerIdMap; }
 
     private void loadUsedMarkers() {
         LocationDAO dao = new LocationDAO();
