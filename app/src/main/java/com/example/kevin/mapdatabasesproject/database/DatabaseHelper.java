@@ -6,6 +6,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import com.example.kevin.mapdatabasesproject.database.contract.CourseContract;
 import com.example.kevin.mapdatabasesproject.database.contract.LocationContract;
+import com.example.kevin.mapdatabasesproject.database.contract.LocationNames;
 
 
 /**
@@ -54,8 +55,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         // Create Locations table
         database.execSQL("CREATE TABLE IF NOT EXISTS " + LocationContract.TABLE_NAME + " ( " +
                 LocationContract.LOC_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                LocationContract.LAT + " REAL NOT NULL, " +
-                LocationContract.LNG + " REAL NOT NULL, " +
+                LocationContract.LAT + " TEXT NOT NULL, " +
+                LocationContract.LNG + " TEXT NOT NULL, " +
                 LocationContract.TITLE + " TEXT);");
 
         initializeLocations(database);
@@ -72,7 +73,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 LocationContract.LAT + ", " +
                 LocationContract.LNG + ", " +
                 LocationContract.TITLE + ") VALUES (?, ?, ?);", new String[] {"41.07564347775708",
-                            "-81.51244461536409", "Student Union"});
+                            "-81.51244461536409", LocationNames.STUDENT_UNION});
 
 //        database.execSQL("INSERT OR IGNORE INTO; ");
 

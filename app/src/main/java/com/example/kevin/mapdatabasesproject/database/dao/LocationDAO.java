@@ -29,8 +29,8 @@ public class LocationDAO implements DataAccessObject<Location> {
 
         while (!cursor.isAfterLast()) {
             Location.Builder locationBuilder = new Location.Builder();
-            long latitude = cursor.getLong(cursor.getColumnIndex(LocationContract.LAT));
-            long longitude = cursor.getLong(cursor.getColumnIndex(LocationContract.LNG));
+            double latitude = Double.valueOf(cursor.getString(cursor.getColumnIndex(LocationContract.LAT)));
+            double longitude = Double.valueOf(cursor.getString(cursor.getColumnIndex(LocationContract.LNG)));
             int id = cursor.getInt(cursor.getColumnIndex(LocationContract.LOC_ID));
             String title = cursor.getString(cursor.getColumnIndex(LocationContract.TITLE));
 
@@ -112,8 +112,8 @@ public class LocationDAO implements DataAccessObject<Location> {
 
         while (!cursor.isAfterLast()) {
             MarkerOptions markerOptions = new MarkerOptions()
-                    .position(new LatLng(cursor.getLong(cursor.getColumnIndex(LocationContract.LAT)),
-                            cursor.getLong(cursor.getColumnIndex(LocationContract.LNG))))
+                    .position(new LatLng(Long.valueOf(cursor.getString(cursor.getColumnIndex(LocationContract.LAT))),
+                            Long.valueOf(cursor.getString(cursor.getColumnIndex(LocationContract.LNG)))))
                     .title(cursor.getString(cursor.getColumnIndex(LocationContract.TITLE)));
 
             result.add(markerOptions);
