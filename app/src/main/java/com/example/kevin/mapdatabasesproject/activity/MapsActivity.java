@@ -68,10 +68,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             googleMap.addMarker(l.getMarker());
         }
 
-//        markerIdMap.put(googleMap.addMarker(new MarkerOptions()
-//            .position(studentUnion)
-//            .title("Student Union")), markerIdMap.size() + 1);
-
 //        googleMap.setLatLngBoundsForCameraTarget(akronMapBounds);
 //
 //        CameraPosition defaultCameraPosition = new CameraPosition.Builder()
@@ -81,7 +77,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 //                .tilt(0)
 //                .build();
 //
-////        googleMap.moveCamera(CameraUpdateFactory.newCameraPosition(defaultCameraPosition));
+//        googleMap.moveCamera(CameraUpdateFactory.newCameraPosition(defaultCameraPosition));
 //        googleMap.moveCamera(CameraUpdateFactory.newLatLng(studentUnion));
 //        googleMap.setMinZoomPreference(15f);
 
