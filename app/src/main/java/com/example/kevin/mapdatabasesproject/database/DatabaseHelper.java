@@ -1,14 +1,12 @@
 package com.example.kevin.mapdatabasesproject.database;
 
 import android.content.Context;
-import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 import com.example.kevin.mapdatabasesproject.database.contract.CourseContract;
 import com.example.kevin.mapdatabasesproject.database.contract.LocationContract;
 import com.example.kevin.mapdatabasesproject.database.contract.LocationNames;
-import com.example.kevin.mapdatabasesproject.model.Location;
 
 
 /**
@@ -63,8 +61,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 LocationContract.LAT + " TEXT NOT NULL, " +
                 LocationContract.LNG + " TEXT NOT NULL, " +
                 LocationContract.TITLE + " TEXT);");
-//                LocationContract.TITLE + " TEXT," +
-//                "CONSTRAINT loc UNIQUE(" + LocationContract.LAT + ", " + LocationContract.LNG + "));");
 
         initializeLocations(database);
 
