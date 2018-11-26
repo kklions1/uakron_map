@@ -29,10 +29,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private GoogleMap googleMap;
 //    private Map<MarkerOptions, Integer> markerIdMap;
 
-    private LatLngBounds akronMapBounds = new LatLngBounds(
-            new LatLng(41.06922418725167, -81.50769844651222),
-            new LatLng(41.080223319156836, -81.52035746723413));
-    private LatLng studentUnion = new LatLng(41.07564347775708, -81.51244461536409);
+//    private LatLngBounds akronMapBounds = new LatLngBounds(
+//            new LatLng(41.06922418725167, -81.50769844651222),
+//            new LatLng(41.080223319156836, -81.52035746723413));
+//    private LatLng studentUnion = new LatLng(41.07564347775708, -81.51244461536409);
 
     // Activity-level onCreate
     @Override
@@ -61,12 +61,12 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         loadUsedMarkers();
 
-        LocationDAO dao = new LocationDAO();
-        List<Location> loc = dao.getAll();
-
-        for (Location l : loc) {
-            googleMap.addMarker(l.getMarker());
-        }
+//        LocationDAO dao = new LocationDAO();
+//        List<Location> loc = dao.getAll();
+//
+//        for (Location l : loc) {
+//            googleMap.addMarker(l.getMarker());
+//        }
 
 //        googleMap.setLatLngBoundsForCameraTarget(akronMapBounds);
 //

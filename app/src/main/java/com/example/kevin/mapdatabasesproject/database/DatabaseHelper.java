@@ -1,6 +1,7 @@
 package com.example.kevin.mapdatabasesproject.database;
 
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
@@ -53,15 +54,20 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 CourseContract.COURSE_DAYS + " TEXT," +
                 CourseContract.LOCATION_NAME + " TEXT);");
 
+        // Reset the locations table
+        database.execSQL("DROP TABLE IF EXISTS " + LocationContract.TABLE_NAME + ";");
+
         // Create Locations table
         database.execSQL("CREATE TABLE IF NOT EXISTS " + LocationContract.TABLE_NAME + " ( " +
                 LocationContract.LOC_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 LocationContract.LAT + " TEXT NOT NULL, " +
                 LocationContract.LNG + " TEXT NOT NULL, " +
-                LocationContract.TITLE + " TEXT," +
-                "CONSTRAINT loc UNIQUE(" + LocationContract.LAT + ", " + LocationContract.LNG + "));");
+                LocationContract.TITLE + " TEXT);");
+//                LocationContract.TITLE + " TEXT," +
+//                "CONSTRAINT loc UNIQUE(" + LocationContract.LAT + ", " + LocationContract.LNG + "));");
 
         initializeLocations(database);
+
     }
 
     @Override
@@ -72,9 +78,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     // Initialize pre-set locations in the table
     // Ignore Any insertions for values already in the table
     private void initializeLocations(SQLiteDatabase database) {
-
-
-        database.execSQL("INSERT OR IGNORE INTO " + LocationContract.TABLE_NAME + " (" +
+        database.execSQL("INSERT INTO " + LocationContract.TABLE_NAME + " (" +
                 LocationContract.TITLE + ", " +
                 LocationContract.LAT + ", " +
                 LocationContract.LNG + ") VALUES (?, ?, ?);", new String[] {LocationNames.STUDENT_UNION,
@@ -86,37 +90,37 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 LocationContract.LNG + ") VALUES (?, ?, ?);", new String[] {LocationNames.LEIGH,
                 "41.07620381211137", "-81.5107672289014"});
 
-        database.execSQL("INSERT OR IGNORE INTO " + LocationContract.TABLE_NAME + " (" +
+        database.execSQL("INSERT INTO " + LocationContract.TABLE_NAME + " (" +
                 LocationContract.TITLE + ", " +
                 LocationContract.LAT + ", " +
                 LocationContract.LNG + ") VALUES (?, ?, ?);", new String[] {LocationNames.CROUSE,
                 "41.07629378867585", "-81.51218745857477"});
 
-        database.execSQL("INSERT OR IGNORE INTO " + LocationContract.TABLE_NAME + " (" +
+        database.execSQL("INSERT INTO " + LocationContract.TABLE_NAME + " (" +
                 LocationContract.TITLE + ", " +
                 LocationContract.LAT + ", " +
                 LocationContract.LNG + ") VALUES (?, ?, ?);", new String[] {LocationNames.REC_CENTER,
                 "41.07466509269993", "-81.50861509144306"});
 
-        database.execSQL("INSERT OR IGNORE INTO " + LocationContract.TABLE_NAME + " (" +
+        database.execSQL("INSERT INTO " + LocationContract.TABLE_NAME + " (" +
                 LocationContract.TITLE + ", " +
                 LocationContract.LAT + ", " +
                 LocationContract.LNG + ") VALUES (?, ?, ?);", new String[] {LocationNames.ARTS_AND_SCIENCES,
                 "41.07778697727521", "-81.51058919727802"});
 
-        database.execSQL("INSERT OR IGNORE INTO " + LocationContract.TABLE_NAME + " (" +
+        database.execSQL("INSERT INTO " + LocationContract.TABLE_NAME + " (" +
                 LocationContract.TITLE + ", " +
                 LocationContract.LAT + ", " +
                 LocationContract.LNG + ") VALUES (?, ?, ?);", new String[] {LocationNames.KOLBE,
                 "41.076206086801335", "-81.51016104966403"});
 
-        database.execSQL("INSERT OR IGNORE INTO " + LocationContract.TABLE_NAME + " (" +
+        database.execSQL("INSERT INTO " + LocationContract.TABLE_NAME + " (" +
                 LocationContract.TITLE + ", " +
                 LocationContract.LAT + ", " +
                 LocationContract.LNG + ") VALUES (?, ?, ?);", new String[] {LocationNames.POLSKY,
                 "41.07748369188231", "-81.51899959892035"});
 
-        database.execSQL("INSERT OR IGNORE INTO " + LocationContract.TABLE_NAME + " (" +
+        database.execSQL("INSERT INTO " + LocationContract.TABLE_NAME + " (" +
                 LocationContract.TITLE + ", " +
                 LocationContract.LAT + ", " +
                 LocationContract.LNG + ") VALUES (?, ?, ?);", new String[] {LocationNames.BUSINESS_ADMIN,

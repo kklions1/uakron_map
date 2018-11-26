@@ -112,8 +112,8 @@ public class LocationDAO implements DataAccessObject<Location> {
 
         while (!cursor.isAfterLast()) {
             MarkerOptions markerOptions = new MarkerOptions()
-                    .position(new LatLng(Long.valueOf(cursor.getString(cursor.getColumnIndex(LocationContract.LAT))),
-                            Long.valueOf(cursor.getString(cursor.getColumnIndex(LocationContract.LNG)))))
+                    .position(new LatLng(Double.valueOf(cursor.getString(cursor.getColumnIndex(LocationContract.LAT))),
+                            Double.valueOf(cursor.getString(cursor.getColumnIndex(LocationContract.LNG)))))
                     .title(cursor.getString(cursor.getColumnIndex(LocationContract.TITLE)));
 
             result.add(markerOptions);
