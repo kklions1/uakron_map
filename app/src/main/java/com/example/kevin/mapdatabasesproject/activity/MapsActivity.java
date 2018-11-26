@@ -8,31 +8,19 @@ import android.util.Log;
 
 import com.example.kevin.mapdatabasesproject.R;
 import com.example.kevin.mapdatabasesproject.database.dao.LocationDAO;
-import com.example.kevin.mapdatabasesproject.model.Location;
-import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
-import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback,
         GoogleMap.OnMapLongClickListener, GoogleMap.OnMarkerClickListener {
 
     private GoogleMap googleMap;
-//    private Map<MarkerOptions, Integer> markerIdMap;
-
-//    private LatLngBounds akronMapBounds = new LatLngBounds(
-//            new LatLng(41.06922418725167, -81.50769844651222),
-//            new LatLng(41.080223319156836, -81.52035746723413));
-//    private LatLng studentUnion = new LatLng(41.07564347775708, -81.51244461536409);
 
     // Activity-level onCreate
     @Override
@@ -47,7 +35,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         FloatingActionButton scheduleFab = findViewById(R.id.view_schedule_fab);
         scheduleFab.setOnClickListener((view) -> navigateToScheduleScreen());
 
-//        markerIdMap = new HashMap<>();
     }
 
     // GoogleMap onCreate
@@ -60,13 +47,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         googleMap.setOnMarkerClickListener(this);
 
         loadUsedMarkers();
-
-//        LocationDAO dao = new LocationDAO();
-//        List<Location> loc = dao.getAll();
-//
-//        for (Location l : loc) {
-//            googleMap.addMarker(l.getMarker());
-//        }
 
 //        googleMap.setLatLngBoundsForCameraTarget(akronMapBounds);
 //
@@ -101,9 +81,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         Intent intent = new Intent(MapsActivity.this, ScheduleActivity.class);
         startActivity(intent);
     }
-
-    // TODO this is likely not ever going to be used
-//    public Map<MarkerOptions, Integer> getMarkerIdMap() { return markerIdMap; }
 
     private void loadUsedMarkers() {
         LocationDAO dao = new LocationDAO();
