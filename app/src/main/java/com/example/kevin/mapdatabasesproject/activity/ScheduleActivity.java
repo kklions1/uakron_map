@@ -58,9 +58,19 @@ public class ScheduleActivity extends Activity {
         addCourseFab.setOnClickListener((view) -> navigateToCourseDetails(null));
     }
 
+    @Override
+    public void onBackPressed() {
+        navigateToMap();
+    }
+
     private void navigateToCourseDetails(Course courseData) {
         Intent intent = new Intent(ScheduleActivity.this, CourseDetailsActivity.class);
         intent.putExtra("Course Data", courseData);
+        startActivity(intent);
+    }
+
+    private void navigateToMap() {
+        Intent intent = new Intent(ScheduleActivity.this, MapsActivity.class);
         startActivity(intent);
     }
 }
