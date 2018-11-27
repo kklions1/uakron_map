@@ -8,10 +8,12 @@ import android.util.Log;
 
 import com.example.kevin.mapdatabasesproject.R;
 import com.example.kevin.mapdatabasesproject.database.dao.LocationDAO;
+import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
@@ -21,6 +23,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         GoogleMap.OnMapLongClickListener, GoogleMap.OnMarkerClickListener {
 
     private GoogleMap googleMap;
+    // Upper left bound near polsky, lower right bound near the football field.
 
     // Activity-level onCreate
     @Override
@@ -42,14 +45,18 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     public void onMapReady(GoogleMap map) {
         googleMap = map;
 
+        final LatLngBounds akronMapBounds = new LatLngBounds(new LatLng(41.07047058512511, -81.50574445724489),
+                new LatLng(41.081130353246074, -81.52067899703981));
         // Add a marker in Sydney and move the camera
         googleMap.setOnMapLongClickListener(this);
         googleMap.setOnMarkerClickListener(this);
 
         loadUsedMarkers();
 
-//        googleMap.setLatLngBoundsForCameraTarget(akronMapBounds);
-//
+        googleMap.setLatLngBoundsForCameraTarget(akronMapBounds);
+//        googleMap.moveCamera(CameraUpdateFactory.newLatLngBounds(akronMapBounds));
+//        googleMap.setMaxZoomPreference(10f);
+//        googleMap.setMinZoomPreference(15f);
 //        CameraPosition defaultCameraPosition = new CameraPosition.Builder()
 //                .target(studentUnion)
 //                .zoom(10f)
