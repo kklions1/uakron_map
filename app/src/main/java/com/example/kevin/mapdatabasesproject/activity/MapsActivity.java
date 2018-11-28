@@ -46,7 +46,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         final LatLngBounds akronMapBounds = new LatLngBounds(new LatLng(41.07411485528487, -81.51851713657379),
                 new LatLng(41.08216727323222, -81.5040811523795));
-//        final LatLng studentUnion = new LatLng(41.07564347775708, -81.51244461536409);
 
         googleMap.setOnMapLongClickListener(this);
         googleMap.setOnMarkerClickListener(this);
@@ -57,20 +56,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         googleMap.setLatLngBoundsForCameraTarget(akronMapBounds);
 
 
-
-        //        googleMap.setMaxZoomPreference(10f);
         googleMap.setMinZoomPreference(17f);
-//        CameraPosition defaultCameraPosition = new CameraPosition.Builder()
-//                .target(studentUnion)
-//                .zoom(10f)
-//                .bearing(0)
-//                .tilt(0)
-//                .build();
-//
-//        googleMap.moveCamera(CameraUpdateFactory.newCameraPosition(defaultCameraPosition));
-//        googleMap.moveCamera(CameraUpdateFactory.newLatLng(studentUnion));
-//        googleMap.setMinZoomPreference(15f);
-
     }
 
     @Override
