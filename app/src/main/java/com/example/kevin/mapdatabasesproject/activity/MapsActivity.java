@@ -203,4 +203,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private void stopLocationUpdates() {
         fusedLocationProviderClient.removeLocationUpdates(locationCallback);
     }
+
+    // https://developer.android.com/training/location/receive-location-updates#java
+    // https://developers.google.com/maps/documentation/android-sdk/current-place-tutorial
 }
