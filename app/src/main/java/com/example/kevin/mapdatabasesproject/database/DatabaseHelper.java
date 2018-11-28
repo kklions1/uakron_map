@@ -114,7 +114,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 LocationContract.TITLE + ", " +
                 LocationContract.LAT + ", " +
                 LocationContract.LNG + ") VALUES (?, ?, ?);", new String[] {LocationNames.POLSKY,
-                "41.07748369188231", "-81.51899959892035"});
+                "41.07872993317009", "-81.51958733797072"});
 
         database.execSQL("INSERT INTO " + LocationContract.TABLE_NAME + " (" +
                 LocationContract.TITLE + ", " +
