@@ -90,14 +90,12 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         googleMap.setOnMapLongClickListener(this);
         googleMap.setOnMarkerClickListener(this);
 
-        loadUsedMarkers();
-
-//        googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(akronMapBounds.getCenter(), 15));
         googleMap.setLatLngBoundsForCameraTarget(akronMapBounds);
 
         getLocationPermissions();
         updateLocationUI();
         getDeviceLocation();
+        loadUsedMarkers();
 
         googleMap.setMinZoomPreference(15f);
     }
