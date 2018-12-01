@@ -81,6 +81,7 @@ public class LocationDAO implements DataAccessObject<MarkerOptions> {
         cursor.moveToFirst();
 
         while (!cursor.isAfterLast()) {
+            // Pre-set location markers stay the default color the Google Maps API gives them, which is red.
             MarkerOptions markerOptions = new MarkerOptions()
                     .position(new LatLng(Double.valueOf(cursor.getString(cursor.getColumnIndex(LocationContract.LAT))),
                             Double.valueOf(cursor.getString(cursor.getColumnIndex(LocationContract.LNG)))))

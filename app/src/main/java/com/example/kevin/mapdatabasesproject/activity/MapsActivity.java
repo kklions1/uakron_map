@@ -1,6 +1,7 @@
 package com.example.kevin.mapdatabasesproject.activity;
 
 import android.Manifest;
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
@@ -12,6 +13,9 @@ import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.widget.EditText;
 
 import com.example.kevin.mapdatabasesproject.R;
 import com.example.kevin.mapdatabasesproject.database.dao.LocationDAO;
@@ -105,12 +109,28 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     @Override
     public void onMapLongClick(LatLng point) {
+        LayoutInflater inflater = getLayoutInflater();
+        View dialogView = inflater.inflate(R.layout.location_dialog_layout, null);
 
+        new AlertDialog.Builder(this)
+                .setView(dialogView)
+                .setPositiveButton("OK", (dialogInterface, id) -> {
+                    EditText locationName = dialogView.findViewById(R.id.location_title);
+                    String title = locationName.getText().toString();
+                    googleMap.addMarker(new MarkerOptions()
+                            .position(point)
+                            .title(title))
+                            .setIcon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE));
 
-        googleMap.addMarker(new MarkerOptions()
-            .position(point)
-            .title("Test Marker"))
-            .setIcon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE));
+                    // TODO save marker
+                    dialogInterface.cancel();
+                })
+                .setNegativeButton("Cancel", (dialogInterface, id) -> {
+                    dialogInterface.cancel();
+                })
+                .setCancelable(false)
+                .show();
+
 
 
     }

@@ -6,4 +6,6 @@ public interface LocationContract {
     String LNG = "Longitude";
     String LOC_ID = "id";
     String TITLE = "title";
+
+    String CUSTOM_LOC_TABLE_NAME = "CustomLocations";
 }

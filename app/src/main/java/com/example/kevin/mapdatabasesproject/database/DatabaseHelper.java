@@ -64,6 +64,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         initializeLocations(database);
 
+        // Create Custom Locations Table, while these tables are similar, they are used for different things
+        database.execSQL("CREATE TABLE IF NOT EXISTS " + LocationContract.CUSTOM_LOC_TABLE_NAME + " ( " +
+                LocationContract.LOC_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                LocationContract.LAT + " TEXT NOT NULL, " +
+                LocationContract.LNG + " TEXT NOT NULL, " +
+                LocationContract.TITLE + " TEXT);");
+
     }
 
     @Override
