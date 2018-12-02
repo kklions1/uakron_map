@@ -6,10 +6,9 @@ import java.io.Serializable;
  * Class that represents a course
  */
 public class Course implements Serializable {
-    private int startTimeHour;
-    private int startTimeMinute;
-    private int endTimeHour;
-    private int endTimeMinute;
+
+    private CourseTime startTime;
+    private CourseTime endTime;
     private int courseId;
     private String name;
     private int locationId;
@@ -20,13 +19,9 @@ public class Course implements Serializable {
 
     }
 
-    public int getStartTimeHour() { return this.startTimeHour; }
+    public CourseTime getStartTime() { return this.startTime; }
 
-    public int getStartTimeMinute() { return this.startTimeMinute; }
-
-    public int getEndTimeHour() { return this.endTimeHour; }
-
-    public int getEndTimeMinute() { return this.endTimeMinute; }
+    public CourseTime getEndTime() { return this.endTime; }
 
     public int getCourseId() { return this.courseId; }
 
@@ -40,33 +35,21 @@ public class Course implements Serializable {
     public String getDays() { return this.days; }
 
     public static class Builder {
-        private int startTimeHour;
-        private int startTimeMinute;
-        private int endTimeHour;
-        private int endTimeMinute;
+        private CourseTime startTime;
+        private CourseTime endTime;
         private int courseId;
         private String name;
         private int locationId;
         private String locationName;
         private String days;
 
-        public Builder setStartTimeHour(int hour) {
-            this.startTimeHour = hour;
+        public Builder setStartTime(CourseTime time) {
+            this.startTime = time;
             return this;
         }
 
-        public Builder setStartTimeMinute(int min) {
-            this.startTimeMinute = min;
-            return this;
-        }
-
-        public Builder setEndTimeHour(int hour) {
-            this.endTimeHour = hour;
-            return this;
-        }
-
-        public Builder setEndTimeMinute(int min) {
-            this.endTimeMinute = min;
+        public Builder setEndTime(CourseTime time) {
+            this.endTime = time;
             return this;
         }
 
@@ -100,10 +83,8 @@ public class Course implements Serializable {
             Course newCourse = new Course();
             newCourse.courseId = this.courseId;
             newCourse.name = this.name;
-            newCourse.startTimeHour = this.startTimeHour;
-            newCourse.startTimeMinute = this.startTimeMinute;
-            newCourse.endTimeHour = this.endTimeHour;
-            newCourse.endTimeMinute = this.endTimeMinute;
+            newCourse.startTime = this.startTime;
+            newCourse.endTime = this.endTime;
             newCourse.locationId = this.locationId;
             newCourse.locationName = this.locationName;
             newCourse.days = this.days;

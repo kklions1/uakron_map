@@ -16,15 +16,15 @@ import com.example.kevin.mapdatabasesproject.R;
 import com.example.kevin.mapdatabasesproject.database.dao.CourseDAO;
 import com.example.kevin.mapdatabasesproject.fragment.TimePickerFragment;
 import com.example.kevin.mapdatabasesproject.model.Course;
+import com.example.kevin.mapdatabasesproject.model.CourseTime;
 
 /**
  * This screen will handle updating, deleting, and additions of a new course
  */
 public class CourseDetailsActivity extends Activity implements TimePickerDialog.OnTimeSetListener {
-    private int startTimeHour;
-    private int startTimeMinute;
-    private int endTimeHour;
-    private int endTimeMinute;
+    private CourseTime startTime;
+    private CourseTime endTime;
+
     private boolean isStartTime;
 
     @Override
@@ -41,6 +41,9 @@ public class CourseDetailsActivity extends Activity implements TimePickerDialog.
 
         Button startTimeButton = findViewById(R.id.start_time_btn);
         Button endTimeButton = findViewById(R.id.end_time_btn);
+
+        startTime = new CourseTime();
+        endTime = new CourseTime();
 
         startTimeButton.setOnClickListener((view) -> createTimePickerDialog(true));
         endTimeButton.setOnClickListener((view) -> createTimePickerDialog(false));
@@ -61,17 +64,17 @@ public class CourseDetailsActivity extends Activity implements TimePickerDialog.
     @Override
     public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
         if (isStartTime) {
-            this.startTimeHour = hourOfDay;
-            this.startTimeMinute = minute;
+            this.startTime.setHour(hourOfDay);
+            this.startTime.setMinute(minute);
 
             TextView startTimeDisplay = findViewById(R.id.start_time_display);
-            startTimeDisplay.setText(Integer.toString(hourOfDay) + ":" + Integer.toString(minute));
+            startTimeDisplay.setText(startTime.toString());
         } else {
-            this.endTimeHour = hourOfDay;
-            this.endTimeMinute = minute;
+            this.endTime.setHour(hourOfDay);
+            this.endTime.setMinute(minute);
 
             TextView endTimeDisplay = findViewById(R.id.end_time_display);
-            endTimeDisplay.setText(Integer.toString(hourOfDay) + ":" + Integer.toString(minute));
+            endTimeDisplay.setText(endTime.toString());
         }
     }
 
@@ -114,10 +117,8 @@ public class CourseDetailsActivity extends Activity implements TimePickerDialog.
             dao.save(new Course.Builder()
                     .setName(courseName.getText().toString())
                     .setLocationName(selectedLocation)
-                    .setStartTimeHour(this.startTimeHour)
-                    .setStartTimeMinute(this.startTimeMinute)
-                    .setEndTimeHour(this.endTimeHour)
-                    .setEndTimeMinute(this.endTimeMinute)
+                    .setStartTime(startTime)
+                    .setEndTime(endTime)
                     .setDays(days)
                     .build());
 
@@ -131,10 +132,8 @@ public class CourseDetailsActivity extends Activity implements TimePickerDialog.
         EditText courseName = findViewById(R.id.course_name_edit_text);
         courseName.setText(course.getName());
 
-        startTimeHour = course.getStartTimeHour();
-        startTimeMinute = course.getStartTimeMinute();
-        endTimeHour = course.getEndTimeHour();
-        endTimeMinute = course.getEndTimeMinute();
+        startTime = course.getStartTime();
+        endTime = course.getEndTime();
 
         CheckBox mondayBox = findViewById(R.id.monday_checkbox);
         CheckBox tuesdayBox = findViewById(R.id.tuesday_checkbox);
@@ -163,10 +162,10 @@ public class CourseDetailsActivity extends Activity implements TimePickerDialog.
         }
 
         TextView startTimeDisplay = findViewById(R.id.start_time_display);
-        startTimeDisplay.setText(Integer.toString(startTimeHour) + ":" + Integer.toString(startTimeMinute));
+        startTimeDisplay.setText(startTime.toString());
 
         TextView endTimeDisplay = findViewById(R.id.end_time_display);
-        endTimeDisplay.setText(Integer.toString(endTimeHour) + ":" + Integer.toString(endTimeMinute));
+        endTimeDisplay.setText(endTime.toString());
 
         Button updateButton = findViewById(R.id.continue_btn);
 
@@ -196,10 +195,8 @@ public class CourseDetailsActivity extends Activity implements TimePickerDialog.
             dao.update(new Course.Builder()
                     .setName(courseName.getText().toString())
                     .setCourseId(course.getCourseId()) // preserve the course id, this is being passed in so the update method can update properly
-                    .setStartTimeHour(startTimeHour)
-                    .setStartTimeMinute(startTimeMinute)
-                    .setEndTimeHour(endTimeHour)
-                    .setEndTimeMinute(endTimeMinute)
+                    .setStartTime(startTime)
+                    .setEndTime(endTime)
                     .setDays(days)
                     .setLocationName(selectedLocation)
                     .build());
