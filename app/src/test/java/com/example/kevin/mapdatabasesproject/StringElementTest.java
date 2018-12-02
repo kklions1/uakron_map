@@ -1,5 +1,9 @@
 package com.example.kevin.mapdatabasesproject;
 
+import com.example.kevin.mapdatabasesproject.model.Course;
+import com.example.kevin.mapdatabasesproject.model.CourseTime;
+
+import org.junit.Assert;
 import org.junit.Test;
 
 /**
@@ -29,6 +33,17 @@ public class StringElementTest {
                     break;
             }
         }
+    }
+
+    @Test
+    public void timeFormatTest() {
+        CourseTime time = new CourseTime(4, 30);
+        CourseTime time2 = new CourseTime(13, 1);
+        CourseTime time3 = new CourseTime(4, 0);
+
+        Assert.assertEquals("4:30", time.toString());
+        Assert.assertEquals("13:01", time2.toString());
+        Assert.assertEquals( "4:00", time3.toString());
 
     }
 }

@@ -31,7 +31,14 @@ public class CourseTime {
 
     @Override
     public String toString() {
-        SimpleDateFormat format = new SimpleDateFormat("HH:mm");
+        SimpleDateFormat format;
+        // Format if the hour is a single digit
+        if (hour < 10) {
+            format = new SimpleDateFormat("H:mm");
+        } else {
+            format = new SimpleDateFormat("HH:mm");
+        }
+
         Calendar calendar = Calendar.getInstance();
         calendar.set(Calendar.HOUR_OF_DAY, this.hour);
         calendar.set(Calendar.MINUTE, this.minute);
