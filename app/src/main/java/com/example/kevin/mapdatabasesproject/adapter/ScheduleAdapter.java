@@ -47,7 +47,6 @@ public class ScheduleAdapter
         viewHolder.courseName.setText(course.getName());
         viewHolder.courseStartTime.setText(course.getStartTimeHour() + ":" + course.getStartTimeMinute());
         viewHolder.courseEndTime.setText(course.getEndTimeHour() + ":" + course.getEndTimeMinute());
-//        viewHolder.courseLocation.setText(Integer.toString(course.getLocationId()));
         viewHolder.courseLocation.setText(course.getLocationName());
 
         for (char c : course.getDays().toCharArray()) {
@@ -74,8 +73,6 @@ public class ScheduleAdapter
                     break;
             }
         }
-
-//        parseDays(course, viewHolder);
     }
 
     @Override
@@ -83,33 +80,8 @@ public class ScheduleAdapter
         return courseList.size();
     }
 
-    // TODO using this method to add the click listener to the recyclerview would be better
-    // because there is a looser coupling between the construction of the view and the initialization of
-    // the listeners. for now, the current solution will have to work.
     public void setOnItemClickListener(OnItemClickListener listener) {
         this.onItemClickListener = listener;
-    }
-
-    private void parseDays(Course course, ScheduleItemViewHolder viewHolder) {
-        for (char c : course.getDays().toCharArray()) {
-            switch (c) {
-                case 'm':
-                    viewHolder.mondayDisplay.setTypeface(null, Typeface.BOLD);
-                    break;
-                case 't':
-                    viewHolder.tuesdayDisplay.setTypeface(null, Typeface.BOLD);
-                    break;
-                case 'w':
-                    viewHolder.wednesdayMyDudes.setTypeface(null, Typeface.BOLD);
-                    break;
-                case 'r':
-                    viewHolder.thursdayDisplay.setTypeface(null, Typeface.BOLD);
-                    break;
-                case 'f':
-                    viewHolder.fridayDisplay.setTypeface(null, Typeface.BOLD);
-                    break;
-            }
-        }
     }
 
     /**

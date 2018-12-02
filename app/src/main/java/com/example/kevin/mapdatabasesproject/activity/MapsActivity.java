@@ -25,14 +25,12 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
-import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.Task;
 
 import java.util.List;
 
-public class MapsActivity extends FragmentActivity implements OnMapReadyCallback,
-        GoogleMap.OnMapLongClickListener, GoogleMap.OnMarkerClickListener, ActivityCompat.OnRequestPermissionsResultCallback {
+public class MapsActivity extends FragmentActivity implements OnMapReadyCallback, ActivityCompat.OnRequestPermissionsResultCallback {
 
     private GoogleMap googleMap;
     private boolean permissionGranted;
@@ -87,9 +85,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         akronMapBounds = new LatLngBounds(new LatLng(41.07411485528487, -81.51851713657379),
                 new LatLng(41.08216727323222, -81.5040811523795));
 
-        googleMap.setOnMapLongClickListener(this);
-        googleMap.setOnMarkerClickListener(this);
-
         googleMap.setLatLngBoundsForCameraTarget(akronMapBounds);
 
         getLocationPermissions();
@@ -98,20 +93,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         loadUsedMarkers();
 
         googleMap.setMinZoomPreference(15f);
-    }
-
-    @Override
-    public void onMapLongClick(LatLng point) {
-        // TODO am i even going to add custom location support at this point without a partner?
-        googleMap.addMarker(new MarkerOptions()
-            .position(point)
-            .title("Test Marker")); // used to figure out what the lat and lng of the buildings i want are. this will be removed later
-    }
-
-    @Override
-    public boolean onMarkerClick(Marker marker) {
-        Log.d("Location", "Lat: " + marker.getPosition().latitude + "\tLng: " + marker.getPosition().longitude);
-        return false;
     }
 
     private void navigateToScheduleScreen() {
@@ -199,7 +180,4 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private void stopLocationUpdates() {
         fusedLocationProviderClient.removeLocationUpdates(locationCallback);
     }
-
-    // https://developer.android.com/training/location/receive-location-updates#java
-    // https://developers.google.com/maps/documentation/android-sdk/current-place-tutorial
 }

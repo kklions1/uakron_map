@@ -7,14 +7,12 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.widget.Toast;
 
 import com.example.kevin.mapdatabasesproject.database.dao.CourseDAO;
 import com.example.kevin.mapdatabasesproject.model.Course;
 import com.example.kevin.mapdatabasesproject.R;
 import com.example.kevin.mapdatabasesproject.adapter.ScheduleAdapter;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
