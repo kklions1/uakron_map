@@ -45,8 +45,8 @@ public class ScheduleAdapter
     public void onBindViewHolder(ScheduleItemViewHolder viewHolder, int position) {
         Course course = courseList.get(position);
         viewHolder.courseName.setText(course.getName());
-        viewHolder.courseStartTime.setText(course.getStartTimeHour() + ":" + course.getStartTimeMinute());
-        viewHolder.courseEndTime.setText(course.getEndTimeHour() + ":" + course.getEndTimeMinute());
+        viewHolder.courseStartTime.setText(course.getStartTime().toString());
+        viewHolder.courseEndTime.setText(course.getEndTime().toString());
         viewHolder.courseLocation.setText(course.getLocationName());
 
         for (char c : course.getDays().toCharArray()) {

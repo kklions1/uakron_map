@@ -6,6 +6,7 @@ import android.database.sqlite.SQLiteDatabase;
 import com.example.kevin.mapdatabasesproject.database.DatabaseHelper;
 import com.example.kevin.mapdatabasesproject.database.contract.CourseContract;
 import com.example.kevin.mapdatabasesproject.model.Course;
+import com.example.kevin.mapdatabasesproject.model.CourseTime;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,10 +33,10 @@ public class CourseDAO implements DataAccessObject<Course> {
             Course course = new Course.Builder()
                     .setName(cursor.getString(cursor.getColumnIndex(CourseContract.COURSE_NAME)))
                     .setCourseId(cursor.getInt(cursor.getColumnIndex(CourseContract.COURSE_ID)))
-                    .setStartTimeHour(cursor.getInt(cursor.getColumnIndex(CourseContract.START_TIME_HOUR)))
-                    .setStartTimeMinute(cursor.getInt(cursor.getColumnIndex(CourseContract.START_TIME_MINUTE)))
-                    .setEndTimeHour(cursor.getInt(cursor.getColumnIndex(CourseContract.END_TIME_HOUR)))
-                    .setEndTimeMinute(cursor.getInt(cursor.getColumnIndex(CourseContract.END_TIME_MINUTE)))
+                    .setStartTime(new CourseTime(cursor.getInt(cursor.getColumnIndex(CourseContract.START_TIME_HOUR)),
+                            cursor.getInt(cursor.getColumnIndex(CourseContract.START_TIME_MINUTE))))
+                    .setEndTime(new CourseTime(cursor.getInt(cursor.getColumnIndex(CourseContract.END_TIME_HOUR)),
+                            cursor.getInt(cursor.getColumnIndex(CourseContract.END_TIME_MINUTE))))
                     .setLocationName(cursor.getString(cursor.getColumnIndex(CourseContract.LOCATION_NAME)))
                     .setDays(cursor.getString(cursor.getColumnIndex(CourseContract.COURSE_DAYS)))
                     .build();
@@ -61,45 +62,9 @@ public class CourseDAO implements DataAccessObject<Course> {
                 CourseContract.END_TIME_MINUTE + "," +
                 CourseContract.LOCATION_NAME + "," +
                 CourseContract.COURSE_DAYS + ") VALUES (?, ?, ?, ?, ?, ?, ?);",
-                new String[] {course.getName(), String.valueOf(course.getStartTimeHour()), String.valueOf(course.getStartTimeMinute()),
-                    String.valueOf(course.getEndTimeHour()), String.valueOf(course.getEndTimeMinute()), course.getLocationName(),
+                new String[] {course.getName(), String.valueOf(course.getStartTime().getHour()), String.valueOf(course.getStartTime().getMinute()),
+                    String.valueOf(course.getEndTime().getHour()), String.valueOf(course.getEndTime().getMinute()), course.getLocationName(),
                         course.getDays()});
-    }
-
-    // Returns the number of entries in the DB
-    public int getCount() {
-        SQLiteDatabase db = dbHelper.getReadableDatabase();
-        Cursor cursor = db.rawQuery("SELECT * FROM " + CourseContract.TABLE_NAME + ";", null);
-        int result = cursor.getCount();
-        cursor.close();
-        return result;
-    }
-
-    public Course getCourseById(int id) {
-        SQLiteDatabase db = dbHelper.getReadableDatabase();
-        Cursor cursor = db.rawQuery("SELECT * FROM " + CourseContract.TABLE_NAME + " WHERE " +
-                CourseContract.COURSE_ID + " = ?;", new String[] {String.valueOf(id)});
-
-        cursor.moveToFirst();
-
-        if (cursor.getCount() > 0) {
-            // TODO move this to a separate method
-            Course course = new Course.Builder()
-                    .setName(cursor.getString(cursor.getColumnIndex(CourseContract.COURSE_NAME)))
-                    .setCourseId(cursor.getInt(cursor.getColumnIndex(CourseContract.COURSE_ID)))
-                    .setStartTimeHour(cursor.getInt(cursor.getColumnIndex(CourseContract.START_TIME_HOUR)))
-                    .setStartTimeMinute(cursor.getInt(cursor.getColumnIndex(CourseContract.START_TIME_MINUTE)))
-                    .setEndTimeHour(cursor.getInt(cursor.getColumnIndex(CourseContract.END_TIME_HOUR)))
-                    .setEndTimeMinute(cursor.getInt(cursor.getColumnIndex(CourseContract.END_TIME_MINUTE)))
-                    .setDays(cursor.getString(cursor.getColumnIndex(CourseContract.COURSE_DAYS)))
-                    .setLocationName(cursor.getString(cursor.getColumnIndex(CourseContract.LOCATION_NAME)))
-                    .build();
-
-            cursor.close();
-            return course;
-        }
-
-        return null;
     }
 
     @Override
@@ -114,8 +79,8 @@ public class CourseDAO implements DataAccessObject<Course> {
                 CourseContract.END_TIME_MINUTE + " = ?, " +
                 CourseContract.LOCATION_NAME + " = ?, " +
                 CourseContract.COURSE_DAYS + " = ? " +
-                " WHERE " + CourseContract.COURSE_ID + " = ?;", new String[] {course.getName(), String.valueOf(course.getStartTimeHour()),
-                    String.valueOf(course.getStartTimeMinute()), String.valueOf(course.getEndTimeHour()), String.valueOf(course.getEndTimeMinute()),
+                " WHERE " + CourseContract.COURSE_ID + " = ?;", new String[] {course.getName(), String.valueOf(course.getStartTime().getHour()),
+                    String.valueOf(course.getStartTime().getMinute()), String.valueOf(course.getEndTime().getHour()), String.valueOf(course.getEndTime().getMinute()),
                     course.getLocationName(), course.getDays(),
                     String.valueOf(course.getCourseId())});
     }

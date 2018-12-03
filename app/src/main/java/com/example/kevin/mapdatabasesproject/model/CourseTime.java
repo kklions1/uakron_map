@@ -1,5 +1,6 @@
 package com.example.kevin.mapdatabasesproject.model;
 
+import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -7,7 +8,7 @@ import java.util.Date;
 /**
  * Wrapper class for times, and handles formatting times
  */
-public class CourseTime {
+public class CourseTime implements Serializable {
     private int hour;
     private int minute;
 
