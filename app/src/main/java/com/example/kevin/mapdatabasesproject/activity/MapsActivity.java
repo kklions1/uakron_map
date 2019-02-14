@@ -30,6 +30,10 @@ import com.google.android.gms.tasks.Task;
 
 import java.util.List;
 
+/**
+ * TODO figure out if I should just leave this class alone, i don't want to
+ * touch this with a 10 foot pole.
+ */
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback, ActivityCompat.OnRequestPermissionsResultCallback {
 
     private GoogleMap googleMap;
@@ -180,4 +184,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private void stopLocationUpdates() {
         fusedLocationProviderClient.removeLocationUpdates(locationCallback);
     }
+
+    // TODO add a way to navigate away from this screen, back to the MeanderActivity.
 }
