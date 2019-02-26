@@ -29,8 +29,7 @@ public class HTTPRequestManager {
 
         @Override
         public void onPostExecute(String result) {
-            TextView resultView = findViewById(R.id.result_view);
-            resultView.setText(result);
+            // TODO things
         }
     }
 }
