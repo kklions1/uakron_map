@@ -3,6 +3,10 @@ package com.example.kevin.mapdatabasesproject.manager;
 import android.os.AsyncTask;
 import android.widget.TextView;
 
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
+
 public class HTTPRequestManager {
     private String appURL = "https://secure-outpost-229516.appspot.com/";
 
