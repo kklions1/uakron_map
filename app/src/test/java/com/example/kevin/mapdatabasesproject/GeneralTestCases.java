@@ -9,13 +9,11 @@ import org.junit.Assert;
 import org.junit.Test;
 
 /**
- * Testing a suggestion by Matt Britton for storing days of the week in database
- *
- * Instead of using a bit field, use a single column that stores a string.
- * if the user checks Tuesday, Thursday for example, the string "tr" will be stored
- * When reading this out, operate on a string element by element and make note of what is present
+ * Generally just a place where I can run different unit tests on various things
+ * Nothing else to see here, move along
  */
-public class StringElementTest {
+public class GeneralTestCases {
+    // Testing a suggestion by Matt Britton for storing days of the week in database
     @Test
     public void stringElement() {
         String testString = "tr";
