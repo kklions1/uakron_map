@@ -21,7 +21,7 @@ public class CourseTime implements Serializable {
     }
 
     public CourseTime(String time) {
-        SimpleDateFormat format =  new SimpleDateFormat("hh:mm");
+        SimpleDateFormat format =  new SimpleDateFormat("HH:mm");
         Date date;
         Calendar cal = Calendar.getInstance();
         try {
@@ -31,7 +31,7 @@ public class CourseTime implements Serializable {
             e.printStackTrace();
             hour = 0;
             minute = 0;
-            return;
+            throw new RuntimeException("Shits fucked fam");
         }
 
         if (date != null) {

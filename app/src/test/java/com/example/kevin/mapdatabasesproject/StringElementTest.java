@@ -54,11 +54,13 @@ public class StringElementTest {
         CourseTime time = new CourseTime("12:00");
         CourseTime time1 = new CourseTime("12:34");
         CourseTime time2 = new CourseTime("05:01");
+        CourseTime time3 = new CourseTime("14:00");
 
         Assert.assertEquals(12, time.getHour());
         Assert.assertEquals(0, time.getMinute());
         Assert.assertEquals(34, time1.getMinute());
         Assert.assertEquals(5, time2.getHour());
         Assert.assertEquals(1, time2.getMinute());
+        Assert.assertEquals(14, time3.getHour());
     }
 }
