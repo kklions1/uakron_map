@@ -12,14 +12,14 @@ import java.util.List;
 /**
  * The class where all the JSON parsing happens
  */
-public class HTTPDataManager {
+public class MeanderDataManager {
     private static final String COURSE_JSON_NAME = "name";
     private static final String COURSE_JSON_START = "startTime";
     private static final String COURSE_JSON_END = "endTime";
     private static final String COURSE_JSON_DAYS = "days";
     private static final String COURSE_JSON_LOCATION = "location";
 
-    public HTTPDataManager() { }
+    public MeanderDataManager() { }
 
     public List<Course> parseJsonResponse(String json) {
         Gson gson = new Gson();

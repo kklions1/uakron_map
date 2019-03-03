@@ -16,7 +16,7 @@ import com.example.kevin.mapdatabasesproject.fragment.ScheduleFragment;
  * Base Activity class for the application
  */
 public class MeanderActivity extends Activity implements
-        CourseDetailsFragment.CourseDetailsNavigationListener, LoginFragment.LoginNavigationListener,
+        CourseDetailsFragment.CourseDetailsNavigationListener,
         MapFragment.MapNavigationListener, ScheduleFragment.ScheduleNavigationListener {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,15 +36,15 @@ public class MeanderActivity extends Activity implements
         transaction.addToBackStack(null);
         transaction.commit();
     }
-
-    @Override
-    public void navigateToLogin() {
-        FragmentManager manager = getFragmentManager();
-        FragmentTransaction transaction = manager.beginTransaction();
-        transaction.replace(R.id.fragment_layout_holder, new LoginFragment());
-        transaction.addToBackStack(null);
-        transaction.commit();
-    }
+//
+//    @Override
+//    public void navigateToLogin() {
+//        FragmentManager manager = getFragmentManager();
+//        FragmentTransaction transaction = manager.beginTransaction();
+//        transaction.replace(R.id.fragment_layout_holder, new LoginFragment());
+//        transaction.addToBackStack(null);
+//        transaction.commit();
+//    }
 
     @Override
     public void navigateToMap() {

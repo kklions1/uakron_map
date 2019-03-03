@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/login_title_welcome"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="100dp"
+        android:gravity="center"
+        android:text="Welcome to Meander"
+        android:textAppearance="bold"
+        android:textSize="25dp"/>
+
+    <TextView
+        android:id="@+id/login_title_please"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textAppearance="bold"
+        android:text="Please log in to continue"
+        android:layout_below="@id/login_title_welcome"
+        android:layout_marginBottom="16dp"
+        android:textSize="25dp"/>
+
+
+    <EditText
+        android:id="@+id/username_field"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/login_title_please"
+        android:layout_margin="16dp"
+        android:hint="Username"/>
+
+    <EditText
+        android:id="@+id/password_field"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textPassword"
+        android:layout_below="@id/username_field"
+        android:layout_margin="16dp"
+        android:hint="Password"/>
+
+    <Button
+        android:id="@+id/login_cta"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="16dp"
+        android:text="Login"/>
+
+</RelativeLayout>

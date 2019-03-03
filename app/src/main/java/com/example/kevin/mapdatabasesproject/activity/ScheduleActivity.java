@@ -11,8 +11,7 @@ import android.support.v7.widget.RecyclerView;
 import android.widget.Toast;
 
 import com.example.kevin.mapdatabasesproject.database.dao.CourseDAO;
-import com.example.kevin.mapdatabasesproject.manager.HTTPDataManager;
-import com.example.kevin.mapdatabasesproject.manager.HTTPRequestManager;
+import com.example.kevin.mapdatabasesproject.manager.MeanderDataManager;
 import com.example.kevin.mapdatabasesproject.model.Course;
 import com.example.kevin.mapdatabasesproject.R;
 import com.example.kevin.mapdatabasesproject.adapter.ScheduleAdapter;
@@ -114,7 +113,7 @@ public class ScheduleActivity extends Activity {
 
         @Override
         public void onPostExecute(String result){
-            List<Course> resultCourseList = new HTTPDataManager().parseJsonResponse(result);
+            List<Course> resultCourseList = new MeanderDataManager().parseJsonResponse(result);
             CourseDAO dao = new CourseDAO();
             dao.clear();
 
