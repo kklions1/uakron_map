@@ -1,7 +1,9 @@
 package com.example.kevin.mapdatabasesproject.activity;
 
 import android.Manifest;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.support.annotation.NonNull;
@@ -9,11 +11,14 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
 import android.util.Log;
 
 import com.example.kevin.mapdatabasesproject.R;
 import com.example.kevin.mapdatabasesproject.database.dao.LocationDAO;
+import com.example.kevin.mapdatabasesproject.fragment.LoginFragment;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationCallback;
 import com.google.android.gms.location.LocationRequest;
@@ -44,6 +49,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private LatLngBounds akronMapBounds;
     private LocationCallback locationCallback;
 
+    private LoginFragment loginFragment;
+
     // Activity-level onCreate
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,6 +74,17 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 }
             }
         };
+
+        SharedPreferences sharedPreferences = this.getSharedPreferences(getString(R.string.shared_preferences_key),
+                Context.MODE_PRIVATE);
+        if (sharedPreferences.getAll().isEmpty()) {
+            // TODO set the login fragment on the activity.
+            FragmentManager manager = getSupportFragmentManager();
+            loginFragment = new LoginFragment();
+            FragmentTransaction transaction = manager.beginTransaction();
+            transaction.add(R.id.fragment_layout_holder, loginFragment);
+            transaction.commit();
+        }
     }
 
     @Override
@@ -185,5 +203,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         fusedLocationProviderClient.removeLocationUpdates(locationCallback);
     }
 
-    // TODO add a way to navigate away from this screen, back to the MeanderActivity.
+    public void navigateFromLoginToMap() {
+        FragmentManager manager = getSupportFragmentManager();
+        FragmentTransaction transaction = manager.beginTransaction();
+        transaction.remove(loginFragment);
+    }
 }

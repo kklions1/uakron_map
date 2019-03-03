@@ -20,4 +20,6 @@
         <item>Leigh Hall</item>
     </string-array>
 
+    <string name="shared_preferences_key">Login Credentials</string>
+
 </resources>
