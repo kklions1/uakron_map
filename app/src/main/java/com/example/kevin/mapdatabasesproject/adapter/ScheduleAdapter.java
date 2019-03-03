@@ -84,6 +84,10 @@ public class ScheduleAdapter
         this.onItemClickListener = listener;
     }
 
+    public void setCourseList(List<Course> courseList) {
+        this.courseList = courseList;
+    }
+
     /**
      * Stores references to layout elements in the RecyclerView
      */

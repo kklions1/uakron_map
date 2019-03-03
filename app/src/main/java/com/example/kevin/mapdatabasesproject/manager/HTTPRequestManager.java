@@ -3,6 +3,11 @@ package com.example.kevin.mapdatabasesproject.manager;
 import android.os.AsyncTask;
 import android.widget.TextView;
 
+import com.example.kevin.mapdatabasesproject.database.dao.CourseDAO;
+import com.example.kevin.mapdatabasesproject.model.Course;
+
+import java.util.List;
+
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
@@ -13,7 +18,7 @@ import okhttp3.Response;
 public class HTTPRequestManager extends AsyncTask<Void, Void, String> {
     private final String appURL = "https://secure-outpost-229516.appspot.com/";
 
-    public HTTPRequestManager(HTTPDataManager dataManager) {
+    public HTTPRequestManager() {
 
     }
 
@@ -34,7 +39,12 @@ public class HTTPRequestManager extends AsyncTask<Void, Void, String> {
 
     @Override
     public void onPostExecute(String result){
-        new HTTPDataManager().parseJsonResponse(result);
+        List<Course> courseList = new HTTPDataManager().parseJsonResponse(result);
+        CourseDAO dao = new CourseDAO();
+
+        for (Course c : courseList) {
+            dao.save(c);
+        }
     }
 }
 

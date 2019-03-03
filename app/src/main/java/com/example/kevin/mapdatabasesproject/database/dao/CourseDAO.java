@@ -92,4 +92,23 @@ public class CourseDAO implements DataAccessObject<Course> {
         db.execSQL("DELETE FROM " + CourseContract.TABLE_NAME + " WHERE " +
                 CourseContract.COURSE_ID + " = ?", new String[] {String.valueOf(id)});
     }
+
+    public void clear() {
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+
+        // Drop the table
+        db.execSQL("DROP TABLE IF EXISTS " + CourseContract.TABLE_NAME + ";");
+
+        // Re-create the table
+        db.execSQL("CREATE TABLE IF NOT EXISTS " + CourseContract.TABLE_NAME + " ( " +
+                CourseContract.COURSE_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                CourseContract.COURSE_NAME + " TEXT NOT NULL," +
+                CourseContract.START_TIME_HOUR + " INTEGER," +
+                CourseContract.START_TIME_MINUTE + " INTEGER," +
+                CourseContract.END_TIME_HOUR + " INTEGER," +
+                CourseContract.END_TIME_MINUTE + " INTEGER," +
+                CourseContract.COURSE_DAYS + " TEXT," +
+                CourseContract.LOCATION_NAME + " TEXT);");
+
+    }
 }

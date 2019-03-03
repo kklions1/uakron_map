@@ -38,6 +38,6 @@ public class HTTPDataManager {
 
             result.add(course);
         }
-        return new ArrayList<>();
+        return result;
     }
 }
