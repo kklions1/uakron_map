@@ -95,7 +95,9 @@ public class ScheduleActivity extends Activity {
 
     public class RefreshCall extends AsyncTask<Void, Void, String> {
         private final String appURL = "https://secure-outpost-229516.appspot.com/";
-
+        // I would like the record to reflect that im pretty sure okhttp3 provides some amount of built in
+        // functionality that allows me to write this call asynchronously without using an async task. I am, again,
+        // too lazy to fix this working solution
         @Override
         public String doInBackground(Void... uselessArgs) {
             OkHttpClient client = new OkHttpClient();
@@ -113,6 +115,7 @@ public class ScheduleActivity extends Activity {
 
         @Override
         public void onPostExecute(String result){
+            // Technically I think the datamanager is supposed to actually exist past this scope but im really lazy
             List<Course> resultCourseList = new MeanderDataManager().parseJsonResponse(result);
             CourseDAO dao = new CourseDAO();
             dao.clear();
