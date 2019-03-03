@@ -7,29 +7,34 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 
-public class HTTPRequestManager {
-    private String appURL = "https://secure-outpost-229516.appspot.com/";
+/**
+ * Class the makes a call to the server, and then parses the json response
+ */
+public class HTTPRequestManager extends AsyncTask<Void, Void, String> {
+    private final String appURL = "https://secure-outpost-229516.appspot.com/";
 
+    public HTTPRequestManager(HTTPDataManager dataManager) {
 
-    public class TestNetworkResponse extends AsyncTask<String, Void, String> {
-        @Override
-        public String doInBackground(String... strings) {
-            OkHttpClient client = new OkHttpClient();
-            Request request = new Request.Builder()
-                    .url(strings[0])
-                    .build();
-            try {
-                Response response = client.newCall(request).execute();
-                return response.body().string();
-            } catch (Exception e) {
-                e.printStackTrace();
-                return e.getMessage();
-            }
-        }
+    }
 
-        @Override
-        public void onPostExecute(String result) {
-            // TODO things
+    @Override
+    public String doInBackground(Void... uselessArgs) {
+        OkHttpClient client = new OkHttpClient();
+        Request request = new Request.Builder()
+                .url(appURL)
+                .build();
+        try {
+            Response response = client.newCall(request).execute();
+            return response.body().string();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return e.getMessage();
         }
     }
+
+    @Override
+    public void onPostExecute(String result){
+        new HTTPDataManager().parseJsonResponse(result);
+    }
 }
+

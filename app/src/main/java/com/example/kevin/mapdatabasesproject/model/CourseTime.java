@@ -1,9 +1,12 @@
 package com.example.kevin.mapdatabasesproject.model;
 
 import java.io.Serializable;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Wrapper class for times, and handles formatting times
@@ -15,6 +18,31 @@ public class CourseTime implements Serializable {
     public CourseTime(int hour, int minute) {
         this.hour = hour;
         this.minute = minute;
+    }
+
+    public CourseTime(String time) {
+        SimpleDateFormat format =  new SimpleDateFormat("hh:mm");
+        Date date;
+        Calendar cal = Calendar.getInstance();
+        try {
+            date = format.parse(time);
+            cal.setTime(date);
+        } catch (ParseException e) {
+            e.printStackTrace();
+            hour = 0;
+            minute = 0;
+            return;
+        }
+
+        if (date != null) {
+            System.out.println("Date is not null");
+            hour = cal.get(Calendar.HOUR_OF_DAY);
+            minute = cal.get(Calendar.MINUTE);
+        } else {
+            System.out.println("Date is null");
+            hour = 0;
+            minute = 0;
+        }
     }
 
     public CourseTime() {
