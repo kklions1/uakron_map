@@ -4,6 +4,9 @@ package com.example.kevin.mapdatabasesproject.activity;
 import android.app.Activity;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import com.example.kevin.mapdatabasesproject.R;
@@ -15,52 +18,28 @@ import com.example.kevin.mapdatabasesproject.fragment.ScheduleFragment;
 /**
  * Base Activity class for the application
  */
-public class MeanderActivity extends Activity implements
-        CourseDetailsFragment.CourseDetailsNavigationListener,
-        MapFragment.MapNavigationListener, ScheduleFragment.ScheduleNavigationListener {
+public class MeanderActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.fragment_holder);
-        FragmentManager manager = getFragmentManager();
-        FragmentTransaction transaction = manager.beginTransaction();
-        transaction.add(R.id.fragment_layout_holder, new LoginFragment());
-        transaction.commit();
+
+        SharedPreferences sharedPreferences = this.getSharedPreferences(getString(R.string.shared_preferences_key),
+                Context.MODE_PRIVATE);
+        if (sharedPreferences.getAll().isEmpty()) {
+            FragmentManager manager = getFragmentManager();
+            FragmentTransaction transaction = manager.beginTransaction();
+            transaction.add(R.id.fragment_layout_holder, new LoginFragment());
+            transaction.commit();
+        } else {
+            navigateToMap();
+        }
     }
 
-    @Override
-    public void navigateToCourseDetails() {
-        FragmentManager manager = getFragmentManager();
-        FragmentTransaction transaction = manager.beginTransaction();
-        transaction.replace(R.id.fragment_layout_holder, new CourseDetailsFragment());
-        transaction.addToBackStack(null);
-        transaction.commit();
-    }
-//
-//    @Override
-//    public void navigateToLogin() {
-//        FragmentManager manager = getFragmentManager();
-//        FragmentTransaction transaction = manager.beginTransaction();
-//        transaction.replace(R.id.fragment_layout_holder, new LoginFragment());
-//        transaction.addToBackStack(null);
-//        transaction.commit();
-//    }
 
-    @Override
-    public void navigateToMap() {
-        FragmentManager manager = getFragmentManager();
-        FragmentTransaction transaction = manager.beginTransaction();
-        transaction.replace(R.id.fragment_layout_holder, new MapFragment());
-        transaction.addToBackStack(null);
-        transaction.commit();
-    }
 
-    @Override
-    public void navigateToSchedule() {
-        FragmentManager manager = getFragmentManager();
-        FragmentTransaction transaction = manager.beginTransaction();
-        transaction.replace(R.id.fragment_layout_holder, new ScheduleFragment());
-        transaction.addToBackStack(null);
-        transaction.commit();
+    private void navigateToMap() {
+        Intent intent = new Intent(MeanderActivity.this, MapsActivity.class);
+        startActivity(intent);
     }
 }

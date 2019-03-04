@@ -1,10 +1,10 @@
 package com.example.kevin.mapdatabasesproject.fragment;
 
+import android.app.Fragment;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,8 +30,8 @@ public class LoginFragment extends Fragment {
     }
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    public void onResume() {
+        super.onResume();
 
         Button loginButton = fragmentView.findViewById(R.id.login_cta);
         loginButton.setOnClickListener((view) -> {
@@ -60,8 +60,6 @@ public class LoginFragment extends Fragment {
 //            new LoginFragment.LoginCall().execute(json);
 
             // TODO before we navigate away, we need to check to make sure the login was successful
-
-            ((MapsActivity) getActivity()).navigateFromLoginToMap();
         });
     }
 

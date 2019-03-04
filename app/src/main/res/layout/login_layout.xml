@@ -10,7 +10,7 @@
         android:layout_marginTop="100dp"
         android:gravity="center"
         android:text="Welcome to Meander"
-        android:textAppearance="bold"
+        android:textStyle="bold"
         android:textSize="25dp"/>
 
     <TextView
@@ -18,7 +18,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:textAppearance="bold"
+        android:textStyle="bold"
         android:text="Please log in to continue"
         android:layout_below="@id/login_title_welcome"
         android:layout_marginBottom="16dp"

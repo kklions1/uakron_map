@@ -49,8 +49,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private LatLngBounds akronMapBounds;
     private LocationCallback locationCallback;
 
-    private LoginFragment loginFragment;
-
     // Activity-level onCreate
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,17 +72,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 }
             }
         };
-
-        SharedPreferences sharedPreferences = this.getSharedPreferences(getString(R.string.shared_preferences_key),
-                Context.MODE_PRIVATE);
-        if (sharedPreferences.getAll().isEmpty()) {
-            // TODO set the login fragment on the activity.
-            FragmentManager manager = getSupportFragmentManager();
-            loginFragment = new LoginFragment();
-            FragmentTransaction transaction = manager.beginTransaction();
-            transaction.add(R.id.fragment_layout_holder, loginFragment);
-            transaction.commit();
-        }
     }
 
     @Override
@@ -201,11 +188,5 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     private void stopLocationUpdates() {
         fusedLocationProviderClient.removeLocationUpdates(locationCallback);
-    }
-
-    public void navigateFromLoginToMap() {
-        FragmentManager manager = getSupportFragmentManager();
-        FragmentTransaction transaction = manager.beginTransaction();
-        transaction.remove(loginFragment);
     }
 }
