@@ -43,6 +43,14 @@
         android:hint="Password"/>
 
     <Button
+        android:id="@+id/skip_login_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Log in later"
+        android:layout_margin="16dp"
+        android:layout_below="@+id/password_field"/>
+
+    <Button
         android:id="@+id/login_cta"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

@@ -28,7 +28,7 @@ dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     // FIXME be wary of this, may cause some problems. Its late though I'm really lazy
     implementation 'com.android.support:appcompat-v7:27.1.1'
-    implementation 'com.google.android.gms:play-services-maps:16.0.0'
+    implementation 'com.google.android.gms:play-services-maps:16.1.0'
     implementation 'com.android.support:design:27.1.1'
     implementation 'com.android.support:recyclerview-v7:27.1.1'
     implementation 'com.squareup.okhttp3:okhttp:3.10.0'
@@ -38,6 +38,6 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
-    implementation 'com.google.android.gms:play-services-maps:16.0.0'
+    implementation 'com.google.android.gms:play-services-maps:16.1.0'
     implementation 'com.google.android.gms:play-services-location:16.0.0'
 }

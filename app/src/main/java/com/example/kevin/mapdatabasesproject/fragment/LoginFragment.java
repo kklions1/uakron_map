@@ -13,6 +13,7 @@ import android.widget.EditText;
 
 import com.example.kevin.mapdatabasesproject.R;
 import com.example.kevin.mapdatabasesproject.activity.MapsActivity;
+import com.example.kevin.mapdatabasesproject.activity.MeanderActivity;
 import com.google.gson.Gson;
 
 import java.util.HashMap;
@@ -55,12 +56,17 @@ public class LoginFragment extends Fragment {
             editor.putString(USERNAME_KEY, username);
             editor.putString(PASSWORD_KEY, password);
 
+            ((MeanderActivity) getActivity()).navigateToMap();
+
 
             // TODO make the network post asynchronously
 //            new LoginFragment.LoginCall().execute(json);
 
             // TODO before we navigate away, we need to check to make sure the login was successful
         });
+
+        Button loginLater = fragmentView.findViewById(R.id.skip_login_button);
+        loginLater.setOnClickListener((view) -> ((MeanderActivity) getActivity()).navigateToMap());
     }
 
     public static class LoginCall extends AsyncTask<String, Void, Void> {
