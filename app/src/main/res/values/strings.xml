@@ -21,5 +21,6 @@
     </string-array>
 
     <string name="shared_preferences_key">Login Credentials</string>
+    <string name="app_engine_url">https://secure-outpost-229516.appspot.com/</string>
 
 </resources>

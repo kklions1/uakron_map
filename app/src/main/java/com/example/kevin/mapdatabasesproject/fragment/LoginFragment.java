@@ -16,8 +16,17 @@ import com.example.kevin.mapdatabasesproject.activity.MapsActivity;
 import com.example.kevin.mapdatabasesproject.activity.MeanderActivity;
 import com.google.gson.Gson;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.MediaType;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.RequestBody;
+import okhttp3.Response;
 
 public class LoginFragment extends Fragment {
     private View fragmentView;
@@ -52,15 +61,15 @@ public class LoginFragment extends Fragment {
                     Context.MODE_PRIVATE);
             SharedPreferences.Editor editor = sharedPreferences.edit();
 
-            // TODO should probably encrypt the password here, but meh.
+            // TODO should probably encrypt the password here, but meh, thats for later
             editor.putString(USERNAME_KEY, username);
             editor.putString(PASSWORD_KEY, password);
 
+            editor.apply();
+
             ((MeanderActivity) getActivity()).navigateToMap();
 
-
-            // TODO make the network post asynchronously
-//            new LoginFragment.LoginCall().execute(json);
+            new LoginFragment.LoginCall().execute(json);
 
             // TODO before we navigate away, we need to check to make sure the login was successful
         });
@@ -71,13 +80,24 @@ public class LoginFragment extends Fragment {
 
     public static class LoginCall extends AsyncTask<String, Void, Void> {
         @Override
-        protected void onPreExecute() {
-        }
-
-        @Override
         protected Void doInBackground(String... args) {
             String json = args[0];
-            return null;
+
+            RequestBody body = RequestBody.create(MediaType.parse("application/json; charset=utf-8"), json);
+
+            Request request = new Request.Builder()
+                    .url("https://secure-outpost-229516.appspot.com/") // This is butts, but its the easiest way to do it
+                    .post(body)
+                    .build();
+
+            OkHttpClient client = new OkHttpClient();
+
+            try {
+                client.newCall(request).execute();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+                return null;
         }
 
 

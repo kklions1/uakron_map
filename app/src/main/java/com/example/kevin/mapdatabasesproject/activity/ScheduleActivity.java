@@ -94,7 +94,6 @@ public class ScheduleActivity extends Activity {
     }
 
     public class RefreshCall extends AsyncTask<Void, Void, String> {
-        private final String appURL = "https://secure-outpost-229516.appspot.com/";
         // I would like the record to reflect that im pretty sure okhttp3 provides some amount of built in
         // functionality that allows me to write this call asynchronously without using an async task. I am, again,
         // too lazy to fix this working solution
@@ -102,7 +101,7 @@ public class ScheduleActivity extends Activity {
         public String doInBackground(Void... uselessArgs) {
             OkHttpClient client = new OkHttpClient();
             Request request = new Request.Builder()
-                    .url(appURL)
+                    .url(getString(R.string.app_engine_url))
                     .build();
             try {
                 Response response = client.newCall(request).execute();
