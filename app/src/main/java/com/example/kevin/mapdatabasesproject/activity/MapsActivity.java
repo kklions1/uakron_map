@@ -62,6 +62,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         FloatingActionButton scheduleFab = findViewById(R.id.view_schedule_fab);
         scheduleFab.setOnClickListener((view) -> navigateToScheduleScreen());
 
+        FloatingActionButton logoutFab; 
+
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
 
         locationCallback = new LocationCallback() {

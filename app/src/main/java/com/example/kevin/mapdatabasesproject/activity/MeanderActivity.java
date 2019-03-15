@@ -26,14 +26,14 @@ public class MeanderActivity extends Activity {
 
         SharedPreferences sharedPreferences = this.getSharedPreferences(getString(R.string.shared_preferences_key),
                 Context.MODE_PRIVATE);
-        if (sharedPreferences.getAll().isEmpty()) {
+//        if (sharedPreferences.getAll().isEmpty()) {
             FragmentManager manager = getFragmentManager();
             FragmentTransaction transaction = manager.beginTransaction();
             transaction.add(R.id.fragment_layout_holder, new LoginFragment());
             transaction.commit();
-        } else {
-            navigateToMap();
-        }
+//        } else {
+//            navigateToMap();
+//        }
     }
 
 

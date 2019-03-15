@@ -17,8 +17,14 @@ import com.example.kevin.mapdatabasesproject.activity.MeanderActivity;
 import com.google.gson.Gson;
 
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.Map;
+
+import javax.crypto.SecretKey;
+import javax.crypto.SecretKeyFactory;
+import javax.crypto.spec.DESKeySpec;
+import javax.crypto.spec.DESedeKeySpec;
 
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -78,6 +84,18 @@ public class LoginFragment extends Fragment {
         loginLater.setOnClickListener((view) -> ((MeanderActivity) getActivity()).navigateToMap());
     }
 
+    private final String PASS = "test_key";
+
+    private String encrypt() {
+        try {
+            DESKeySpec keySpec = new DESKeySpec(PASS.getBytes(StandardCharsets.UTF_8));
+            SecretKeyFactory keyFactory = SecretKeyFactory.getInstance("DES");
+            SecretKey key =
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     public static class LoginCall extends AsyncTask<String, Void, Void> {
         @Override
         protected Void doInBackground(String... args) {
@@ -99,7 +117,5 @@ public class LoginFragment extends Fragment {
             }
                 return null;
         }
-
-
     }
 }
