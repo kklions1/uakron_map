@@ -8,6 +8,8 @@ import com.example.kevin.mapdatabasesproject.model.CourseTime;
 import org.junit.Assert;
 import org.junit.Test;
 
+import java.math.BigInteger;
+
 /**
  * Generally just a place where I can run different unit tests on various things
  * Nothing else to see here, move along
@@ -60,5 +62,29 @@ public class GeneralTestCases {
         Assert.assertEquals(5, time2.getHour());
         Assert.assertEquals(1, time2.getMinute());
         Assert.assertEquals(14, time3.getHour());
+    }
+
+    /**
+     * Test of a very simple padding scheme for RSA
+     */
+    @Test
+    public void paddingTest() {
+        String padMe = "Hello H";
+        BigInteger paddedNumber = new BigInteger("0");
+
+        for (char c : padMe.toCharArray()) {
+            // Get the ascii code for a character
+            int asciiCode = (int) c;
+            String asciiString = Integer.toString(asciiCode); // Type conversion
+            paddedNumber = paddedNumber.add(new BigInteger(asciiString));
+            paddedNumber = paddedNumber.multiply(new BigInteger("1000"));
+        }
+
+        System.out.println(paddedNumber);
+    }
+
+    @Test
+    public void encryptionTest() {
+
     }
 }
