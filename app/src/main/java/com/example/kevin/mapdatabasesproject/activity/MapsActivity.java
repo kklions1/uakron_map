@@ -11,14 +11,11 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
 import android.util.Log;
 
 import com.example.kevin.mapdatabasesproject.R;
 import com.example.kevin.mapdatabasesproject.database.dao.LocationDAO;
-import com.example.kevin.mapdatabasesproject.fragment.LoginFragment;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationCallback;
 import com.google.android.gms.location.LocationRequest;
@@ -62,7 +59,16 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         FloatingActionButton scheduleFab = findViewById(R.id.view_schedule_fab);
         scheduleFab.setOnClickListener((view) -> navigateToScheduleScreen());
 
-        FloatingActionButton logoutFab; 
+        FloatingActionButton logoutFab = findViewById(R.id.logout_fab);
+        logoutFab.setOnClickListener((view) -> {
+            SharedPreferences preferences = getSharedPreferences(getString(R.string.shared_preferences_key), Context.MODE_PRIVATE);
+            SharedPreferences.Editor editor = preferences.edit();
+
+            editor.clear();
+            editor.apply();
+
+            navigateToLoginScreen();
+        });
 
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
 
@@ -108,6 +114,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     private void navigateToScheduleScreen() {
         Intent intent = new Intent(MapsActivity.this, ScheduleActivity.class);
+        startActivity(intent);
+    }
+
+    private void navigateToLoginScreen() {
+        Intent intent = new Intent(MapsActivity.this, MeanderActivity.class);
         startActivity(intent);
     }
 

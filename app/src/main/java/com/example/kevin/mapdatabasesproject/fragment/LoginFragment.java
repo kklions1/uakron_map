@@ -84,17 +84,17 @@ public class LoginFragment extends Fragment {
         loginLater.setOnClickListener((view) -> ((MeanderActivity) getActivity()).navigateToMap());
     }
 
-    private final String PASS = "test_key";
-
-    private String encrypt() {
-        try {
-            DESKeySpec keySpec = new DESKeySpec(PASS.getBytes(StandardCharsets.UTF_8));
-            SecretKeyFactory keyFactory = SecretKeyFactory.getInstance("DES");
-            SecretKey key =
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
+//    private final String PASS = "test_key";
+//
+//    private String encrypt() {
+//        try {
+//            DESKeySpec keySpec = new DESKeySpec(PASS.getBytes(StandardCharsets.UTF_8));
+//            SecretKeyFactory keyFactory = SecretKeyFactory.getInstance("DES");
+//            SecretKey key =
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//    }
 
     public static class LoginCall extends AsyncTask<String, Void, Void> {
         @Override
