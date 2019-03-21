@@ -138,7 +138,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 == PackageManager.PERMISSION_GRANTED) {
             permissionGranted = true;
         } else {
-            ActivityCompat.requestPermissions(this, new String[] { Manifest.permission.ACCESS_FINE_LOCATION }, PERMISSION_RESPONSE_CODE);
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, PERMISSION_RESPONSE_CODE);
         }
     }
 
@@ -179,7 +179,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private void getDeviceLocation() {
         try {
             Task locationResult = fusedLocationProviderClient.getLastLocation();
-            locationResult.addOnCompleteListener(this,(task) -> {
+            locationResult.addOnCompleteListener(this, (task) -> {
                 if (task.isSuccessful()) {
                     lastKnownLocation = (Location) task.getResult();
                     googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(lastKnownLocation.getLatitude(),

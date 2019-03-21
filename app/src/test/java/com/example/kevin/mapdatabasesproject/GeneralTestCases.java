@@ -83,8 +83,24 @@ public class GeneralTestCases {
         System.out.println(paddedNumber);
     }
 
+    private BigInteger padString(String s) {
+        BigInteger paddedString = new BigInteger("0");
+
+        for (char c : s.toCharArray()) {
+            int asciiCode = (int) c;
+            String asciiString = Integer.toString(asciiCode);
+            paddedString = paddedString.add(new BigInteger(asciiString));
+            paddedString = paddedString.multiply(new BigInteger("1000"));
+        }
+
+        return paddedString;
+    }
+
     @Test
     public void encryptionTest() {
+        BigInteger encryptMe = padString("Hello World");
+
+
 
     }
 }

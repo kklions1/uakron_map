@@ -23,4 +23,7 @@
     <string name="shared_preferences_key">Login Credentials</string>
     <string name="app_engine_url">https://secure-outpost-229516.appspot.com/</string>
 
+    <string name="public_key_e">17</string>
+    <string name="public_key_n">1147</string>
+    
 </resources>
