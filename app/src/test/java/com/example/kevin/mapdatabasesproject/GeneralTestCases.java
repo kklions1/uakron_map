@@ -1,6 +1,7 @@
 package com.example.kevin.mapdatabasesproject;
 
 import android.app.assist.AssistStructure;
+import android.support.v4.widget.TextViewCompat;
 
 import com.example.kevin.mapdatabasesproject.model.Course;
 import com.example.kevin.mapdatabasesproject.model.CourseTime;
@@ -9,6 +10,8 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import java.math.BigInteger;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Generally just a place where I can run different unit tests on various things
@@ -102,5 +105,38 @@ public class GeneralTestCases {
 
 
 
+    }
+
+    @Test
+    public void testTest() {
+        String test = "Hello";
+        List<Integer> result = new ArrayList<>();
+
+        for (char c: test.toCharArray()) {
+            result.add((int) c);
+        }
+
+        for (int i : result) {
+            System.out.println(i);
+        }
+    }
+
+    @Test
+    public void moduloTest() {
+        int test1 = 220;
+        int test2 = 426;
+
+        double result1 = Math.pow(test1, 17);
+//        result1 = result1 % 1147;
+        result1 = modulo((int) result1, 1147);
+
+        Assert.assertEquals(611, (int) result1);
+    }
+
+    private int modulo(int a, int b) {
+        if (a == 0) {
+            return b;
+        }
+        return modulo(b%a, a);
     }
 }

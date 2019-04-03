@@ -28,6 +28,7 @@ import javax.crypto.spec.DESedeKeySpec;
 
 import okhttp3.Call;
 import okhttp3.Callback;
+import okhttp3.FormBody;
 import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -52,6 +53,7 @@ public class LoginFragment extends Fragment {
         Button loginButton = fragmentView.findViewById(R.id.login_cta);
         loginButton.setOnClickListener((view) -> {
             Gson gson = new Gson();
+
             EditText usernameField = fragmentView.findViewById(R.id.username_field);
             EditText passwordField = fragmentView.findViewById(R.id.password_field);
             String username = usernameField.getText().toString();
@@ -76,7 +78,6 @@ public class LoginFragment extends Fragment {
             ((MeanderActivity) getActivity()).navigateToMap();
 
             new LoginFragment.LoginCall().execute(json);
-
             // TODO before we navigate away, we need to check to make sure the login was successful
         });
 
