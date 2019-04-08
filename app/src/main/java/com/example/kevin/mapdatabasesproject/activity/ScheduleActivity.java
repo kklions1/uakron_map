@@ -84,7 +84,8 @@ public class ScheduleActivity extends Activity {
     }
 
     private void navigateToMap() {
-        Intent intent = new Intent(ScheduleActivity.this, MapsActivity.class);
+//        Intent intent = new Intent(ScheduleActivity.this, MapsActivity.class);
+        Intent intent = new Intent(ScheduleActivity.this, MapsActivityKt.class);
         startActivity(intent);
     }
 

@@ -39,7 +39,8 @@ public class MeanderActivity extends Activity {
 
 
     public void navigateToMap() {
-        Intent intent = new Intent(MeanderActivity.this, MapsActivity.class);
+//        Intent intent = new Intent(MeanderActivity.this, MapsActivity.class);
+        Intent intent = new Intent(MeanderActivity.this, MapsActivityKt.class);
         startActivity(intent);
     }
 }

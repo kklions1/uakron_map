@@ -42,7 +42,7 @@
         </activity>
         <activity
             android:name=".activity.MapsActivity"
-            android:label="@string/title_activity_main">
+            android:label="@string/title_acitivty_maps">
         </activity>
         <activity
             android:name=".activity.ScheduleActivity"
@@ -50,6 +50,9 @@
         <activity
             android:name=".activity.CourseDetailsActivity"
             android:label="@string/title_course_details_activity"/>
+        <activity
+            android:name=".activity.MapsActivityKt"
+            android:label="@string/title_activity_maps_kt"/>
     </application>
 
 </manifest>
