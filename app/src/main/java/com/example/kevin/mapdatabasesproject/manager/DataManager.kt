@@ -44,13 +44,13 @@ class DataManager {
     }
 
     fun encryptText(password: String): List<Int> {
-        var result = ArrayList<Int>()
-        var paddedString = padString(password)
+        val result = ArrayList<Int>()
+        val paddedString = padString(password)
 
         // The formula for encrypting a block is
         // character^e mod n
         for (item in paddedString) {
-            var encodedItem = modularDiv(item, PUBLIC_KEY_E, PUBLIC_KEY_N)
+            val encodedItem = modularDiv(item, PUBLIC_KEY_E, PUBLIC_KEY_N)
             result.add(encodedItem)
 
         }
@@ -59,10 +59,10 @@ class DataManager {
     }
 
     private fun padString(string: String): List<Int> {
-        var result = ArrayList<Int>()
+        val result = ArrayList<Int>()
 
         for (c in string) {
-            var ascii = c.toInt()
+            val ascii = c.toInt()
             result.add(ascii)
         }
 
@@ -84,32 +84,3 @@ class DataManager {
         return result
     }
 }
-
-/**
- *
-function mpmod(base, exponent, modulus) {
-if ((base < 1) || (exponent < 0) || (modulus < 1)) {
-return("invalid");
-}
-result = 1;
-while (exponent > 0) {
-if ((exponent % 2) == 1) {
-result = (result * base) % modulus;
-}
-base = (base * base) % modulus;
-exponent = Math.floor(exponent / 2);
-}
-return (result);
-}
-
-function eulerphi(x) {
-result = 0;
-for (i = 1; i < x; i++) {
-if (isunit(i,x)) {
-result++;
-}
-}
-return (result);
-}
-
- */
