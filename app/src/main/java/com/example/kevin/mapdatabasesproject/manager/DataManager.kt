@@ -4,10 +4,12 @@ import com.example.kevin.mapdatabasesproject.model.Course
 import com.example.kevin.mapdatabasesproject.model.CourseTime
 import com.google.gson.Gson
 import com.google.gson.JsonArray
+import kotlin.math.exp
+import kotlin.math.pow
 
 //@file:JvmName("DataManager")
 
-class DataManagerConstants {
+class DataManager {
 
     companion object {
         @JvmField val COURSE_JSON_NAME = "name"
@@ -41,12 +43,15 @@ class DataManagerConstants {
         return result
     }
 
-    fun encryptPassword(password: List<Int>): List<Int> {
+    fun encryptText(password: String): List<Int> {
         var result = ArrayList<Int>()
+        var paddedString = padString(password)
 
         // The formula for encrypting a block is
-        //
-        for (item in password) {
+        // character^e mod n
+        for (item in paddedString) {
+            var encodedItem = modularDiv(item, PUBLIC_KEY_E, PUBLIC_KEY_N)
+            result.add(encodedItem)
 
         }
 
@@ -63,4 +68,48 @@ class DataManagerConstants {
 
         return result
     }
+
+    fun modularDiv(base: Int, exponent: Int, modulus: Int): Int {
+        var result = 1
+        var newBase = base
+        var newExp = exponent
+
+        while (newExp > 0) {
+            if ((newExp % 2) == 1) {
+                result = (result * newBase) % modulus
+            }
+            newBase = (newBase * newBase) % modulus
+            newExp = Math.floorDiv(newExp, 2)
+        }
+        return result
+    }
 }
+
+/**
+ *
+function mpmod(base, exponent, modulus) {
+if ((base < 1) || (exponent < 0) || (modulus < 1)) {
+return("invalid");
+}
+result = 1;
+while (exponent > 0) {
+if ((exponent % 2) == 1) {
+result = (result * base) % modulus;
+}
+base = (base * base) % modulus;
+exponent = Math.floor(exponent / 2);
+}
+return (result);
+}
+
+function eulerphi(x) {
+result = 0;
+for (i = 1; i < x; i++) {
+if (isunit(i,x)) {
+result++;
+}
+}
+return (result);
+}
+
+ */

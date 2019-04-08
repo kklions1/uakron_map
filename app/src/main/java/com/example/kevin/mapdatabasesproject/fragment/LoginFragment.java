@@ -12,28 +12,19 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.example.kevin.mapdatabasesproject.R;
-import com.example.kevin.mapdatabasesproject.activity.MapsActivity;
 import com.example.kevin.mapdatabasesproject.activity.MeanderActivity;
+import com.example.kevin.mapdatabasesproject.manager.DataManager;
 import com.google.gson.Gson;
 
 import java.io.IOException;
-import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
-import javax.crypto.SecretKey;
-import javax.crypto.SecretKeyFactory;
-import javax.crypto.spec.DESKeySpec;
-import javax.crypto.spec.DESedeKeySpec;
-
-import okhttp3.Call;
-import okhttp3.Callback;
-import okhttp3.FormBody;
 import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.RequestBody;
-import okhttp3.Response;
 
 public class LoginFragment extends Fragment {
     private View fragmentView;
@@ -59,10 +50,16 @@ public class LoginFragment extends Fragment {
             String username = usernameField.getText().toString();
             String password = passwordField.getText().toString();
 
-            Map<String, String> loginCredentialsMap = new HashMap<>();
+            Map<String, Object> loginCredentialsMap = new HashMap<>();
             loginCredentialsMap.put(USERNAME_KEY, username);
             // TODO encrypt the password
-            loginCredentialsMap.put(PASSWORD_KEY, password);
+
+            List<Integer> encryptedPassword;
+
+            DataManager manager = new DataManager();
+            encryptedPassword = manager.encryptText(password);
+
+            loginCredentialsMap.put(PASSWORD_KEY, encryptedPassword);
 
             String json = gson.toJson(loginCredentialsMap);
             SharedPreferences sharedPreferences = getActivity().getSharedPreferences(getString(R.string.shared_preferences_key),
@@ -75,27 +72,15 @@ public class LoginFragment extends Fragment {
 
             editor.apply();
 
-            ((MeanderActivity) getActivity()).navigateToMap();
-
             new LoginFragment.LoginCall().execute(json);
+
+            ((MeanderActivity) getActivity()).navigateToMap();
             // TODO before we navigate away, we need to check to make sure the login was successful
         });
 
         Button loginLater = fragmentView.findViewById(R.id.skip_login_button);
         loginLater.setOnClickListener((view) -> ((MeanderActivity) getActivity()).navigateToMap());
     }
-
-//    private final String PASS = "test_key";
-//
-//    private String encrypt() {
-//        try {
-//            DESKeySpec keySpec = new DESKeySpec(PASS.getBytes(StandardCharsets.UTF_8));
-//            SecretKeyFactory keyFactory = SecretKeyFactory.getInstance("DES");
-//            SecretKey key =
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//    }
 
     public static class LoginCall extends AsyncTask<String, Void, Void> {
         @Override
@@ -116,7 +101,8 @@ public class LoginFragment extends Fragment {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-                return null;
+
+            return null;
         }
     }
 }
