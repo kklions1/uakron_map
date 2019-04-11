@@ -13,4 +13,8 @@ public interface CourseContract {
     String END_TIME_MINUTE = "endTimeMinute";
     String COURSE_DAYS = "courseDays";
     String LOCATION_NAME = "locationName";
+
+    // For sending the data over to Google App Engine
+    String START_TIME_FULL = "startTime";
+    String END_TIME_FULL = "endTime";
 }
