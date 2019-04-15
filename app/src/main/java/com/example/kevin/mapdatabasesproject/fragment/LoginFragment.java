@@ -59,6 +59,7 @@ public class LoginFragment extends Fragment {
             DataManager manager = new DataManager();
             encryptedPassword = manager.encryptText(password);
 
+            loginCredentialsMap.put("type", "login");
             loginCredentialsMap.put(PASSWORD_KEY, encryptedPassword);
 
             String json = gson.toJson(loginCredentialsMap);

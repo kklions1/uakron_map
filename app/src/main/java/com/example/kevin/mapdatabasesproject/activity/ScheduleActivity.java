@@ -11,7 +11,9 @@ import android.support.v7.widget.RecyclerView;
 import android.widget.Toast;
 
 import com.example.kevin.mapdatabasesproject.database.dao.CourseDAO;
+import com.example.kevin.mapdatabasesproject.fragment.ScheduleFragment;
 import com.example.kevin.mapdatabasesproject.manager.MeanderDataManager;
+import com.example.kevin.mapdatabasesproject.manager.SaveToCloud;
 import com.example.kevin.mapdatabasesproject.model.Course;
 import com.example.kevin.mapdatabasesproject.R;
 import com.example.kevin.mapdatabasesproject.adapter.ScheduleAdapter;
@@ -68,6 +70,13 @@ public class ScheduleActivity extends Activity {
         FloatingActionButton refreshCourseList = findViewById(R.id.refresh_course_list);
         refreshCourseList.setOnClickListener((view) -> {
             RefreshCall thread = new RefreshCall();
+            thread.execute();
+        });
+
+        FloatingActionButton saveCourses = findViewById(R.id.save_courses);
+        saveCourses.setOnClickListener((view) -> {
+            SaveToCloud thread = new SaveToCloud();
+            Toast.makeText(ScheduleActivity.this, "Course data saved", Toast.LENGTH_LONG).show();
             thread.execute();
         });
     }

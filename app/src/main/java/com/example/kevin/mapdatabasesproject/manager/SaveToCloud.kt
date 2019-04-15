@@ -11,12 +11,15 @@ import okhttp3.RequestBody
 import java.io.IOException
 
 class SaveToCloud: AsyncTask<Unit, Unit, Unit>() {
-    override fun doInBackground(vararg params: Unit?): Unit {
+    override fun doInBackground(vararg params: Unit?) {
         val dao = CourseDAO()
         val courses = dao.all
         val gson = Gson()
         val encodedString: String
         val courseMapList = ArrayList<HashMap<String, String>>()
+        val typeMap = HashMap<String, String>()
+        typeMap["type"] = "save_courses"
+        courseMapList.add(typeMap)
 
         for (course in courses) {
             var courseAsMap = HashMap<String, String>()
@@ -30,7 +33,14 @@ class SaveToCloud: AsyncTask<Unit, Unit, Unit>() {
             courseMapList.add(courseAsMap)
         }
 
+//        encodedString = gson.toJson(courseMapList)
+//        val type = HashMap<String, String>()
+//        type["type"] = "save_courses"
+//        val encodedType = gson.toJson(type)
+//        val argumentsArray = arrayOf(type, courseMapList)
+//        val fullString = gson.toJson(argumentsArray)
         encodedString = gson.toJson(courseMapList)
+
 
         val body = RequestBody.create(MediaType.parse("application/json; charset=utf-8"), encodedString)
         val request = Request.Builder()
