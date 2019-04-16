@@ -17,6 +17,7 @@ import com.example.kevin.mapdatabasesproject.manager.DataManager;
 import com.google.gson.Gson;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -51,6 +52,9 @@ public class LoginFragment extends Fragment {
             String password = passwordField.getText().toString();
 
             Map<String, Object> loginCredentialsMap = new HashMap<>();
+            Map<String, Object> typeMap = new HashMap<>();
+            List<Map<String, Object>> argumentStuff = new ArrayList<>(); // Okay senioritus is setting in really hard
+
             loginCredentialsMap.put(USERNAME_KEY, username);
             // TODO encrypt the password
 
@@ -59,10 +63,14 @@ public class LoginFragment extends Fragment {
             DataManager manager = new DataManager();
             encryptedPassword = manager.encryptText(password);
 
-            loginCredentialsMap.put("type", "login");
+            typeMap.put("type", "login");
             loginCredentialsMap.put(PASSWORD_KEY, encryptedPassword);
 
-            String json = gson.toJson(loginCredentialsMap);
+            argumentStuff.add(typeMap);
+            argumentStuff.add(loginCredentialsMap);
+
+            String json = gson.toJson(argumentStuff);
+
             SharedPreferences sharedPreferences = getActivity().getSharedPreferences(getString(R.string.shared_preferences_key),
                     Context.MODE_PRIVATE);
             SharedPreferences.Editor editor = sharedPreferences.edit();
