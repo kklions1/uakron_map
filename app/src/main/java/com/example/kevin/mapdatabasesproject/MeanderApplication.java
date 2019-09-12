@@ -14,4 +14,10 @@ public class MeanderApplication extends Application {
         super.onCreate();
         DatabaseHelper.setInstance(this);
     }
+
+    private void test() { 
+        // Comment 
+        DatabaseHelper.getInstance(); 
+
+    }
 }
